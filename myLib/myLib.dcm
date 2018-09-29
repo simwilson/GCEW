@@ -1,0 +1,19 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP DRV8323RH
+D 6-60V Three-Phase Smart Gate Driver
+$ENDCMP
+#
+$CMP LM26CIM5-VHA
+D Factory-Preset Thermostat - Texas Instruments
+$ENDCMP
+#
+$CMP LM3668
+D 1-A Buck-Boost DC-DC Converter - Texas Instruments
+$ENDCMP
+#
+$CMP TLV809-DBV
+D 3-Pin Supply Voltage Supervisor - Texas Instruments
+$ENDCMP
+#
+#End Doc Library
