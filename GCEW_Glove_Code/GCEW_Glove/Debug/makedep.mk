@@ -14,8 +14,6 @@ src\adc.c
 
 src\driver_init.c
 
-src\exint.c
-
 src\protected_io.S
 
 src\usart_basic.c

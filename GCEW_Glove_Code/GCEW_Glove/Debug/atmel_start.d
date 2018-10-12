@@ -20,8 +20,7 @@ atmel_start.d atmel_start.o: .././atmel_start.c ../atmel_start.h \
  ../Config/clock_config.h ../include/port.h ../include/atmel_start_pins.h \
  ../include/sysctrl.h ../utils/atomic.h ../include/protected_io.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sleep.h \
- ../include/exint.h ../include/adc.h ../include/usart_basic.h \
- ../include/atmel_start_pins.h
+ ../include/adc.h ../include/usart_basic.h ../include/atmel_start_pins.h
 
 ../atmel_start.h:
 
@@ -76,8 +75,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../include/protected_io.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sleep.h:
-
-../include/exint.h:
 
 ../include/adc.h:
 

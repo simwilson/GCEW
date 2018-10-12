@@ -53,7 +53,6 @@ C_SRCS +=  \
 ../main.c \
 ../src/adc.c \
 ../src/driver_init.c \
-../src/exint.c \
 ../src/usart_basic.c
 
 
@@ -71,7 +70,6 @@ examples/src/usart_basic_example.o \
 main.o \
 src/adc.o \
 src/driver_init.o \
-src/exint.o \
 src/protected_io.o \
 src/usart_basic.o
 
@@ -82,7 +80,6 @@ examples/src/usart_basic_example.o \
 main.o \
 src/adc.o \
 src/driver_init.o \
-src/exint.o \
 src/protected_io.o \
 src/usart_basic.o
 
@@ -93,7 +90,6 @@ examples/src/usart_basic_example.d \
 main.d \
 src/adc.d \
 src/driver_init.d \
-src/exint.d \
 src/protected_io.d \
 src/usart_basic.d
 
@@ -104,7 +100,6 @@ examples/src/usart_basic_example.d \
 main.d \
 src/adc.d \
 src/driver_init.d \
-src/exint.d \
 src/protected_io.d \
 src/usart_basic.d
 
@@ -122,8 +117,6 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
-
-
 
 
 
@@ -199,7 +192,7 @@ all: $(OUTPUT_FILE_PATH) $(ADDITIONAL_DEPENDENCIES)
 $(OUTPUT_FILE_PATH): $(OBJS) $(USER_OBJS) $(OUTPUT_FILE_DEP) $(LIB_DEP) $(LINKER_SCRIPT_DEP)
 	@echo Building target: $@
 	@echo Invoking: AVR/GNU Linker : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE) -o$(OUTPUT_FILE_PATH_AS_ARGS) $(OBJS_AS_ARGS) $(USER_OBJS) $(LIBS) -Wl,-Map="GCEW_Glove.map" -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mmcu=atmega328pb -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.2.272\gcc\dev\atmega328pb"  
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE) -o$(OUTPUT_FILE_PATH_AS_ARGS) $(OBJS_AS_ARGS) $(USER_OBJS) $(LIBS) -Wl,-Map="GCEW_Glove.map" -Wl,-u,vfprintf -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mmcu=atmega328pb -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.2.272\gcc\dev\atmega328pb" -lprintf_flt  
 	@echo Finished building target: $@
 	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures  "GCEW_Glove.elf" "GCEW_Glove.hex"
 	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -j .eeprom  --set-section-flags=.eeprom=alloc,load --change-section-lma .eeprom=0  --no-change-warnings -O ihex "GCEW_Glove.elf" "GCEW_Glove.eep" || exit 0

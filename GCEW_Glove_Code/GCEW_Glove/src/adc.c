@@ -47,7 +47,7 @@ int8_t ADC_init()
 	/* Enable clock to write ADC registers */
 	PRR0 &= ~(1 << PRADC);
 
-	ADMUX = (0x01 << REFS0)   /* AVCC with external capacitor at AREF pin */
+	ADMUX = (0x01 << REFS0)   /* AVCC, Internal Vref turned off */
 	        | (0 << ADLAR)    /* Left Adjust Result: disabled */
 	        | (0x02 << MUX0); /* ADC Single Ended Input pin 2 */
 

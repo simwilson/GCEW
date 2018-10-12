@@ -36,22 +36,6 @@
 #include "driver_init.h"
 #include <system.h>
 
-void EXTERNAL_IRQ_0_initialization(void)
-{
-
-	// Set pin direction to input
-	Settings_set_dir(PORT_DIR_IN);
-
-	Settings_set_pull_mode(
-	    // <y> Pull configuration
-	    // <id> pad_pull_config
-	    // <PORT_PULL_OFF"> Off
-	    // <PORT_PULL_UP"> Pull-up
-	    PORT_PULL_UP);
-
-	EXTERNAL_IRQ_0_init();
-}
-
 /* Configure pins and initialize registers */
 void ADC_initialization(void)
 {
@@ -103,8 +87,6 @@ void system_init()
 	mcu_init();
 
 	sysctrl_init();
-
-	EXTERNAL_IRQ_0_initialization();
 
 	ADC_initialization();
 
