@@ -20,8 +20,8 @@ src/driver_init.d src/driver_init.o: ../src/driver_init.c \
  ../Config/clock_config.h ../include/port.h ../include/atmel_start_pins.h \
  ../include/sysctrl.h ../utils/atomic.h ../include/protected_io.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sleep.h \
- ../include/adc.h ../include/usart_basic.h ../atmel_start.h \
- ../include/driver_init.h ../include/atmel_start_pins.h \
+ ../include/exint.h ../include/adc.h ../include/usart_basic.h \
+ ../atmel_start.h ../include/driver_init.h ../include/atmel_start_pins.h \
  ../include/system.h ../include/port.h
 
 ../include/driver_init.h:
@@ -75,6 +75,8 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../include/protected_io.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sleep.h:
+
+../include/exint.h:
 
 ../include/adc.h:
 

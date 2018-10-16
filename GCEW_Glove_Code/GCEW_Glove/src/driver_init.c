@@ -36,18 +36,34 @@
 #include "driver_init.h"
 #include <system.h>
 
+void EXTERNAL_IRQ_0_initialization(void)
+{
+
+	// Set pin direction to input
+	push_button_set_dir(PORT_DIR_IN);
+
+	push_button_set_pull_mode(
+	    // <y> Pull configuration
+	    // <id> pad_pull_config
+	    // <PORT_PULL_OFF"> Off
+	    // <PORT_PULL_UP"> Pull-up
+	    PORT_PULL_UP);
+
+	EXTERNAL_IRQ_0_init();
+}
+
 /* Configure pins and initialize registers */
 void ADC_initialization(void)
 {
 
 	// Disable pull-up.
-	Flex3_set_pull_mode(PORT_PULL_OFF);
+	Flex1_set_pull_mode(PORT_PULL_OFF);
 
 	// Disable pull-up.
 	Flex2_set_pull_mode(PORT_PULL_OFF);
 
 	// Disable pull-up.
-	Flex1_set_pull_mode(PORT_PULL_OFF);
+	Flex3_set_pull_mode(PORT_PULL_OFF);
 
 	ADC_init();
 }
@@ -57,9 +73,9 @@ void USART_0_initialization(void)
 {
 
 	// Set pin direction to input
-	PD0_set_dir(PORT_DIR_IN);
+	RX_set_dir(PORT_DIR_IN);
 
-	PD0_set_pull_mode(
+	RX_set_pull_mode(
 	    // <y> Pull configuration
 	    // <id> pad_pull_config
 	    // <PORT_PULL_OFF"> Off
@@ -67,9 +83,9 @@ void USART_0_initialization(void)
 	    PORT_PULL_OFF);
 
 	// Set pin direction to output
-	PD1_set_dir(PORT_DIR_OUT);
+	TX_set_dir(PORT_DIR_OUT);
 
-	PD1_set_level(
+	TX_set_level(
 	    // <y> Initial level
 	    // <id> pad_initial_level
 	    // <false"> Low
@@ -87,6 +103,8 @@ void system_init()
 	mcu_init();
 
 	sysctrl_init();
+
+	EXTERNAL_IRQ_0_initialization();
 
 	ADC_initialization();
 

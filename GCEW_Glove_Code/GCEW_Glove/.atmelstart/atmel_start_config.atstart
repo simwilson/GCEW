@@ -32,6 +32,7 @@ drivers:
       enable_async_input: false
       enable_clkadc: true
       enable_clkasy: false
+      enable_clkasy_enable: false
       enable_clkcpu: true
       enable_clkio: true
       enable_clkptc: false
@@ -51,6 +52,26 @@ drivers:
         - name: Core
           input: Core
         configuration: {}
+  EXTERNAL_IRQ_0:
+    user_label: EXTERNAL_IRQ_0
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::EXINT::driver_config_definition::EXINT::Drivers:EXINT:Init
+    functionality: External_IRQ
+    api: Drivers:EXINT:Init
+    configuration:
+      exint_isc0: The low level of ISC0 generates an interrupt request
+      exint_isc1: The low level of ISC1 generates an interrupt request
+      inc_isr_harness: true
+    optional_signals:
+    - identifier: EXTERNAL_IRQ_0:PCINT/23
+      pad: PD7
+      mode: Enabled
+      configuration: null
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::optional_signal_definition::EXINT.PCINT.23
+      name: EXINT/PCINT/23
+      label: PCINT/23
+    variant: null
+    clocks:
+      domain_group: null
   ADC:
     user_label: ADC
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::ADC::driver_config_definition::ADC::Drivers:ADC:Init
@@ -65,7 +86,7 @@ drivers:
       adcsrb_adts: Free Running mode
       admux_adlar: false
       admux_mux: ADC Single Ended Input pin 2
-      admux_refs: AREF, Internal Vref turned off
+      admux_refs: AVCC with external capacitor at AREF pin
       inc_isr_harness: false
     optional_signals:
     - identifier: ADC:ADC/2
@@ -137,11 +158,18 @@ drivers:
         configuration:
           usart_clock_source: CLKio
 pads:
-  Flex3:
+  push_button:
+    name: PD7
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PD7
+    mode: Digital input
+    user_label: push_button
+    configuration:
+      pad_pull_config: Pull-up
+  Flex1:
     name: PC2
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PC2
     mode: Analog
-    user_label: Flex3
+    user_label: Flex1
     configuration: null
   Flex2:
     name: PC3
@@ -149,22 +177,22 @@ pads:
     mode: Analog
     user_label: Flex2
     configuration: null
-  Flex1:
+  Flex3:
     name: PC4
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PC4
     mode: Analog
-    user_label: Flex1
+    user_label: Flex3
     configuration: null
-  PD0:
+  RX:
     name: PD0
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PD0
     mode: Digital input
-    user_label: PD0
+    user_label: RX
     configuration: null
-  PD1:
+  TX:
     name: PD1
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PD1
     mode: Digital output
-    user_label: PD1
+    user_label: TX
     configuration: null
 toolchain_options: []

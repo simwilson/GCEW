@@ -16,7 +16,8 @@ src/exint.d src/exint.o: ../src/exint.c ../include/exint.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  ../utils/interrupt_avr8.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
+ C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.2.272\include/avr\iom328pb.h
 
 ../include/exint.h:
 
@@ -55,3 +56,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../utils/interrupt_avr8.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
+
+C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.2.272\include/avr\iom328pb.h:

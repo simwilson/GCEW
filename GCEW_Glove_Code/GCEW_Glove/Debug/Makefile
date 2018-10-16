@@ -53,6 +53,7 @@ C_SRCS +=  \
 ../main.c \
 ../src/adc.c \
 ../src/driver_init.c \
+../src/exint.c \
 ../src/usart_basic.c
 
 
@@ -70,6 +71,7 @@ examples/src/usart_basic_example.o \
 main.o \
 src/adc.o \
 src/driver_init.o \
+src/exint.o \
 src/protected_io.o \
 src/usart_basic.o
 
@@ -80,6 +82,7 @@ examples/src/usart_basic_example.o \
 main.o \
 src/adc.o \
 src/driver_init.o \
+src/exint.o \
 src/protected_io.o \
 src/usart_basic.o
 
@@ -90,6 +93,7 @@ examples/src/usart_basic_example.d \
 main.d \
 src/adc.d \
 src/driver_init.d \
+src/exint.d \
 src/protected_io.d \
 src/usart_basic.d
 
@@ -100,6 +104,7 @@ examples/src/usart_basic_example.d \
 main.d \
 src/adc.d \
 src/driver_init.d \
+src/exint.d \
 src/protected_io.d \
 src/usart_basic.d
 
@@ -117,6 +122,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

@@ -32,6 +32,7 @@
  *@{
  */
 #include <exint.h>
+#include "avr\iom328pb.h"
 
 /**
  * \brief Initialize EXTERNAL_IRQ_0 interface
@@ -41,9 +42,16 @@
 int8_t EXTERNAL_IRQ_0_init()
 {
 
-	PCICR = (1 << PCIE2); // Enable pin change interrupt 2
+	
+	PCICR |= (_BV(PCIE2)); // Enable pin change interrupt 2
 
-	PCMSK2 = (1 << PCINT21); // Pin change enable mask 21  , aka pin PD5
+	PCMSK2 = (_BV(PCINT18)); // Pin change enable mask 18
 
+	EIMSK |= _BV(INT0);  // Enable interrupts on INT0 pin
+	EIMSK &= ~(_BV(INT1)); // Disable Interrupts on INT1 pin
+
+	EICRA = 0x03; // The rising edge of INT0 pin generates an interrupt (press of the button, falling edge is release of the button)
+
+	sei();
 	return 0;
 }
