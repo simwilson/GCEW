@@ -1,0 +1,180 @@
+EESchema Schematic File Version 4
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Transistor_FET:IRF7171M Q?
+U 1 1 5BA3C5AD
+P 8050 1800
+F 0 "Q?" H 8255 1846 50  0000 L CNN
+F 1 "IRF7171M" H 8255 1755 50  0000 L CNN
+F 2 "Package_DirectFET:DirectFET_MN" H 8050 1800 50  0001 C CIN
+F 3 "https://www.infineon.com/dgdl/irf7171mpbf.pdf?fileId=5546d462533600a4015355f1326f1ad6" H 8050 1800 50  0001 L CNN
+	1    8050 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:IRF7171M Q?
+U 1 1 5BA3C52D
+P 6900 1800
+F 0 "Q?" H 7105 1846 50  0000 L CNN
+F 1 "IRF7171M" H 7105 1755 50  0000 L CNN
+F 2 "Package_DirectFET:DirectFET_MN" H 6900 1800 50  0001 C CIN
+F 3 "https://www.infineon.com/dgdl/irf7171mpbf.pdf?fileId=5546d462533600a4015355f1326f1ad6" H 6900 1800 50  0001 L CNN
+	1    6900 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:IRF7171M Q?
+U 1 1 5BA3C431
+P 8050 1200
+F 0 "Q?" H 8255 1246 50  0000 L CNN
+F 1 "IRF7171M" H 8255 1155 50  0000 L CNN
+F 2 "Package_DirectFET:DirectFET_MN" H 8050 1200 50  0001 C CIN
+F 3 "https://www.infineon.com/dgdl/irf7171mpbf.pdf?fileId=5546d462533600a4015355f1326f1ad6" H 8050 1200 50  0001 L CNN
+	1    8050 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:IRF7171M Q?
+U 1 1 5BA3C2E0
+P 6900 1200
+F 0 "Q?" H 7105 1246 50  0000 L CNN
+F 1 "IRF7171M" H 7105 1155 50  0000 L CNN
+F 2 "Package_DirectFET:DirectFET_MN" H 6900 1200 50  0001 C CIN
+F 3 "https://www.infineon.com/dgdl/irf7171mpbf.pdf?fileId=5546d462533600a4015355f1326f1ad6" H 6900 1200 50  0001 L CNN
+	1    6900 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:IRF7171M Q?
+U 1 1 5BA3C272
+P 5800 1200
+F 0 "Q?" H 6005 1246 50  0000 L CNN
+F 1 "IRF7171M" H 6005 1155 50  0000 L CNN
+F 2 "Package_DirectFET:DirectFET_MN" H 5800 1200 50  0001 C CIN
+F 3 "https://www.infineon.com/dgdl/irf7171mpbf.pdf?fileId=5546d462533600a4015355f1326f1ad6" H 5800 1200 50  0001 L CNN
+	1    5800 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L symbols:DRV8323RHRGZ U?
+U 1 1 5BA3CC79
+P 3800 4200
+F 0 "U?" H 3800 7588 60  0000 C CNN
+F 1 "DRV8323RHRGZ" H 3800 7482 60  0000 C CNN
+F 2 "RGZ0048A" H 3800 4140 60  0001 C CNN
+F 3 "" H 3800 4200 60  0000 C CNN
+	1    3800 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5900 600  5900 1000
+Wire Wire Line
+	5900 600  7000 600 
+Wire Wire Line
+	7000 600  7000 1000
+Wire Wire Line
+	7000 600  8150 600 
+Wire Wire Line
+	8150 600  8150 1000
+Connection ~ 7000 600 
+Wire Wire Line
+	6700 1200 6450 1200
+Wire Wire Line
+	6450 1200 6450 2100
+Wire Wire Line
+	6450 2100 4700 2100
+Wire Wire Line
+	5600 1200 5350 1200
+Wire Wire Line
+	5350 1200 5350 1400
+Wire Wire Line
+	5350 1400 4700 1400
+$Comp
+L Transistor_FET:IRF7171M Q?
+U 1 1 5BA3D3F0
+P 5800 1800
+F 0 "Q?" H 6005 1846 50  0000 L CNN
+F 1 "IRF7171M" H 6005 1755 50  0000 L CNN
+F 2 "Package_DirectFET:DirectFET_MN" H 5800 1800 50  0001 C CIN
+F 3 "https://www.infineon.com/dgdl/irf7171mpbf.pdf?fileId=5546d462533600a4015355f1326f1ad6" H 5800 1800 50  0001 L CNN
+	1    5800 1800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4700 1800 5600 1800
+Wire Wire Line
+	6700 1800 6700 2500
+Wire Wire Line
+	6700 2500 4700 2500
+Wire Wire Line
+	7850 1200 7600 1200
+Wire Wire Line
+	7600 1200 7600 2800
+Wire Wire Line
+	7600 2800 4700 2800
+Wire Wire Line
+	7850 1800 7850 3200
+Wire Wire Line
+	7850 3200 4700 3200
+Wire Wire Line
+	8150 2000 8150 3400
+Wire Wire Line
+	8150 3400 7000 3400
+Wire Wire Line
+	5900 3400 5900 2000
+Wire Wire Line
+	7000 2000 7000 3400
+Connection ~ 7000 3400
+Wire Wire Line
+	7000 3400 5900 3400
+Wire Wire Line
+	5900 1400 5900 1500
+Wire Wire Line
+	5900 1500 8900 1500
+Wire Wire Line
+	5900 1600 5900 1500
+Connection ~ 5900 1500
+Wire Wire Line
+	7000 1400 7000 1550
+Wire Wire Line
+	7000 1550 9200 1550
+Wire Wire Line
+	7000 1550 7000 1600
+Connection ~ 7000 1550
+Wire Wire Line
+	8150 1400 8150 1600
+Wire Wire Line
+	8150 1600 9200 1600
+Connection ~ 8150 1600
+$Comp
+L power:+36V #PWR?
+U 1 1 5BA3F46D
+P 4050 600
+F 0 "#PWR?" H 4050 450 50  0001 C CNN
+F 1 "+36V" H 4065 773 50  0000 C CNN
+F 2 "" H 4050 600 50  0001 C CNN
+F 3 "" H 4050 600 50  0001 C CNN
+	1    4050 600 
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4050 600  5900 600 
+Connection ~ 5900 600 
+Wire Notes Line
+	6300 3250 6300 2750
+Wire Notes Line
+	6300 2750 7750 2750
+$EndSCHEMATC
