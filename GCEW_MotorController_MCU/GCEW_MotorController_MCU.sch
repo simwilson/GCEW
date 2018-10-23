@@ -1,0 +1,231 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:GCEW_MotorController_MCU-cache
+EELAYER 25 0
+EELAYER END
+$Descr USLetter 11000 8500
+encoding utf-8
+Sheet 1 1
+Title "GCEW Motor Controller MCU Board"
+Date "2018-10-19"
+Rev "1"
+Comp "Simon Wilson"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L ATMEGA328PB-AU U1
+U 1 1 5BCA2999
+P 5230 3590
+F 0 "U1" H 4830 5065 50  0000 R BNN
+F 1 "ATMEGA328PB-AU" H 4830 4990 50  0000 R BNN
+F 2 "Housings_QFP:TQFP-32_7x7mm_Pitch0.8mm" H 5180 2190 50  0001 L CIN
+F 3 "" H 4930 3640 50  0001 C CNN
+	1    5230 3590
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR01
+U 1 1 5BCA29FD
+P 1990 1400
+F 0 "#PWR01" H 1990 1250 50  0001 C CNN
+F 1 "+5V" H 1990 1540 50  0000 C CNN
+F 2 "" H 1990 1400 50  0001 C CNN
+F 3 "" H 1990 1400 50  0001 C CNN
+	1    1990 1400
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR04
+U 1 1 5BCA2A7D
+P 2290 1400
+F 0 "#PWR04" H 2290 1150 50  0001 C CNN
+F 1 "GND" H 2290 1250 50  0000 C CNN
+F 2 "" H 2290 1400 50  0001 C CNN
+F 3 "" H 2290 1400 50  0001 C CNN
+	1    2290 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR05
+U 1 1 5BCA2AC9
+P 4930 1930
+F 0 "#PWR05" H 4930 1780 50  0001 C CNN
+F 1 "+5V" H 4930 2070 50  0000 C CNN
+F 2 "" H 4930 1930 50  0001 C CNN
+F 3 "" H 4930 1930 50  0001 C CNN
+	1    4930 1930
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4930 1930 4930 2090
+Wire Wire Line
+	4930 2090 5130 2090
+$Comp
+L C C2
+U 1 1 5BCA2AFC
+P 5400 1970
+F 0 "C2" V 5330 1810 50  0000 L CNN
+F 1 "0.1uF" V 5310 2080 50  0000 L CNN
+F 2 "" H 5438 1820 50  0001 C CNN
+F 3 "" H 5400 1970 50  0001 C CNN
+	1    5400 1970
+	0    1    1    0   
+$EndComp
+$Comp
+L C C1
+U 1 1 5BCA2B9F
+P 3780 2840
+F 0 "C1" H 3805 2940 50  0000 L CNN
+F 1 "0.1uF" H 3805 2740 50  0000 L CNN
+F 2 "" H 3818 2690 50  0001 C CNN
+F 3 "" H 3780 2840 50  0001 C CNN
+	1    3780 2840
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3780 2690 3930 2690
+$Comp
+L GND #PWR06
+U 1 1 5BCA2C36
+P 3780 3050
+F 0 "#PWR06" H 3780 2800 50  0001 C CNN
+F 1 "GND" H 3780 2900 50  0000 C CNN
+F 2 "" H 3780 3050 50  0001 C CNN
+F 3 "" H 3780 3050 50  0001 C CNN
+	1    3780 3050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3780 3050 3780 2990
+Wire Wire Line
+	5130 2090 5130 1970
+Wire Wire Line
+	5130 1970 5250 1970
+$Comp
+L GND #PWR07
+U 1 1 5BCA2D0E
+P 5630 1970
+F 0 "#PWR07" H 5630 1720 50  0001 C CNN
+F 1 "GND" H 5630 1820 50  0000 C CNN
+F 2 "" H 5630 1970 50  0001 C CNN
+F 3 "" H 5630 1970 50  0001 C CNN
+	1    5630 1970
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5550 1970 5630 1970
+$Comp
+L GND #PWR08
+U 1 1 5BCA2D85
+P 5080 5200
+F 0 "#PWR08" H 5080 4950 50  0001 C CNN
+F 1 "GND" H 5080 5050 50  0000 C CNN
+F 2 "" H 5080 5200 50  0001 C CNN
+F 3 "" H 5080 5200 50  0001 C CNN
+	1    5080 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5030 5090 5030 5200
+Wire Wire Line
+	5030 5200 5130 5200
+Wire Wire Line
+	5130 5200 5130 5090
+Connection ~ 5080 5200
+Text GLabel 6530 2690 2    60   Input ~ 0
+MOSI
+Text GLabel 6530 2790 2    60   Input ~ 0
+MISO
+Text GLabel 6530 2890 2    60   Input ~ 0
+SCK
+Text GLabel 6530 3890 2    60   Input ~ 0
+~Reset
+$Comp
+L Conn_02x03_Odd_Even J1
+U 1 1 5BCA3750
+P 8750 2500
+F 0 "J1" H 8800 2700 50  0000 C CNN
+F 1 "Conn_02x03_Odd_Even" H 8800 2300 50  0000 C CNN
+F 2 "" H 8750 2500 50  0001 C CNN
+F 3 "" H 8750 2500 50  0001 C CNN
+	1    8750 2500
+	1    0    0    -1  
+$EndComp
+Text GLabel 9050 2400 2    60   Input ~ 0
+VTG
+Text GLabel 9050 2500 2    60   Input ~ 0
+MOSI
+Text GLabel 9050 2600 2    60   Input ~ 0
+GND
+Text GLabel 8550 2600 0    60   Input ~ 0
+~Reset
+Text GLabel 8550 2500 0    60   Input ~ 0
+SCK
+Text GLabel 8550 2400 0    60   Input ~ 0
+MISO
+Text GLabel 2490 1400 2    60   Input ~ 0
+GND
+Text GLabel 1770 1400 0    60   Input ~ 0
+VTG
+Wire Wire Line
+	1770 1400 1990 1400
+Wire Wire Line
+	2490 1400 2290 1400
+NoConn ~ 3930 4190
+NoConn ~ 3930 4290
+NoConn ~ 3930 4390
+NoConn ~ 3930 4490
+NoConn ~ 6530 4790
+NoConn ~ 6530 4690
+NoConn ~ 6530 4590
+NoConn ~ 6530 4390
+NoConn ~ 6530 4490
+NoConn ~ 6530 4290
+NoConn ~ 6530 4090
+NoConn ~ 6530 4190
+NoConn ~ 6530 3790
+NoConn ~ 6530 3690
+NoConn ~ 6530 3590
+NoConn ~ 6530 3490
+NoConn ~ 6530 3290
+NoConn ~ 6530 3390
+NoConn ~ 6530 3090
+NoConn ~ 6530 2990
+NoConn ~ 6530 2590
+NoConn ~ 6530 2390
+NoConn ~ 6530 2490
+$EndSCHEMATC
