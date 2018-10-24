@@ -1,8 +1,8 @@
 (export (version D)
   (design
-    (source "C:\\Users\\green\\Documents\\GitHub\\GCEW\\schematic is dramatic\\GCEW\\GCEW.sch")
-    (date "10/24/2018 1:44:24 PM")
-    (tool "Eeschema (5.0.1)-3")
+    (source "C:\\Users\\grisk\\OneDrive\\Documents\\GitHub\\GCEW_1\\schematic is dramatic\\GCEW\\GCEW.sch")
+    (date "10/24/2018 1:46:51 PM")
+    (tool "Eeschema (5.0.0)")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
         (title "GCEW Motor Controller")
@@ -518,7 +518,7 @@
     (library (logical Device)
       (uri "C:\\Program Files\\KiCad\\share\\kicad\\library/Device.lib"))
     (library (logical myLib)
-      (uri C:\Users\green\Documents\GitHub\GCEW\GCEW_Glove_KiCAD\myLib\myLib.lib)))
+      (uri C:/Users/grisk/OneDrive/Documents/GitHub/GCEW_1/GCEW_Glove_KiCAD/myLib/myLib.lib)))
   (nets
     (net (code 1) (name VREF)
       (node (ref R1) (pin 1))
