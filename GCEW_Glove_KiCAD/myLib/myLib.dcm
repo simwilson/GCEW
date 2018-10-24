@@ -1,5 +1,11 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP Battery
+D Multiple-cell battery
+K batt voltage-source cell
+F ~
+$ENDCMP
+#
 $CMP DRV8323RH
 D 6-60V Three-Phase Smart Gate Driver
 $ENDCMP
