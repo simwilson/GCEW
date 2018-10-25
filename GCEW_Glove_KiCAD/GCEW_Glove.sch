@@ -1,39 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:switches
-LIBS:relays
-LIBS:motors
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:myLib
+EESchema Schematic File Version 4
 LIBS:GCEW_Glove-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr USLetter 11000 8500
 encoding utf-8
@@ -48,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L ATMEGA328PB-AU U3
+L GCEW_Glove-rescue:ATMEGA328PB-AU U3
 U 1 1 5BAFAB2A
 P 6730 3820
 F 0 "U3" H 6330 5295 50  0000 R BNN
@@ -59,7 +26,7 @@ F 3 "" H 6430 3870 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 1S_LiPo BT1
+L GCEW_Glove-rescue:1S_LiPo BT1
 U 1 1 5BAFAC06
 P 990 3460
 F 0 "BT1" H 840 3700 60  0000 C CNN
@@ -70,7 +37,7 @@ F 3 "" H 990 3460 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L TLV809-DBV U1
+L GCEW_Glove-rescue:TLV809-DBV U1
 U 1 1 5BAFAE1D
 P 2100 3430
 F 0 "U1" H 1950 3740 60  0000 C CNN
@@ -81,7 +48,7 @@ F 3 "" H 2100 3430 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HC-05_BluetoothModule U4
+L GCEW_Glove-rescue:HC-05_BluetoothModule U4
 U 1 1 5BAFB2E3
 P 9150 2790
 F 0 "U4" H 8930 3180 60  0000 C CNN
@@ -92,7 +59,7 @@ F 3 "" H 9150 2790 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L L L1
+L GCEW_Glove-rescue:L L1
 U 1 1 5BAF9913
 P 4140 3680
 F 0 "L1" V 4090 3680 50  0000 C CNN
@@ -103,7 +70,7 @@ F 3 "" H 4140 3680 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C1
+L GCEW_Glove-rescue:C C1
 U 1 1 5BAF9F3F
 P 1700 3440
 F 0 "C1" H 1725 3540 50  0000 L CNN
@@ -114,7 +81,7 @@ F 3 "" H 1700 3440 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR01
+L GCEW_Glove-rescue:VCC #PWR01
 U 1 1 5BAFCB03
 P 890 2580
 F 0 "#PWR01" H 890 2430 50  0001 C CNN
@@ -125,7 +92,7 @@ F 3 "" H 890 2580 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR02
+L GCEW_Glove-rescue:VCC #PWR02
 U 1 1 5BAFCE89
 P 2100 2920
 F 0 "#PWR02" H 2100 2770 50  0001 C CNN
@@ -136,7 +103,7 @@ F 3 "" H 2100 2920 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR03
+L GCEW_Glove-rescue:GND #PWR03
 U 1 1 5BAFD33D
 P 2100 3950
 F 0 "#PWR03" H 2100 3700 50  0001 C CNN
@@ -147,7 +114,7 @@ F 3 "" H 2100 3950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR04
+L GCEW_Glove-rescue:GND #PWR04
 U 1 1 5BAFFA8D
 P 9150 3410
 F 0 "#PWR04" H 9150 3160 50  0001 C CNN
@@ -158,7 +125,7 @@ F 3 "" H 9150 3410 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR05
+L GCEW_Glove-rescue:GND #PWR05
 U 1 1 5BAFFC45
 P 6590 5440
 F 0 "#PWR05" H 6590 5190 50  0001 C CNN
@@ -169,7 +136,7 @@ F 3 "" H 6590 5440 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR06
+L GCEW_Glove-rescue:VCC #PWR06
 U 1 1 5BB01298
 P 3460 2730
 F 0 "#PWR06" H 3460 2580 50  0001 C CNN
@@ -180,7 +147,7 @@ F 3 "" H 3460 2730 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C4
+L GCEW_Glove-rescue:C C4
 U 1 1 5BB01EB1
 P 4390 3620
 F 0 "C4" H 4290 3760 50  0000 L CNN
@@ -191,7 +158,7 @@ F 3 "" H 4390 3620 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR07
+L GCEW_Glove-rescue:GND #PWR07
 U 1 1 5BB0211E
 P 4390 3950
 F 0 "#PWR07" H 4390 3700 50  0001 C CNN
@@ -202,7 +169,7 @@ F 3 "" H 4390 3950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +3.3V #PWR08
+L GCEW_Glove-rescue:+3.3V #PWR08
 U 1 1 5BB02580
 P 4390 3320
 F 0 "#PWR08" H 4390 3170 50  0001 C CNN
@@ -213,7 +180,7 @@ F 3 "" H 4390 3320 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +3.3V #PWR09
+L GCEW_Glove-rescue:+3.3V #PWR09
 U 1 1 5BB02958
 P 6430 2130
 F 0 "#PWR09" H 6430 1980 50  0001 C CNN
@@ -224,7 +191,7 @@ F 3 "" H 6430 2130 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +3.3V #PWR010
+L GCEW_Glove-rescue:+3.3V #PWR010
 U 1 1 5BB02AB1
 P 9150 2110
 F 0 "#PWR010" H 9150 1960 50  0001 C CNN
@@ -235,7 +202,7 @@ F 3 "" H 9150 2110 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR011
+L GCEW_Glove-rescue:GND #PWR011
 U 1 1 5BB03314
 P 3360 4300
 F 0 "#PWR011" H 3360 4050 50  0001 C CNN
@@ -246,7 +213,7 @@ F 3 "" H 3360 4300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GNDS #PWR012
+L GCEW_Glove-rescue:GNDS #PWR012
 U 1 1 5BB0346F
 P 3610 4280
 F 0 "#PWR012" H 3610 4030 50  0001 C CNN
@@ -257,7 +224,7 @@ F 3 "" H 3610 4280 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C3
+L GCEW_Glove-rescue:C C3
 U 1 1 5BB06120
 P 3970 2730
 F 0 "C3" V 3930 2790 50  0000 L CNN
@@ -268,7 +235,7 @@ F 3 "" H 3970 2730 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR013
+L GCEW_Glove-rescue:GND #PWR013
 U 1 1 5BB0639F
 P 4230 2730
 F 0 "#PWR013" H 4230 2480 50  0001 C CNN
@@ -279,7 +246,7 @@ F 3 "" H 4230 2730 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR014
+L GCEW_Glove-rescue:VCC #PWR014
 U 1 1 5BB074E6
 P 2810 3790
 F 0 "#PWR014" H 2810 3640 50  0001 C CNN
@@ -290,7 +257,7 @@ F 3 "" H 2810 3790 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR015
+L GCEW_Glove-rescue:GND #PWR015
 U 1 1 5BB0753E
 P 2660 3530
 F 0 "#PWR015" H 2660 3280 50  0001 C CNN
@@ -314,7 +281,7 @@ NoConn ~ 8030 3320
 NoConn ~ 5430 4720
 NoConn ~ 8030 4020
 $Comp
-L C C6
+L GCEW_Glove-rescue:C C6
 U 1 1 5BB4A4F4
 P 6940 2180
 F 0 "C6" V 6880 2250 50  0000 L CNN
@@ -325,7 +292,7 @@ F 3 "" H 6940 2180 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR016
+L GCEW_Glove-rescue:GND #PWR016
 U 1 1 5BB4A5B9
 P 7210 2180
 F 0 "#PWR016" H 7210 1930 50  0001 C CNN
@@ -336,7 +303,7 @@ F 3 "" H 7210 2180 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C8
+L GCEW_Glove-rescue:C C8
 U 1 1 5BB4B308
 P 9430 2120
 F 0 "C8" V 9370 2190 50  0000 L CNN
@@ -347,7 +314,7 @@ F 3 "" H 9430 2120 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR017
+L GCEW_Glove-rescue:GND #PWR017
 U 1 1 5BB4B668
 P 9660 2120
 F 0 "#PWR017" H 9660 1870 50  0001 C CNN
@@ -358,7 +325,7 @@ F 3 "" H 9660 2120 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C2
+L GCEW_Glove-rescue:C C2
 U 1 1 5BB4BF1E
 P 3970 2400
 F 0 "C2" V 3910 2450 50  0000 L CNN
@@ -381,7 +348,7 @@ MISO
 Text GLabel 8030 2920 2    50   Input ~ 0
 MOSI
 $Comp
-L +3.3V #PWR018
+L GCEW_Glove-rescue:+3.3V #PWR018
 U 1 1 5BB4EFC5
 P 1800 930
 F 0 "#PWR018" H 1800 780 50  0001 C CNN
@@ -394,7 +361,7 @@ $EndComp
 Text GLabel 1800 930  3    50   Input ~ 0
 VTG
 $Comp
-L GND #PWR019
+L GCEW_Glove-rescue:GND #PWR019
 U 1 1 5BB4F0EB
 P 2340 1010
 F 0 "#PWR019" H 2340 760 50  0001 C CNN
@@ -415,7 +382,7 @@ SCK
 Text GLabel 4160 1050 0    50   Input ~ 0
 ~RESET
 $Comp
-L R R10
+L GCEW_Glove-rescue:R R10
 U 1 1 5BB50B87
 P 4520 6070
 F 0 "R10" V 4440 6070 50  0000 C CNN
@@ -426,7 +393,7 @@ F 3 "" H 4520 6070 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R R11
+L GCEW_Glove-rescue:R R11
 U 1 1 5BB50CD0
 P 4520 6550
 F 0 "R11" V 4440 6540 50  0000 C CNN
@@ -437,7 +404,7 @@ F 3 "" H 4520 6550 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R R12
+L GCEW_Glove-rescue:R R12
 U 1 1 5BB51087
 P 4520 7030
 F 0 "R12" V 4440 7020 50  0000 C CNN
@@ -448,7 +415,7 @@ F 3 "" H 4520 7030 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Conn_01x06 J2
+L GCEW_Glove-rescue:Conn_01x06 J2
 U 1 1 5BB51497
 P 5530 6450
 F 0 "J2" H 5530 6750 50  0000 C CNN
@@ -459,7 +426,7 @@ F 3 "" H 5530 6450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR020
+L GCEW_Glove-rescue:GND #PWR020
 U 1 1 5BB522FB
 P 4370 7390
 F 0 "#PWR020" H 4370 7140 50  0001 C CNN
@@ -490,7 +457,7 @@ Flex_2
 Text GLabel 4662 5860 0    50   Input ~ 0
 Flex_3
 $Comp
-L GND #PWR021
+L GCEW_Glove-rescue:GND #PWR021
 U 1 1 5BB5867F
 P 5430 3290
 F 0 "#PWR021" H 5430 3040 50  0001 C CNN
@@ -501,7 +468,7 @@ F 3 "" H 5430 3290 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C5
+L GCEW_Glove-rescue:C C5
 U 1 1 5BB586F2
 P 5430 3100
 F 0 "C5" H 5455 3200 50  0000 L CNN
@@ -512,7 +479,7 @@ F 3 "" H 5430 3100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L SW_SPDT SW1
+L GCEW_Glove-rescue:SW_SPDT SW1
 U 1 1 5BB5E8F8
 P 890 2820
 F 0 "SW1" H 890 2990 50  0000 C CNN
@@ -523,7 +490,7 @@ F 3 "" H 890 2820 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L LM3668 U2
+L GCEW_Glove-rescue:LM3668 U2
 U 1 1 5BAFAEC6
 P 3410 3530
 F 0 "U2" H 3060 4000 60  0000 C CNN
@@ -534,7 +501,7 @@ F 3 "" H 3410 3530 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR022
+L GCEW_Glove-rescue:GND #PWR022
 U 1 1 5BB63D40
 P 990 3870
 F 0 "#PWR022" H 990 3620 50  0001 C CNN
@@ -546,7 +513,7 @@ F 3 "" H 990 3870 50  0001 C CNN
 $EndComp
 NoConn ~ 790  3020
 $Comp
-L PWR_FLAG #FLG023
+L GCEW_Glove-rescue:PWR_FLAG #FLG023
 U 1 1 5BB64A45
 P 1080 950
 F 0 "#FLG023" H 1080 1025 50  0001 C CNN
@@ -557,7 +524,7 @@ F 3 "" H 1080 950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L SW_Push SW2
+L GCEW_Glove-rescue:SW_Push SW2
 U 1 1 5BB65AF1
 P 8950 4270
 F 0 "SW2" H 8760 4370 50  0000 L CNN
@@ -568,7 +535,7 @@ F 3 "" H 8950 4470 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR024
+L GCEW_Glove-rescue:GND #PWR024
 U 1 1 5BB6615B
 P 9240 4270
 F 0 "#PWR024" H 9240 4020 50  0001 C CNN
@@ -579,7 +546,7 @@ F 3 "" H 9240 4270 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L LED_ARGB D1
+L GCEW_Glove-rescue:LED_ARGB D1
 U 1 1 5BB4F51C
 P 8290 1690
 F 0 "D1" H 8290 2060 50  0000 C CNN
@@ -590,7 +557,7 @@ F 3 "" H 8290 1640 50  0001 C CNN
 	0    1    -1   0   
 $EndComp
 $Comp
-L R R1
+L GCEW_Glove-rescue:R R1
 U 1 1 5BB4FBBA
 P 8090 2190
 F 0 "R1" V 8170 2190 50  0000 C CNN
@@ -601,7 +568,7 @@ F 3 "" H 8090 2190 50  0001 C CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L R R3
+L GCEW_Glove-rescue:R R3
 U 1 1 5BB4FC6B
 P 8290 2190
 F 0 "R3" V 8370 2190 50  0000 C CNN
@@ -612,7 +579,7 @@ F 3 "" H 8290 2190 50  0001 C CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L R R4
+L GCEW_Glove-rescue:R R4
 U 1 1 5BB4FCC8
 P 8490 2080
 F 0 "R4" V 8570 2080 50  0000 C CNN
@@ -623,7 +590,7 @@ F 3 "" H 8490 2080 50  0001 C CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L +3.3V #PWR025
+L GCEW_Glove-rescue:+3.3V #PWR025
 U 1 1 5BB509CE
 P 8290 1380
 F 0 "#PWR025" H 8290 1230 50  0001 C CNN
@@ -635,7 +602,7 @@ F 3 "" H 8290 1380 50  0001 C CNN
 $EndComp
 NoConn ~ 8030 4620
 $Comp
-L LED_ARGB D2
+L GCEW_Glove-rescue:LED_ARGB D2
 U 1 1 5BB530DA
 P 9010 5020
 F 0 "D2" H 9010 5390 50  0000 C CNN
@@ -646,7 +613,7 @@ F 3 "" H 9010 4970 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R6
+L GCEW_Glove-rescue:R R6
 U 1 1 5BB533D6
 P 8610 4820
 F 0 "R6" V 8690 4820 50  0000 C CNN
@@ -657,7 +624,7 @@ F 3 "" H 8610 4820 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R R7
+L GCEW_Glove-rescue:R R7
 U 1 1 5BB534D5
 P 8610 5020
 F 0 "R7" V 8690 5020 50  0000 C CNN
@@ -668,7 +635,7 @@ F 3 "" H 8610 5020 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R R8
+L GCEW_Glove-rescue:R R8
 U 1 1 5BB5357F
 P 8610 5220
 F 0 "R8" V 8690 5220 50  0000 C CNN
@@ -679,7 +646,7 @@ F 3 "" H 8610 5220 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L +3.3V #PWR026
+L GCEW_Glove-rescue:+3.3V #PWR026
 U 1 1 5BB53D15
 P 9310 5020
 F 0 "#PWR026" H 9310 4870 50  0001 C CNN
@@ -690,7 +657,7 @@ F 3 "" H 9310 5020 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C7
+L GCEW_Glove-rescue:C C7
 U 1 1 5BC6676C
 P 8950 4020
 F 0 "C7" V 8890 4100 50  0000 L CNN
@@ -701,7 +668,7 @@ F 3 "" H 8950 4020 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R R9
+L GCEW_Glove-rescue:R R9
 U 1 1 5BC6766F
 P 8750 3810
 F 0 "R9" V 8830 3810 50  0000 C CNN
@@ -712,7 +679,7 @@ F 3 "" H 8750 3810 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +3.3V #PWR027
+L GCEW_Glove-rescue:+3.3V #PWR027
 U 1 1 5BC67ABA
 P 8750 3620
 F 0 "#PWR027" H 8750 3470 50  0001 C CNN
@@ -723,7 +690,7 @@ F 3 "" H 8750 3620 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Conn_02x03_Odd_Even J1
+L GCEW_Glove-rescue:Conn_02x03_Odd_Even J1
 U 1 1 5BC69040
 P 4410 950
 F 0 "J1" H 4460 1150 50  0000 C CNN
@@ -739,7 +706,7 @@ NoConn ~ 5430 4520
 NoConn ~ 5430 4420
 NoConn ~ 8030 3520
 $Comp
-L C C9
+L GCEW_Glove-rescue:C C9
 U 1 1 5BC72B09
 P 4520 6220
 F 0 "C9" V 4480 6270 50  0000 L CNN
@@ -750,7 +717,7 @@ F 3 "" H 4520 6220 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L C C11
+L GCEW_Glove-rescue:C C11
 U 1 1 5BC72C69
 P 4520 7200
 F 0 "C11" V 4460 7250 50  0000 L CNN
@@ -761,7 +728,7 @@ F 3 "" H 4520 7200 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L C C10
+L GCEW_Glove-rescue:C C10
 U 1 1 5BC72CFA
 P 4520 6690
 F 0 "C10" V 4480 6740 50  0000 L CNN
@@ -790,14 +757,14 @@ Wire Wire Line
 Wire Wire Line
 	6630 5440 6630 5320
 Wire Wire Line
-	6530 5440 6630 5440
+	6530 5440 6590 5440
 Wire Wire Line
 	6530 5440 6530 5320
 Connection ~ 6590 5440
 Wire Wire Line
 	4010 3430 4390 3430
 Wire Wire Line
-	4390 3320 4390 3470
+	4390 3320 4390 3430
 Wire Wire Line
 	4390 3950 4390 3770
 Connection ~ 4390 3430
@@ -806,11 +773,11 @@ Wire Wire Line
 Wire Wire Line
 	6430 2320 6430 2130
 Wire Wire Line
-	9150 2110 9150 2240
+	9150 2110 9150 2120
 Wire Wire Line
 	2640 3430 2810 3430
 Wire Wire Line
-	3360 4230 3710 4230
+	3360 4230 3460 4230
 Wire Wire Line
 	3710 4230 3710 4130
 Connection ~ 3360 4230
@@ -834,7 +801,7 @@ Wire Wire Line
 Wire Wire Line
 	4230 2400 4120 2400
 Wire Wire Line
-	3360 2730 3820 2730
+	3360 2730 3460 2730
 Wire Wire Line
 	3460 2730 3460 2930
 Wire Wire Line
@@ -854,11 +821,11 @@ Wire Wire Line
 	3460 4130 3460 4230
 Connection ~ 3460 4230
 Wire Wire Line
-	3360 4130 3360 4300
+	3360 4130 3360 4230
 Wire Wire Line
 	9660 2120 9580 2120
 Wire Wire Line
-	3610 4130 3610 4280
+	3610 4130 3610 4230
 Connection ~ 3610 4230
 Wire Wire Line
 	2100 3880 2100 3950
@@ -874,7 +841,7 @@ Wire Wire Line
 Wire Wire Line
 	8750 4520 8030 4520
 Wire Wire Line
-	8750 3960 8750 4520
+	8750 3960 8750 4020
 Wire Wire Line
 	8800 4020 8750 4020
 Connection ~ 8750 4270
@@ -913,7 +880,7 @@ Wire Wire Line
 Wire Wire Line
 	8130 2340 8290 2340
 Wire Wire Line
-	4370 6070 4370 7390
+	4370 6070 4370 6220
 Wire Wire Line
 	4670 7200 4670 7030
 Wire Wire Line
@@ -921,11 +888,11 @@ Wire Wire Line
 Wire Wire Line
 	4670 6690 4670 6550
 Wire Wire Line
-	4670 6550 5330 6550
+	4670 6550 4870 6550
 Wire Wire Line
 	4950 6350 5330 6350
 Wire Wire Line
-	4950 5640 4950 6350
+	4950 5640 4950 6220
 Wire Wire Line
 	4950 6220 4670 6220
 Wire Wire Line
@@ -933,7 +900,7 @@ Wire Wire Line
 Wire Wire Line
 	4950 6750 4950 7030
 Wire Wire Line
-	4950 7030 4670 7030
+	4950 7030 4790 7030
 Connection ~ 4370 7200
 Connection ~ 4370 6690
 Connection ~ 4370 7030
@@ -953,7 +920,7 @@ Wire Wire Line
 	4660 5640 4950 5640
 Connection ~ 4950 6220
 $Comp
-L R R5
+L GCEW_Glove-rescue:R R5
 U 1 1 5BC7CAC2
 P 8490 2420
 F 0 "R5" V 8570 2420 50  0000 C CNN
@@ -972,7 +939,7 @@ Wire Wire Line
 Wire Wire Line
 	8090 1890 8090 2040
 $Comp
-L R R2
+L GCEW_Glove-rescue:R R2
 U 1 1 5BC7DBA3
 P 8270 4820
 F 0 "R2" V 8350 4820 50  0000 C CNN
@@ -1003,7 +970,7 @@ Wire Wire Line
 Wire Wire Line
 	990  3810 990  3870
 $Comp
-L VCC #PWR028
+L GCEW_Glove-rescue:VCC #PWR028
 U 1 1 5BC7B338
 P 1080 1030
 F 0 "#PWR028" H 1080 880 50  0001 C CNN
@@ -1027,4 +994,40 @@ Wire Wire Line
 	8090 2340 8090 2820
 Wire Wire Line
 	8090 2820 8030 2820
+Wire Wire Line
+	6590 5440 6630 5440
+Wire Wire Line
+	4390 3430 4390 3470
+Wire Wire Line
+	3360 4230 3360 4300
+Wire Wire Line
+	9150 2120 9150 2240
+Wire Wire Line
+	3460 2730 3820 2730
+Wire Wire Line
+	3460 4230 3610 4230
+Wire Wire Line
+	3610 4230 3610 4280
+Wire Wire Line
+	3610 4230 3710 4230
+Wire Wire Line
+	8750 4270 8750 4520
+Wire Wire Line
+	8750 4020 8750 4270
+Wire Wire Line
+	4370 7200 4370 7390
+Wire Wire Line
+	4370 6690 4370 7030
+Wire Wire Line
+	4370 7030 4370 7200
+Wire Wire Line
+	4370 6220 4370 6550
+Wire Wire Line
+	4370 6550 4370 6690
+Wire Wire Line
+	4790 7030 4670 7030
+Wire Wire Line
+	4870 6550 5330 6550
+Wire Wire Line
+	4950 6220 4950 6350
 $EndSCHEMATC

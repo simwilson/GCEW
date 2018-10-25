@@ -1,7 +1,7 @@
 (export (version D)
   (design
-    (source C:\Users\grisk\OneDrive\Documents\GECW\GCEW\GCEW.sch)
-    (date "10/17/2018 1:40:38 PM")
+    (source "C:\\Users\\grisk\\Downloads\\DRV8323RHRGZR (1).sch")
+    (date "10/17/2018 12:45:52 PM")
     (tool "Eeschema (5.0.0)")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -9,7 +9,7 @@
         (company)
         (rev)
         (date)
-        (source GCEW.sch)
+        (source "DRV8323RHRGZR (1).sch")
         (comment (number 1) (value ""))
         (comment (number 2) (value ""))
         (comment (number 3) (value ""))

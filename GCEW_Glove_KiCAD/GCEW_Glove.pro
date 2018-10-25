@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 update=10/22/2018 9:37:29 AM
+=======
+update=10/22/2018 4:05:45 PM
+>>>>>>> Branch2
 version=1
 last_client=kicad
 [pcbnew]
@@ -38,6 +42,7 @@ LabSize=60
 [eeschema]
 version=1
 LibDir=
+<<<<<<< HEAD
 [eeschema/libraries]
 LibName1=GCEW_Glove-rescue
 LibName2=power
@@ -73,3 +78,5 @@ LibName31=atmel
 LibName32=contrib
 LibName33=valves
 LibName34=myLib/myLib
+=======
+>>>>>>> Branch2

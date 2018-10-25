@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name GCEW_Glove-rescue)(type Legacy)(uri ${KIPRJMOD}/GCEW_Glove-rescue.lib)(options "")(descr ""))
+)
