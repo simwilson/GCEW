@@ -548,8 +548,6 @@ Text GLabel 6650 3500 2    50   Input ~ 0
 SNC
 Text GLabel 6650 3700 2    50   Input ~ 0
 SNB
-Text GLabel 6650 3900 2    50   Input ~ 0
-SNA
 $Comp
 L Device:R R17
 U 1 1 5BDC0FC0
@@ -575,8 +573,6 @@ $EndComp
 Wire Wire Line
 	7950 4050 7750 4050
 Connection ~ 7950 4050
-Text GLabel 7750 4050 0    50   Input ~ 0
-SNA
 $Comp
 L Device:R R18
 U 1 1 5BDC2200
@@ -1429,6 +1425,8 @@ F 3 "" H 2950 650 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	2750 650  2950 650 
-Text Label 1000 1400 2    50   ~ 0
-GND
+Text GLabel 7750 4050 0    50   Input ~ 0
+SNA
+Text GLabel 6650 3900 2    50   Input ~ 0
+SNA
 $EndSCHEMATC

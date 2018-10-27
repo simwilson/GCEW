@@ -68,11 +68,11 @@ Text GLabel 1100 2400 2    50   Input ~ 0
 INLC
 Text GLabel 1100 2500 2    50   Input ~ 0
 CAL
-Text GLabel 1100 2800 2    50   Input ~ 0
-SOA
 Text GLabel 1100 2700 2    50   Input ~ 0
+SOA
+Text GLabel 1100 2800 2    50   Input ~ 0
 SOB
-Text GLabel 1100 2600 2    50   Input ~ 0
+Text GLabel 1100 2900 2    50   Input ~ 0
 SOC
 $Comp
 L power:GND #PWR06
@@ -1184,7 +1184,7 @@ Wire Wire Line
 Wire Wire Line
 	4200 6900 4250 6900
 Connection ~ 4200 6900
-Text GLabel 1100 2900 2    50   Input ~ 0
+Text GLabel 1100 2600 2    50   Input ~ 0
 ENABLE
 Wire Wire Line
 	5500 1700 5400 1700
