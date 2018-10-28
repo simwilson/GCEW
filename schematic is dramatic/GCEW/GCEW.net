@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source "C:\\Users\\green\\Documents\\GitHub\\GCEW\\schematic is dramatic\\GCEW\\GCEW.sch")
-    (date "10/26/2018 11:50:08 PM")
+    (date "10/28/2018 7:55:34 AM")
     (tool "Eeschema (5.0.1)-3")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -713,8 +713,8 @@
       (node (ref R15) (pin 2))
       (node (ref R16) (pin 1)))
     (net (code 29) (name INLC)
-      (node (ref U2) (pin 42))
-      (node (ref J1) (pin 6)))
+      (node (ref J1) (pin 8))
+      (node (ref U2) (pin 42)))
     (net (code 30) (name SNA)
       (node (ref R19) (pin 2))
       (node (ref U1) (pin 2))
@@ -770,7 +770,7 @@
       (node (ref U2) (pin 41))
       (node (ref J1) (pin 7)))
     (net (code 36) (name INHA)
-      (node (ref J1) (pin 8))
+      (node (ref J1) (pin 6))
       (node (ref U2) (pin 37)))
     (net (code 37) (name CAL)
       (node (ref U2) (pin 34))

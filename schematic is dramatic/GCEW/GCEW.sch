@@ -60,11 +60,11 @@ F 3 "" H 1500 5850 60  0001 C CNN
 $EndComp
 Text GLabel 2400 6000 3    50   Input ~ 0
 ENABLE
-Text GLabel 1100 2200 2    50   Input ~ 0
+Text GLabel 1100 2400 2    50   Input ~ 0
 INHA
 Text GLabel 1100 2300 2    50   Input ~ 0
 INHC
-Text GLabel 1100 2400 2    50   Input ~ 0
+Text GLabel 1100 2200 2    50   Input ~ 0
 INLC
 Text GLabel 1100 2500 2    50   Input ~ 0
 CAL
