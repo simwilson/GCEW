@@ -263,13 +263,13 @@ F 3 "~" H 7860 3780 50  0001 C CNN
 	1    7860 3780
 	1    0    0    -1  
 $EndComp
-Text GLabel 7660 3580 0    50   Input ~ 0
-MOSI
 Text GLabel 7660 3680 0    50   Input ~ 0
+MOSI
+Text GLabel 7660 3880 0    50   Input ~ 0
 MISO
 Text GLabel 7660 3780 0    50   Input ~ 0
 SCK
-Text GLabel 7660 3880 0    50   Input ~ 0
+Text GLabel 7660 3580 0    50   Input ~ 0
 ~RESET
 $Comp
 L power:+5V #PWR09
@@ -327,7 +327,7 @@ Text GLabel 3400 3490 2    50   Input ~ 0
 ENABLE2
 Text GLabel 5950 1850 2    50   Input ~ 0
 INHA1
-Text GLabel 5950 1950 2    50   Input ~ 0
+Text GLabel 5950 3650 2    50   Input ~ 0
 INHA2
 Text GLabel 5950 3950 2    50   Input ~ 0
 INHC1
@@ -355,7 +355,7 @@ Text GLabel 5950 3050 2    50   Input ~ 0
 SOA2
 Text GLabel 5950 4150 2    50   Input ~ 0
 ENABLE1
-Text GLabel 5950 3650 2    50   Input ~ 0
+Text GLabel 5950 1950 2    50   Input ~ 0
 ENABLE2
 $Comp
 L Connector_Generic:Conn_01x02 J1
