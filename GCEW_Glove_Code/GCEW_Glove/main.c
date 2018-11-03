@@ -59,11 +59,23 @@ int main(void)
 	/* Initializes MCU, drivers and middleware */
 	atmel_start_init();
 	registerSetup();
-	
+	DDRD |=0xE0;
+	DDRB |=0x07;
 	while (1) {
-		_delay_ms(500);
+		_delay_ms(200);
 
-		ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
+		PORTB |=(1<<1);
+		PORTD &= ~(1 << 5);
+		//PAUSE 250 miliseconds
+		_delay_ms(200);
+		//turns C0 LOW
+		PORTD |=(1<<5);
+		
+		PORTB &= ~(1 << 1);
+		//PAUSE 250 miliseconds
+
+
+		/*ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
 		
 		while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
 
@@ -71,7 +83,7 @@ int main(void)
 		sprintf(temp_string,"%u",adcRead); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
 		USART0_Print("ADC = ");
 		USART0_Println(temp_string); // Call function to write string to USART0
-		printf("incrementer = %d\n",incrementer);
+		printf("incrementer = %d\n",incrementer); */
 		}
 	}
 
@@ -84,6 +96,7 @@ int main(void)
 ISR(PCINT2_vect) // Interrupt Routine for INT0 ( Pin PD2) Interrupt
 {
 		TIMSK0 |= (_BV(OCIE0A)); // Enable Timer 0 Interrupt
+		
 }
 
 
