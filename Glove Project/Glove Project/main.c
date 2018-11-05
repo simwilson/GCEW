@@ -1,3 +1,6 @@
+//GLOVE PROJECT MAIN
+//Senior Design II
+
 #include <atmel_start.h>
 #include <stdio.h>
 #include <string.h>
@@ -14,6 +17,20 @@
 #define START 0x00
 #define CALIBRATION 0x01
 #define ACTIVE_MODE 0x10
+
+//Command Modes
+#define START_COMMAND "s00e"
+#define CALIBRATION_COMMAND "s01e"
+#define ACTIVE_MODE_COMMAND "s10e"
+#define ACTIVE_RIGHT "s12e"
+#define ACTIVE_RIGHT_FORWARD "s1Ae"
+//#define ACTIVE_RIGHT_REVERSE "s16"
+#define ACTIVE_LEFT "s11e"
+#define ACTIVE_LEFT_FORWARD "s19e"
+//#define ACTIVE_LEFT_REVERSE "s15e"
+#define ACTIVE_FORWARD "s18e"
+#define ACTIVE_REVERSE "s14e"
+#define SLOW_STOP "s02e"
 
 #define BUTTON_NOT_PRESSED 0
 #define BUTTON_SHORT_PRESS 1
@@ -61,9 +78,40 @@ volatile uint8_t incrementer = 0;
 int GLOVE_STATE = START;
 int buttonFlag = 0;
 
-char * adcToCommand(uint16_t adcValue){
+char * adcToCommand(
+	uint16_t avgAdcValueForeFinger, 
+	uint16_t avgAdcValueMiddleFinger, 
+	uint16_t avgAdcValueRingFinger,
+	uint16_t foreFingerThreshold,
+	uint16_t middleFingerThreshold,
+	uint16_t ringFingerThreshold
+){
 	//convert ADC values to state command
-	return "s00e"
+	if(avgAdcValueForeFinger > foreFingerThreshold
+	&& avgAdcValueMiddleFinger > middleFingerThreshold
+	&& avgAdcValueRingFinger > ringFingerThreshold){
+		return ACTIVE_FORWARD;
+	}
+	else if(avgAdcValueForeFinger > foreFingerThreshold
+	&& avgAdcValueMiddleFinger > middleFingerThreshold){
+		return ACTIVE_RIGHT_FORWARD;
+	}
+	else if(avgAdcValueMiddleFinger > middleFingerThreshold
+	&& avgAdcValueRingFinger > ringFingerThreshold){
+		return ACTIVE_LEFT_FORWARD;
+	}
+	else if(avgAdcValueForeFinger > foreFingerThreshold){
+		return ACTIVE_RIGHT;
+	}
+	else if(avgAdcValueRingFinger > ringFingerThreshold){
+		return ACTIVE_LEFT;
+	}
+	else if(avgAdcValueMiddleFinger > middleFingerThreshold){
+		return ACTIVE_REVERSE;
+	}
+	else{
+		return SLOW_STOP;
+	}
 }
 
 int main(void)
@@ -76,13 +124,27 @@ int main(void)
 	//==========================================
 	
 	char[4] command = "s00e"; 
-	uint16_t adcRead = 0;
+	uint16_t adcReadForeFinger = 0;
+	uint16_t adcReadMiddleFinger = 0;
+	uint16_t adcReadRingFinger = 0;
+	
+	uint16_t avgAdcReadForeFinger = 0;
+	uint16_t avgAdcReadMiddleFinger = 0;
+	uint16_t avgAdcReadRingFinger = 0;
+	
+	uint16_t foreFingerThreshold = 100;
+	uint16_t middleFingerThreshold = 100;
+	uint16_t ringFingerThreshold = 100;
+	
+	uint8_t countAvg = 0;
 	
 	while (1){
 		//readADC
 		ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
 		while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
-		adcRead=ADC;
+		adcReadForeFinger=ADC;
+		//adcReadMiddleFinger=ADC;
+		//adcReadRingFinger=ADC;
 		switch (GLOVE_STATE){
 			case START:
 				//send command to stop motors
@@ -96,15 +158,19 @@ int main(void)
 				}
 				else{
 					//send START mode command
-					command = "s00e";
+					command = START_COMMAND;
 					USART0_Print(command);
 				}
 				break;
 			case CALIBRATION:
 				//send command to stop motors
-				command = "s01e";
+				command = CALIBRATION_COMMAND;
 				USART0_Print(command);
 				//run calibration routine
+				//TODO should probably use an average
+				foreFingerThreshold = adcReadForeFinger;
+				middleFingerThreshold = adcReadMiddleFinger;
+				ringFingerThreshold = adcReadRingFinger;
 				break;
 			case ACTIVE_MODE:
 				if(buttonFlag == BUTTON_SHORT_PRESS){
@@ -113,8 +179,27 @@ int main(void)
 				}
 				else{
 					//sending bluetooth command
-					command = adcToCommand(adcRead);
-					USART0_Print(command);	
+					if(countAvg < 20){
+						avgAdcReadForeFinger += adcReadForeFinger;
+						avgAdcReadMiddleFinger += adcReadMiddleFinger;
+						avgAdcReadRingFinger += adcReadRingFinger;
+					}
+					else{
+						//determine command
+						command = adcToCommand(
+						adcReadForeFinger,
+						adcReadMiddleFinger,
+						adcReadRingFinger, 
+						foreFingerThreshold,
+						middleFingerThreshold,
+						ringFingerThreshold);
+						//Write command to BT
+						USART0_Print(command);	
+						//reset average calculators
+						avgAdcReadForeFinger = 0;
+						avgAdcReadMiddleFinger = 0;
+						avgAdcReadRingFinger = 0;
+					}	
 				}
 				break;
 		}
