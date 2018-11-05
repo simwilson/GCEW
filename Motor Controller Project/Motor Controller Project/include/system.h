@@ -3,7 +3,8 @@
 /**
  * \file
  *
- * \brief System
+ * \brief Tinymega System related support
+ *
  (c) 2018 Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms,you may use this software and

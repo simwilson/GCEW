@@ -3,7 +3,7 @@
 /**
  * \file
  *
- * \brief Port
+ * \brief Tinymega Port related support
  *
  (c) 2018 Microchip Technology Inc. and its subsidiaries.
 

@@ -1,3 +1,6 @@
+//MOTOR CONTROLLER PROJECT MAIN
+//EE Design II
+
 #include <atmel_start.h>
 #include <pwm_basic_example.h>
 #include <pwm_basic.h>
@@ -8,22 +11,28 @@
 #define ACTIVE_MODE 0x10
 #define ACTIVE_RIGHT 0x12
 #define ACTIVE_RIGHT_FORWARD 0x1A
-#define ACTIVE_RIGHT_REVERSE 0x16
+//#define ACTIVE_RIGHT_REVERSE 0x16
 #define ACTIVE_LEFT 0x11
 #define ACTIVE_LEFT_FORWARD 0x19
-#define ACTIVE_LEFT_REVERSE 0x15
+//#define ACTIVE_LEFT_REVERSE 0x15
 #define ACTIVE_FORWARD 0x18
 #define ACTIVE_REVERSE 0x14
 
-//ISR for timer
-/*
-Every so often, check ADC value
-If consistent, call for a change in state
-
-*/
+//Command Modes
+#define START_COMMAND "s00e"
+#define CALIBRATION_COMMAND "s01e"
+#define ACTIVE_MODE_COMMAND "s10e"
+#define ACTIVE_RIGHT "s12e"
+#define ACTIVE_RIGHT_FORWARD "s1Ae"
+//#define ACTIVE_RIGHT_REVERSE "s16"
+#define ACTIVE_LEFT "s11e"
+#define ACTIVE_LEFT_FORWARD "s19e"
+//#define ACTIVE_LEFT_REVERSE "s15e"
+#define ACTIVE_FORWARD "s18e"
+#define ACTIVE_REVERSE "s14e"
+#define SLOW_STOP "s02e"
 
 //Function for handling change in state
-
 void handleChangeInState(int prev, int curr){
 	if(prev == curr || prev == START){
 		return;
@@ -71,17 +80,11 @@ int main(void)
 			case ACTIVE_RIGHT_FORWARD:
 			//left motor faster than right
 			break;
-			case ACTIVE_RIGHT_REVERSE:
-			//left motor faster than right, negative direction
-			break;
 			case ACTIVE_LEFT:
 			//right motor much faster than right
 			break;
 			case ACTIVE_LEFT_FORWARD:
 			//right motor faster than right
-			break;
-			case ACTIVE_LEFT_REVERSE:
-			//right motor faster than right, negative direction
 			break;
 			case ACTIVE_FORWARD:
 			//motors equal speed
