@@ -37,15 +37,6 @@
 #define FULL_SPEED 0xFF
 #define REV_FULL_SPEED 0x00
 
-//Function for handling change in state
-void handleChangeInState(int prev, int curr){
-	if(prev == curr || prev == START){
-		return;
-	}
-	else if(curr == SLOW_STOP){
-		//slow down motors
-	}
-}
 
 //OUTPUT on PB2
 volatile PWM_0_register_t PWM_0_duty = 0x00;
@@ -57,6 +48,7 @@ int main(void)
 	// DO NOT DELETE
 	atmel_start_init();
 	//==========================================
+	
 	// Enable pin output
 	PWM_0_enable_output_ch1();
 	PWM_1_enable_output_ch0();
@@ -73,6 +65,10 @@ int main(void)
 	int PREV_MOTOR_CONTROLLER_STATE = START;
 	
 	uint8_t rx[16];
+	uint8_t PREV_MOTOR_SPEED_LEFT = STOPPED;
+	uint8_t PREV_MOTOR_SPEED_RIGHT = STOPPED;
+	uint8_t CURR_MOTOR_SPEED_LEFT = STOPPED;
+	uint8_t CURR_MOTOR_SPEED_RIGHT = STOPPED;
 	
 	while (1){
 		for (uint8_t i = 0; i < 4; i++) {
@@ -108,56 +104,62 @@ int main(void)
 					MOTOR_CONTROLLER_STATE = ACTIVE_REVERSE;
 				}
 			}
-			else{
-				//ERROR
+			else{ //ERROR
+				continue; //exit loop to read next command
 			}
 		}
-		handleChangeInState(PREV_MOTOR_CONTROLLER_STATE, MOTOR_CONTROLLER_STATE);
 		switch (MOTOR_CONTROLLER_STATE){
 			case START:
 				//stopped motors
-				PWM_0_load_duty_cycle_ch1(STOPPED);
-				PWM_1_load_duty_cycle_ch0(STOPPED);
-			break;
+				CURR_MOTOR_SPEED_LEFT = STOPPED;
+				CURR_MOTOR_SPEED_RIGHT = STOPPED;
+				break;
 			case SLOW_STOP:
 				//slow down to stop
 				//end in start mode
-				PWM_0_load_duty_cycle_ch1(STOPPED);
-				PWM_1_load_duty_cycle_ch0(STOPPED);
+				if(PREV_MOTOR_SPEED_LEFT > STOPPED && PREV_MOTOR_SPEED_RIGHT > STOPPED){
+					CURR_MOTOR_SPEED_LEFT -= 0x11;
+					CURR_MOTOR_SPEED_RIGHT -= 0x11;
+				}
+				if(PREV_MOTOR_SPEED_LEFT <= STOPPED && PREV_MOTOR_SPEED_RIGHT <= STOPPED){
+					CURR_MOTOR_SPEED_LEFT = STOPPED;
+					CURR_MOTOR_SPEED_RIGHT = STOPPED;
+				}
 				MOTOR_CONTROLLER_STATE = START;
-			break;
+				break;
 			case ACTIVE_RIGHT:
 				//left motor much faster than right
-				PWM_0_load_duty_cycle_ch1(FULL_SPEED);
-				PWM_1_load_duty_cycle_ch0(HALF_SPEED);
-			break;
+				CURR_MOTOR_SPEED_LEFT = FULL_SPEED;
+				CURR_MOTOR_SPEED_RIGHT = HALF_SPEED;
+				break;
 			case ACTIVE_RIGHT_FORWARD:
 				//left motor faster than right
-				PWM_0_load_duty_cycle_ch1(THREE_QUARTER_SPEED);
-				PWM_1_load_duty_cycle_ch0(HALF_SPEED);
-			break;
+				CURR_MOTOR_SPEED_LEFT = THREE_QUARTER_SPEED;
+				CURR_MOTOR_SPEED_RIGHT = HALF_SPEED;
+				break;
 			case ACTIVE_LEFT:
 				//right motor much faster than right
-				PWM_0_load_duty_cycle_ch1(HALF_SPEED);
-				PWM_1_load_duty_cycle_ch0(FULL_SPEED);
-			break;
+				CURR_MOTOR_SPEED_LEFT = HALF_SPEED;
+				CURR_MOTOR_SPEED_RIGHT = FULL_SPEED;
+				break;
 			case ACTIVE_LEFT_FORWARD:
 				//right motor faster than right
-				PWM_0_load_duty_cycle_ch1(HALF_SPEED);
-				PWM_1_load_duty_cycle_ch0(THREE_QUARTER_SPEED);
-			break;
+				CURR_MOTOR_SPEED_LEFT = HALF_SPEED;
+				CURR_MOTOR_SPEED_RIGHT = THREE_QUARTER_SPEED;
+				break;
 			case ACTIVE_FORWARD:
-			//motors equal speed
-				PWM_0_load_duty_cycle_ch1(FULL_SPEED);
-				PWM_1_load_duty_cycle_ch0(FULL_SPEED);
-			break;
+				//motors equal speed
+				CURR_MOTOR_SPEED_LEFT = FULL_SPEED;
+				CURR_MOTOR_SPEED_RIGHT = FULL_SPEED;
+				break;
 			case ACTIVE_REVERSE
 				//motors equal speed, negative direction
-				PWM_0_load_duty_cycle_ch1(REV_FULL_SPEED);
-				PWM_1_load_duty_cycle_ch0(REV_FULL_SPEED);
-			break;
+				CURR_MOTOR_SPEED_LEFT = REV_FULL_SPEED;
+				CURR_MOTOR_SPEED_RIGHT = REV_FULL_SPEED;
+				break;
 		}
-		PREV_MOTOR_CONTROLLER_STATE = MOTOR_CONTROLLER_STATE;
+		PWM_0_load_duty_cycle_ch1(CURR_MOTOR_SPEED_LEFT);
+		PWM_1_load_duty_cycle_ch0(CURR_MOTOR_SPEED_RIGHT);
 	}
 	return 1;
 }
