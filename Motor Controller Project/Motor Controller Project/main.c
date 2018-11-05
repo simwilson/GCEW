@@ -32,6 +32,7 @@
 
 //TODO determine values
 #define STOPPED 0x00
+#define QUARTER_SPEED 0x33
 #define HALF_SPEED 0x77
 #define THREE_QUARTER_SPEED 0xBB
 #define FULL_SPEED 0xFF
@@ -71,6 +72,7 @@ int main(void)
 	uint8_t CURR_MOTOR_SPEED_RIGHT = STOPPED;
 	
 	while (1){
+		//TODO only read if available
 		for (uint8_t i = 0; i < 4; i++) {
 			rx[i] = USART_0_read(); // Blocks until character is available
 		}
@@ -121,7 +123,7 @@ int main(void)
 					CURR_MOTOR_SPEED_LEFT -= 0x11;
 					CURR_MOTOR_SPEED_RIGHT -= 0x11;
 				}
-				if(PREV_MOTOR_SPEED_LEFT <= STOPPED && PREV_MOTOR_SPEED_RIGHT <= STOPPED){
+				if(PREV_MOTOR_SPEED_LEFT <= STOPPED || PREV_MOTOR_SPEED_RIGHT <= STOPPED){
 					CURR_MOTOR_SPEED_LEFT = STOPPED;
 					CURR_MOTOR_SPEED_RIGHT = STOPPED;
 				}
@@ -129,28 +131,130 @@ int main(void)
 				break;
 			case ACTIVE_RIGHT:
 				//left motor much faster than right
-				CURR_MOTOR_SPEED_LEFT = FULL_SPEED;
-				CURR_MOTOR_SPEED_RIGHT = HALF_SPEED;
+				//left motor
+				if(CURR_MOTOR_SPEED_LEFT < QUARTER_SPEED){
+					CURR_MOTOR_SPEED_LEFT = QUARTER_SPEED;
+				}
+				else if(CURR_MOTOR_SPEED_LEFT < HALF_SPEED){
+					CURR_MOTOR_SPEED_LEFT = HALF_SPEED;
+				}
+				else if(CURR_MOTOR_SPEED_LEFT < THREE_QUARTER_SPEED){
+					CURR_MOTOR_SPEED_LEFT = THREE_QUARTER_SPEED;
+				}
+				else{
+					CURR_MOTOR_SPEED_LEFT = FULL_SPEED;
+				}
+				//right motor
+				if(CURR_MOTOR_SPEED_RIGHT < QUARTER_SPEED){
+					CURR_MOTOR_SPEED_RIGHT = QUARTER_SPEED;
+				}
+				if(CURR_MOTOR_SPEED_RIGHT > THREE_QUARTER_SPEED){
+					CURR_MOTOR_SPEED_RIGHT = THREE_QUARTER_SPEED;
+				}
+				else{
+					CURR_MOTOR_SPEED_RIGHT = HALF_SPEED;
+				}
 				break;
 			case ACTIVE_RIGHT_FORWARD:
 				//left motor faster than right
-				CURR_MOTOR_SPEED_LEFT = THREE_QUARTER_SPEED;
-				CURR_MOTOR_SPEED_RIGHT = HALF_SPEED;
+				//left motor
+				if(CURR_MOTOR_SPEED_LEFT < QUARTER_SPEED){
+					CURR_MOTOR_SPEED_LEFT = QUARTER_SPEED;
+				}
+				else if(CURR_MOTOR_SPEED_LEFT < HALF_SPEED){
+					CURR_MOTOR_SPEED_LEFT = HALF_SPEED;
+				}
+				else{
+					CURR_MOTOR_SPEED_LEFT = THREE_QUARTER_SPEED;
+				}
+				//right motor
+				if(CURR_MOTOR_SPEED_RIGHT < QUARTER_SPEED){
+					CURR_MOTOR_SPEED_RIGHT = QUARTER_SPEED;
+				}
+				else if(CURR_MOTOR_SPEED_RIGHT > THREE_QUARTER_SPEED){
+					CURR_MOTOR_SPEED_RIGHT = THREE_QUARTER_SPEED;
+				}
+				else{
+					CURR_MOTOR_SPEED_RIGHT = HALF_SPEED;
+				}
 				break;
 			case ACTIVE_LEFT:
 				//right motor much faster than right
-				CURR_MOTOR_SPEED_LEFT = HALF_SPEED;
-				CURR_MOTOR_SPEED_RIGHT = FULL_SPEED;
+				//left motor
+				if(CURR_MOTOR_SPEED_LEFT < QUARTER_SPEED){
+					CURR_MOTOR_SPEED_LEFT = QUARTER_SPEED;
+				}
+				else if(CURR_MOTOR_SPEED_LEFT > THREE_QUARTER_SPEED){
+					CURR_MOTOR_SPEED_LEFT = THREE_QUARTER_SPEED;
+				}
+				else{
+					CURR_MOTOR_SPEED_LEFT = HALF_SPEED;
+				}
+				//right motor
+				if(CURR_MOTOR_SPEED_RIGHT < QUARTER_SPEED){
+					CURR_MOTOR_SPEED_RIGHT = QUARTER_SPEED;
+				}
+				else if(CURR_MOTOR_SPEED_RIGHT < HALF_SPEED){
+					CURR_MOTOR_SPEED_RIGHT = HALF_SPEED;
+				}
+				else if(CURR_MOTOR_SPEED_RIGHT < THREE_QUARTER_SPEED){
+					CURR_MOTOR_SPEED_RIGHT = THREE_QUARTER_SPEED;
+				}
+				else{
+					CURR_MOTOR_SPEED_RIGHT = FULL_SPEED;
+				}
 				break;
 			case ACTIVE_LEFT_FORWARD:
 				//right motor faster than right
-				CURR_MOTOR_SPEED_LEFT = HALF_SPEED;
-				CURR_MOTOR_SPEED_RIGHT = THREE_QUARTER_SPEED;
+				//left motor
+				if(CURR_MOTOR_SPEED_LEFT < QUARTER_SPEED){
+					CURR_MOTOR_SPEED_LEFT = QUARTER_SPEED;
+				}
+				else if(CURR_MOTOR_SPEED_LEFT > THREE_QUARTER_SPEED){
+					CURR_MOTOR_SPEED_LEFT = THREE_QUARTER_SPEED;
+				}
+				else{
+					CURR_MOTOR_SPEED_LEFT = HALF_SPEED;
+				}
+				//right motor
+				if(CURR_MOTOR_SPEED_RIGHT < QUARTER_SPEED){
+					CURR_MOTOR_SPEED_RIGHT = QUARTER_SPEED;
+				}
+				else if(CURR_MOTOR_SPEED_RIGHT < HALF_SPEED){
+					CURR_MOTOR_SPEED_RIGHT = HALF_SPEED;
+				}
+				else{
+					CURR_MOTOR_SPEED_RIGHT = THREE_QUARTER_SPEED;
+				}
 				break;
 			case ACTIVE_FORWARD:
 				//motors equal speed
-				CURR_MOTOR_SPEED_LEFT = FULL_SPEED;
-				CURR_MOTOR_SPEED_RIGHT = FULL_SPEED;
+				//left motor
+				if(CURR_MOTOR_SPEED_LEFT < QUARTER_SPEED){
+					CURR_MOTOR_SPEED_LEFT = QUARTER_SPEED;
+				}
+				else if(CURR_MOTOR_SPEED_LEFT < HALF_SPEED){
+					CURR_MOTOR_SPEED_LEFT = HALF_SPEED;
+				}
+				else if(CURR_MOTOR_SPEED_LEFT < THREE_QUARTER_SPEED){
+					CURR_MOTOR_SPEED_LEFT = THREE_QUARTER_SPEED;
+				}
+				else{
+					CURR_MOTOR_SPEED_LEFT = FULL_SPEED;
+				}
+				//right motor
+				if(CURR_MOTOR_SPEED_RIGHT < QUARTER_SPEED){
+					CURR_MOTOR_SPEED_RIGHT = QUARTER_SPEED;
+				}
+				else if(CURR_MOTOR_SPEED_RIGHT < HALF_SPEED){
+					CURR_MOTOR_SPEED_RIGHT = HALF_SPEED;
+				}
+				else if(CURR_MOTOR_SPEED_RIGHT < THREE_QUARTER_SPEED){
+					CURR_MOTOR_SPEED_RIGHT = THREE_QUARTER_SPEED;
+				}
+				else{
+					CURR_MOTOR_SPEED_RIGHT = FULL_SPEED;
+				}
 				break;
 			case ACTIVE_REVERSE
 				//motors equal speed, negative direction
