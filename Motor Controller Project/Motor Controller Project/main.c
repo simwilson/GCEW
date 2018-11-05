@@ -72,6 +72,7 @@ int main(void)
 	uint8_t CURR_MOTOR_SPEED_RIGHT = STOPPED;
 	
 	while (1){
+		//TODO check to make sure BT is connected
 		//TODO only read if available
 		for (uint8_t i = 0; i < 4; i++) {
 			rx[i] = USART_0_read(); // Blocks until character is available
