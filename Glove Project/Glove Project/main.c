@@ -136,6 +136,11 @@ int main(void)
 	uint16_t middleFingerThreshold = 100;
 	uint16_t ringFingerThreshold = 100;
 	
+	uint16_t foreFingerAvg = 100;
+	uint16_t middleFingerAvg = 100;
+	uint16_t ringFingerAvg = 100;
+	
+	uint8_t calCountAvg = 0;
 	uint8_t countAvg = 0;
 	
 	while (1){
@@ -164,13 +169,29 @@ int main(void)
 				break;
 			case CALIBRATION:
 				//send command to stop motors
-				command = CALIBRATION_COMMAND;
+				command = SLOW_STOP;
 				USART0_Print(command);
 				//run calibration routine
 				//TODO should probably use an average
-				foreFingerThreshold = adcReadForeFinger;
-				middleFingerThreshold = adcReadMiddleFinger;
-				ringFingerThreshold = adcReadRingFinger;
+				if(calCountAvg == 0){
+					avgAdcReadForeFinger = 0;
+					avgAdcReadMiddleFinger = 0;
+					avgAdcReadRingFinger = 0;
+				}
+				if(calCountAvg < 20){
+					avgAdcReadForeFinger += adcReadForeFinger;
+					avgAdcReadMiddleFinger += adcReadMiddleFinger;
+					avgAdcReadRingFinger += adcReadRingFinger;
+				}
+				else{
+					foreFingerThreshold = avgAdcReadForeFinger/20;
+					middleFingerThreshold = avgAdcReadMiddleFinger/20;
+					ringFingerThreshold = avgAdcReadRingFinger/20;
+					avgAdcReadForeFinger = 0;
+					avgAdcReadMiddleFinger = 0;
+					avgAdcReadRingFinger = 0;
+					calCountAvg = 0;
+				}
 				break;
 			case ACTIVE_MODE:
 				if(buttonFlag == BUTTON_SHORT_PRESS){
@@ -179,26 +200,35 @@ int main(void)
 				}
 				else{
 					//sending bluetooth command
+					if(countAvg == 0){
+						avgAdcReadForeFinger = 0;
+						avgAdcReadMiddleFinger = 0;
+						avgAdcReadRingFinger = 0;
+					}
 					if(countAvg < 20){
 						avgAdcReadForeFinger += adcReadForeFinger;
 						avgAdcReadMiddleFinger += adcReadMiddleFinger;
 						avgAdcReadRingFinger += adcReadRingFinger;
 					}
 					else{
+						foreFingerAvg = avgAdcReadForeFinger/20;
+						middleFingerAvg = avgAdcReadMiddleFinger/20;
+						ringFingerAvg = avgAdcReadRingFinger/20;
 						//determine command
 						command = adcToCommand(
-						adcReadForeFinger,
-						adcReadMiddleFinger,
-						adcReadRingFinger, 
-						foreFingerThreshold,
-						middleFingerThreshold,
-						ringFingerThreshold);
+									foreFingerAvg,
+									middleFingerAvg,
+									ringFingerAvg,
+									foreFingerThreshold,
+									middleFingerThreshold,
+									ringFingerThreshold);
 						//Write command to BT
 						USART0_Print(command);	
-						//reset average calculators
+						//reset average calculators						
 						avgAdcReadForeFinger = 0;
 						avgAdcReadMiddleFinger = 0;
 						avgAdcReadRingFinger = 0;
+						countAvg = 0;
 					}	
 				}
 				break;
