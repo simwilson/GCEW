@@ -117,16 +117,11 @@ int main(void)
 		}
 		switch (MOTOR_CONTROLLER_STATE){
 			case START:
-				//stopped motors
-				GOAL_DIRECTION = FORWARD;
-				GOAL_MOTOR_SPEED_LEFT = STOPPED;
-				GOAL_MOTOR_SPEED_LEFT = STOPPED;
-				break;
 			case SLOW_STOP:
 				//slow down to stop
-				//ramp left down to stopped
-				//ramp right down to stopped
-				MOTOR_CONTROLLER_STATE = START;
+				GOAL_DIRECTION = FORWARD;
+				GOAL_MOTOR_SPEED_LEFT = STOPPED;
+				GOAL_MOTOR_SPEED_RIGHT = STOPPED;
 				break;
 			case ACTIVE_RIGHT:
 				//left motor much faster than right
@@ -134,139 +129,81 @@ int main(void)
 				GOAL_DIRECTION = FORWARD;
 				GOAL_MOTOR_SPEED_LEFT = FULL_SPEED;
 				GOAL_MOTOR_SPEED_RIGHT = STOPPED;
-				if(CURR_DIRECTION == FORWARD){
-					//STATE FORWARD, FOR_RIGHT
-					if(CURR_MOTOR_SPEED_LEFT == GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT != GOAL_MOTOR_SPEED_RIGHT){
-						//ramp right down to GOAL_MOTOR_SPEED_RIGHT
-					}
-					//STATE LEFT or FOR_LEFT
-					else if(CURR_MOTOR_SPEED_LEFT < GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT == GOAL_MOTOR_SPEED_RIGHT){
-						//ramp left speed up to GOAL_MOTOR_SPEED_LEFT
-					}
-					//In between states
-					else if(CURR_MOTOR_SPEED_LEFT < GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT > GOAL_MOTOR_SPEED_RIGHT){
-						//ramp left up to GOAL_MOTOR_SPEED_LEFT
-						//ramp right down to GOAL_MOTOR_SPEED_RIGHT
-					}
-				}
-				else{
-					//ramp speed to zero
-					//flip direction
-					//ramp to GOALSPEEDS
-				}
 				break;
 			case ACTIVE_RIGHT_FORWARD:
 				//left motor faster than right
 				GOAL_DIRECTION = FORWARD;
 				GOAL_MOTOR_SPEED_LEFT = FULL_SPEED;
 				GOAL_MOTOR_SPEED_RIGHT = HALF_SPEED;
-				if(CURR_DIRECTION == FORWARD){
-					//STATE LEFT or FOR_LEFT
-					if(CURR_MOTOR_SPEED_LEFT < GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT > GOAL_MOTOR_SPEED_RIGHT){
-						//ramp left speed up to GOAL_MOTOR_SPEED_LEFT
-						//ramp right speed down to GOAL_MOTOR_SPEED_RIGHT
-					}
-					//STATE FORWARD
-					else if(CURR_MOTOR_SPEED_LEFT == GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT > GOAL_MOTOR_SPEED_RIGHT){
-						//ramp right down to GOAL_MOTOR_SPEED_RIGHT
-					}
-					//In between states
-					else if(CURR_MOTOR_SPEED_LEFT < GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT < GOAL_MOTOR_SPEED_RIGHT){
-						//ramp left up to GOAL_MOTOR_SPEED_LEFT
-						//ramp right up to GOAL_MOTOR_SPEED_RIGHT
-					}
-					//STATE RIGHT
-					else if(CURR_MOTOR_SPEED_LEFT == GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT < GOAL_MOTOR_SPEED_RIGHT){
-						//ramp right up to GOAL_MOTOR_SPEED_RIGHT
-					}
-					//In between states
-					else if(CURR_MOTOR_SPEED_LEFT < GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT == GOAL_MOTOR_SPEED_RIGHT){
-						//ramp left up to GOAL_MOTOR_SPEED_LEFT
-					}
-				}
-				else{
-					//ramp speed to zero
-					//flip direction
-					//ramp to GOALSPEEDS
-				}
 				break;
 			case ACTIVE_LEFT:
 				//right motor much faster than right
 				GOAL_DIRECTION = FORWARD;
 				GOAL_MOTOR_SPEED_LEFT = STOPPED;
 				GOAL_MOTOR_SPEED_RIGHT = FULL_SPEED;
-				if(CURR_DIRECTION == FORWARD){
-					//STATE FOR_LEFT or FOR
-					if(CURR_MOTOR_SPEED_LEFT != GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT == GOAL_MOTOR_SPEED_RIGHT){
-						//ramp left down to GOAL_MOTOR_SPEED_LEFT
-					}
-					//In between states
-					else if(CURR_MOTOR_SPEED_LEFT == GOAL_MOTOR_SPEED_RIGHT && CURR_MOTOR_SPEED_RIGHT < GOAL_MOTOR_SPEED_RIGHT){
-						//ramp right up to GOAL_MOTOR_SPEED_RIGHT
-					}
-					//STATE FOR_RIGHT or RIGHT
-					else if(CURR_MOTOR_SPEED_LEFT > GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT < GOAL_MOTOR_SPEED_RIGHT){
-						//ramp left down to GOAL_MOTOR_SPEED_LEFT
-						//ramp right up to GOAL_MOTOR_SPEED_RIGHT
-					}
-				}
-				else{
-					//ramp speed to zero
-					//flip direction
-					//ramp to GOALSPEEDS
-				}
 				break;
 			case ACTIVE_LEFT_FORWARD:
 				//right motor faster than left
 				GOAL_DIRECTION = FORWARD;
 				GOAL_MOTOR_SPEED_LEFT = HALF_SPEED;
 				GOAL_MOTOR_SPEED_RIGHT = FULL_SPEED;
-				if(CURR_DIRECTION == FORWARD){
-					
-				}
-				else{
-					//ramp speed to zero
-					//flip direction
-					//ramp to GOALSPEEDS
-				}
 				break;
 			case ACTIVE_FORWARD:
 				//motors equal speed
 				GOAL_DIRECTION = FORWARD;
 				GOAL_MOTOR_SPEED_LEFT = FULL_SPEED;
 				GOAL_MOTOR_SPEED_RIGHT = FULL_SPEED;
-				if(CURR_DIRECTION == FORWARD){
-					if(CURR_MOTOR_SPEED_LEFT < GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT < GOAL_MOTOR_SPEED_RIGHT){
-						//ramp left up to GOAL_MOTOR_SPEED_LEFT
-						//ramp right up to GOAL_MOTOR_SPEED_RIGHT
-					}
-					else if(CURR_MOTOR_SPEED_LEFT < GOAL_MOTOR_SPEED_LEFT){
-						//ramp left up to GOAL_MOTOR_SPEED_LEFT
-					}
-					else if(CURR_MOTOR_SPEED_RIGHT < GOAL_MOTOR_SPEED_LEFT){
-						//ramp right up to GOAL_MOTOR_SPEED_RIGHT
-					}
-				}
-				else{
-					//ramp speed to zero
-					//flip direction
-					//ramp to GOALSPEEDS
-				}
 				break;
 			case ACTIVE_REVERSE
 				//motors equal speed, negative direction
 				GOAL_DIRECTION = REVERSE;
 				GOAL_MOTOR_SPEED_LEFT = FULL_SPEED;
 				GOAL_MOTOR_SPEED_RIGHT = FULL_SPEED;
-				if(CURR_DIRECTION == FORWARD){
-					if(CURR_MOTOR_SPEED_LEFT == STOPPED && CURR_MOTOR_SPEED_RIGHT == STOPPED){
-						CURR_DIRECTION = REVERSE;
-					}
-				}
-				else{
-					//ramp both up to GOAL SPEEDS
-				}
 				break;
+		}
+		if(CURR_DIRECTION == FORWARD && GOAL_DIRECTION == FORWARD){
+			//STATE FORWARD, FOR_RIGHT
+			if(CURR_MOTOR_SPEED_LEFT == GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT > GOAL_MOTOR_SPEED_RIGHT){
+				//ramp right down to GOAL_MOTOR_SPEED_RIGHT
+			}
+			else if(CURR_MOTOR_SPEED_LEFT == GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT < GOAL_MOTOR_SPEED_RIGHT){
+				//ramp right up to GOAL_MOTOR_SPEED_RIGHT
+			}
+			else if(CURR_MOTOR_SPEED_LEFT < GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT == GOAL_MOTOR_SPEED_RIGHT){
+				//ramp left speed up to GOAL_MOTOR_SPEED_LEFT
+			}
+			else if(CURR_MOTOR_SPEED_LEFT < GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT > GOAL_MOTOR_SPEED_RIGHT){
+				//ramp left up to GOAL_MOTOR_SPEED_LEFT
+				//ramp right down to GOAL_MOTOR_SPEED_RIGHT
+			}
+			else if(CURR_MOTOR_SPEED_LEFT < GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT < GOAL_MOTOR_SPEED_RIGHT){
+				//ramp left up to GOAL_MOTOR_SPEED_LEFT
+				//ramp right down to GOAL_MOTOR_SPEED_RIGHT
+			}
+			else if(CURR_MOTOR_SPEED_LEFT > GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT == GOAL_MOTOR_SPEED_RIGHT){
+				//ramp left up to GOAL_MOTOR_SPEED_LEFT
+			}
+			else if(CURR_MOTOR_SPEED_LEFT > GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT > GOAL_MOTOR_SPEED_RIGHT){
+				//ramp left down to GOAL_MOTOR_SPEED_LEFT
+				//ramp right down to GOAL_MOTOR_SPEED_RIGHT
+			}
+			else if(CURR_MOTOR_SPEED_LEFT > GOAL_MOTOR_SPEED_LEFT && CURR_MOTOR_SPEED_RIGHT < GOAL_MOTOR_SPEED_RIGHT){
+				//ramp left up to GOAL_MOTOR_SPEED_LEFT
+				//ramp right up to GOAL_MOTOR_SPEED_RIGHT
+			}
+		}
+		else if(CURR_DIRECTION == FORWARD && GOAL_DIRECTION == REVERSE){
+			//ramp speed to zero
+			//flip direction
+			//ramp to GOALSPEEDS
+		}
+		else if(CURR_DIRECTION == REVERSE && GOAL_DIRECTION == FORWARD){
+			//ramp to zero
+			//flip direction
+			//ramp to GOALSPEEDS
+		}
+		else{
+			//ramp to GOALSPEED
 		}
 		PWM_0_load_duty_cycle_ch1(CURR_MOTOR_SPEED_LEFT);
 		PWM_1_load_duty_cycle_ch0(CURR_MOTOR_SPEED_RIGHT);
