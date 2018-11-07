@@ -168,11 +168,15 @@ int main(void)
 				}
 				break;
 			case CALIBRATION:
+				if(buttonFlag == BUTTON_SHORT_PRESS || BUTTON_LONG_PRESS){
+					GLOVE_STATE = START;
+					buttonFlag = BUTTON_NOT_PRESSED;
+					calCountAvg = 0;
+				}
 				//send command to stop motors
 				command = SLOW_STOP;
 				USART0_Print(command);
 				//run calibration routine
-				//TODO should probably use an average
 				if(calCountAvg == 0){
 					avgAdcReadForeFinger = 0;
 					avgAdcReadMiddleFinger = 0;
@@ -194,9 +198,10 @@ int main(void)
 				}
 				break;
 			case ACTIVE_MODE:
-				if(buttonFlag == BUTTON_SHORT_PRESS){
+				if(buttonFlag == BUTTON_SHORT_PRESS || BUTTON_LONG_PRESS){
 					GLOVE_STATE = START;
 					buttonFlag = BUTTON_NOT_PRESSED;
+					countAvg = 0;
 				}
 				else{
 					//sending bluetooth command
