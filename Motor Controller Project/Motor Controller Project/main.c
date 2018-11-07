@@ -54,6 +54,8 @@ int main(void)
 	atmel_start_init();
 	//==========================================
 	
+	//TODO determine if we are using ch0 or ch1
+		
 	// Enable pin output
 	PWM_0_enable_output_ch1();
 	PWM_1_enable_output_ch0();
