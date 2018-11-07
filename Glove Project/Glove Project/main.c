@@ -177,17 +177,19 @@ int main(void)
 				command = SLOW_STOP;
 				USART0_Print(command);
 				//run calibration routine
+				//reset counts at beginning
 				if(calCountAvg == 0){
 					avgAdcReadForeFinger = 0;
 					avgAdcReadMiddleFinger = 0;
 					avgAdcReadRingFinger = 0;
 				}
+				//calculate averages
 				if(calCountAvg < 20){
 					avgAdcReadForeFinger += adcReadForeFinger;
 					avgAdcReadMiddleFinger += adcReadMiddleFinger;
 					avgAdcReadRingFinger += adcReadRingFinger;
 				}
-				else{
+				else{ //update thresholds
 					foreFingerThreshold = avgAdcReadForeFinger/20;
 					middleFingerThreshold = avgAdcReadMiddleFinger/20;
 					ringFingerThreshold = avgAdcReadRingFinger/20;
@@ -195,6 +197,7 @@ int main(void)
 					avgAdcReadMiddleFinger = 0;
 					avgAdcReadRingFinger = 0;
 					calCountAvg = 0;
+					GLOVE_STATE = START;
 				}
 				break;
 			case ACTIVE_MODE:
@@ -204,18 +207,19 @@ int main(void)
 					countAvg = 0;
 				}
 				else{
-					//sending bluetooth command
+					//reset counts at beginning
 					if(countAvg == 0){
 						avgAdcReadForeFinger = 0;
 						avgAdcReadMiddleFinger = 0;
 						avgAdcReadRingFinger = 0;
 					}
+					//calculate averages
 					if(countAvg < 20){
 						avgAdcReadForeFinger += adcReadForeFinger;
 						avgAdcReadMiddleFinger += adcReadMiddleFinger;
 						avgAdcReadRingFinger += adcReadRingFinger;
 					}
-					else{
+					else{ 	//sending bluetooth command
 						foreFingerAvg = avgAdcReadForeFinger/20;
 						middleFingerAvg = avgAdcReadMiddleFinger/20;
 						ringFingerAvg = avgAdcReadRingFinger/20;
