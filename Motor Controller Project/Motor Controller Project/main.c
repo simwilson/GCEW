@@ -43,7 +43,8 @@
 
 
 //OUTPUT on PB2
-volatile PWM_0_register_t PWM_0_duty = 0x00;
+volatile PWM_0_register_t PWM_0_duty = STOPPED;
+volatile PWM_1_register_t PWM_1_duty = STOPPED;
 
 int main(void)
 {
@@ -196,8 +197,10 @@ int main(void)
 				}
 			}
 		}
-		PWM_0_load_duty_cycle_ch1(CURR_MOTOR_SPEED_LEFT);
-		PWM_1_load_duty_cycle_ch0(CURR_MOTOR_SPEED_RIGHT);
+		PWM_0_duty = CURR_MOTOR_SPEED_LEFT;
+		PWM_1_duty = CURR_MOTOR_SPEED_RIGHT;
+		PWM_0_load_duty_cycle_ch1(PWM_0_duty);
+		PWM_1_load_duty_cycle_ch0(PWM_1_duty);
 	}
 	return 1;
 }
