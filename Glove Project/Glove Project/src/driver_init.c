@@ -40,9 +40,9 @@ void EXTERNAL_IRQ_0_initialization(void)
 {
 
 	// Set pin direction to input
-	PB0_set_dir(PORT_DIR_IN);
+	PD2_set_dir(PORT_DIR_IN);
 
-	PB0_set_pull_mode(
+	PD2_set_pull_mode(
 	    // <y> Pull configuration
 	    // <id> pad_pull_config
 	    // <PORT_PULL_OFF"> Off
@@ -55,6 +55,9 @@ void EXTERNAL_IRQ_0_initialization(void)
 /* Configure pins and initialize registers */
 void ADC_0_initialization(void)
 {
+
+	// Disable pull-up.
+	PC5_set_pull_mode(PORT_PULL_OFF);
 
 	// Disable pull-up.
 	PE2_set_pull_mode(PORT_PULL_OFF);

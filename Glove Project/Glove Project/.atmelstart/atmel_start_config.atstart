@@ -61,13 +61,13 @@ drivers:
       exint_isc1: Any logical change on ISC1 generates an interrupt request
       inc_isr_harness: true
     optional_signals:
-    - identifier: EXTERNAL_IRQ_0:PCINT/0
-      pad: PB0
+    - identifier: EXTERNAL_IRQ_0:PCINT/18
+      pad: PD2
       mode: Enabled
       configuration: null
-      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::optional_signal_definition::EXINT.PCINT.0
-      name: EXINT/PCINT/0
-      label: PCINT/0
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::optional_signal_definition::EXINT.PCINT.18
+      name: EXINT/PCINT/18
+      label: PCINT/18
     variant: null
     clocks:
       domain_group: null
@@ -87,6 +87,13 @@ drivers:
       admux_mux: ADC Single Ended Input pin 0
       admux_refs: AREF, Internal Vref turned off
     optional_signals:
+    - identifier: ADC_0:ADC/5
+      pad: PC5
+      mode: Enabled
+      configuration: null
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::optional_signal_definition::ADC.ADC.5
+      name: ADC/ADC/5
+      label: ADC/5
     - identifier: ADC_0:ADC/6
       pad: PE2
       mode: Enabled
@@ -180,12 +187,6 @@ drivers:
         configuration:
           usart_clock_source: CLKio
 pads:
-  PB0:
-    name: PB0
-    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PB0
-    mode: Digital input
-    user_label: PB0
-    configuration: null
   PE2:
     name: PE2
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PE2
@@ -198,6 +199,12 @@ pads:
     mode: Analog
     user_label: PE3
     configuration: null
+  PC5:
+    name: PC5
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PC5
+    mode: Analog
+    user_label: PC5
+    configuration: null
   PD0:
     name: PD0
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PD0
@@ -209,5 +216,11 @@ pads:
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PD1
     mode: Digital output
     user_label: PD1
+    configuration: null
+  PD2:
+    name: PD2
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PD2
+    mode: Digital input
+    user_label: PD2
     configuration: null
 toolchain_options: []

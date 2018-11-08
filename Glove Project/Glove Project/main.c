@@ -22,15 +22,15 @@
 const char START_COMMAND[] = "s00e";
 const char CALIBRATION_COMMAND[] = "s01e";
 const char ACTIVE_MODE_COMMAND[] = "s10e";
-const char ACTIVE_RIGHT[] = "s12e";
-const char ACTIVE_RIGHT_FORWARD[] = "s1Ae";
+const char ACTIVE_RIGHT_COMMAND[] = "s12e";
+const char ACTIVE_RIGHT_FORWARD_COMMAND[] = "s1Ae";
 //#define ACTIVE_RIGHT_REVERSE "s16"
-const char ACTIVE_LEFT[] = "s11e";
-const char ACTIVE_LEFT_FORWARD[] = "s19e";
+const char ACTIVE_LEFT_COMMAND[] = "s11e";
+const char ACTIVE_LEFT_FORWARD_COMMAND[] = "s19e";
 //#define ACTIVE_LEFT_REVERSE "s15e"
-const char ACTIVE_FORWARD[] = "s18e";
-const char ACTIVE_REVERSE[] = "s14e";
-const char SLOW_STOP[] = "s02e";
+const char ACTIVE_FORWARD_COMMAND[] = "s18e";
+const char ACTIVE_REVERSE_COMMAND[] = "s14e";
+const char SLOW_STOP_COMMAND[] = "s02e";
 
 #define BUTTON_NOT_PRESSED 0
 #define BUTTON_SHORT_PRESS 1
@@ -90,27 +90,27 @@ char * adcToCommand(
 	if(avgAdcValueForeFinger > foreFingerThreshold
 	&& avgAdcValueMiddleFinger > middleFingerThreshold
 	&& avgAdcValueRingFinger > ringFingerThreshold){
-		return ACTIVE_FORWARD;
+		return ACTIVE_FORWARD_COMMAND;
 	}
 	else if(avgAdcValueForeFinger > foreFingerThreshold
 	&& avgAdcValueMiddleFinger > middleFingerThreshold){
-		return ACTIVE_RIGHT_FORWARD;
+		return ACTIVE_RIGHT_FORWARD_COMMAND;
 	}
 	else if(avgAdcValueMiddleFinger > middleFingerThreshold
 	&& avgAdcValueRingFinger > ringFingerThreshold){
-		return ACTIVE_LEFT_FORWARD;
+		return ACTIVE_LEFT_FORWARD_COMMAND;
 	}
 	else if(avgAdcValueForeFinger > foreFingerThreshold){
-		return ACTIVE_RIGHT;
+		return ACTIVE_RIGHT_COMMAND;
 	}
 	else if(avgAdcValueRingFinger > ringFingerThreshold){
-		return ACTIVE_LEFT;
+		return ACTIVE_LEFT_COMMAND;
 	}
 	else if(avgAdcValueMiddleFinger > middleFingerThreshold){
-		return ACTIVE_REVERSE;
+		return ACTIVE_REVERSE_COMMAND;
 	}
 	else{
-		return SLOW_STOP;
+		return SLOW_STOP_COMMAND;
 	}
 }
 
@@ -122,6 +122,8 @@ int main(void)
 	atmel_start_init();
 	// DO NOT DELETE
 	//==========================================
+	
+	DDRC |= 0x01;
 	
 	char command[] = "s00e"; 
 	uint16_t adcReadForeFinger = 0;
@@ -143,6 +145,7 @@ int main(void)
 	uint8_t calCountAvg = 0;
 	uint8_t countAvg = 0;
 	USART0_Print("Starting...");
+	PORTC |=(1<<0);
 	while (1){
 		//read ADC
 		//ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
@@ -157,10 +160,12 @@ int main(void)
 			case START:
 				//send command to stop motors
 				if(buttonFlag == BUTTON_SHORT_PRESS){
+					PORTC &= 0xFE;
 					GLOVE_STATE = ACTIVE_MODE;
 					buttonFlag = BUTTON_NOT_PRESSED;
 				}
 				else if(buttonFlag == BUTTON_LONG_PRESS){
+					PORTC &= 0xFE;
 					GLOVE_STATE = CALIBRATION;
 					buttonFlag = BUTTON_NOT_PRESSED;
 				}
@@ -168,16 +173,18 @@ int main(void)
 					//send START mode command
 					memcpy(command, START_COMMAND, sizeof(command));
 					USART0_Print(command);
+					//PORTC |=(1<<0);
 				}
 				break;
 			case CALIBRATION:
-				if(buttonFlag == BUTTON_SHORT_PRESS || BUTTON_LONG_PRESS){
+				PORTC &= 0xFE;
+				if(buttonFlag == BUTTON_SHORT_PRESS || buttonFlag == BUTTON_LONG_PRESS){
 					GLOVE_STATE = START;
 					buttonFlag = BUTTON_NOT_PRESSED;
 					calCountAvg = 0;
 				}
 				//send command to stop motors
-				memcpy(command, SLOW_STOP, sizeof(command));
+				memcpy(command, SLOW_STOP_COMMAND, sizeof(command));
 				USART0_Print(command);
 				//run calibration routine
 				//reset counts at beginning
@@ -204,7 +211,8 @@ int main(void)
 				}
 				break;
 			case ACTIVE_MODE:
-				if(buttonFlag == BUTTON_SHORT_PRESS || BUTTON_LONG_PRESS){
+				PORTC &= 0xFE;
+				if(buttonFlag == BUTTON_SHORT_PRESS || buttonFlag == BUTTON_LONG_PRESS){
 					GLOVE_STATE = START;
 					buttonFlag = BUTTON_NOT_PRESSED;
 					countAvg = 0;
@@ -272,12 +280,14 @@ ISR(TIMER0_COMPA_vect) // Interrupt Routine for Timer 0 Compare Match A
 		if(PORTD_get_pin_level(PORTD2) < 1){ // If the pin is still being pulled low by the pushbutton
 			printf("Long Press\n");
 			buttonFlag = BUTTON_LONG_PRESS;
+			PORTC &= 0xFE;
 			TIMSK0 &= ~(_BV(OCIE0A)); // Disable Timer 0 interrupt
 			incrementer = 0;
 		}
 		else{
 			printf("Short Press\n");
 			buttonFlag = BUTTON_SHORT_PRESS;
+			PORTC &= 0xFE;
 			TIMSK0 &= ~(_BV(OCIE0A)); // Disable Timer 0 interrupt
 			incrementer = 0;
 		}

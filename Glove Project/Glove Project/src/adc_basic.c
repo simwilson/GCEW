@@ -63,6 +63,8 @@ int8_t ADC_0_init()
 	         | (0 << ACME)      /* Analog Comparator Multiplexer: disabled */
 	    ;
 
+	DIDR0 = 1 << ADC5D; /* Disable digital input buffer for ADC5 */
+
 	return 0;
 }
 
