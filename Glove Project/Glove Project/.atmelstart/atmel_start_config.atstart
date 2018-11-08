@@ -57,8 +57,8 @@ drivers:
     functionality: External_IRQ
     api: Drivers:EXINT:Init
     configuration:
-      exint_isc0: Any logical change on ISC0 generates an interrupt request
-      exint_isc1: Any logical change on ISC1 generates an interrupt request
+      exint_isc0: The falling edge of ISC0 generates an interrupt request
+      exint_isc1: The falling edge of ISC1 generates an interrupt request
       inc_isr_harness: true
     optional_signals:
     - identifier: EXTERNAL_IRQ_0:PCINT/18

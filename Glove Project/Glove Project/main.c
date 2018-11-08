@@ -145,7 +145,7 @@ int main(void)
 	uint8_t countAvg = 0;
 	USART0_Print("Starting...");
 	PORTC |=(1<<0);
-	while (1){
+	while(1){
 		//read ADC
 		//ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
 		//while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
@@ -171,12 +171,11 @@ int main(void)
 				else{
 					//send START mode command
 					memcpy(command, START_COMMAND, sizeof(command));
-					USART0_Print(command);
-					//PORTC |=(1<<0);
+			//		USART0_Print(command);
 				}
 				break;
 			case CALIBRATION:
-				PORTC &= 0xFE;
+				USART0_Print("Calibration");
 				if(buttonFlag == BUTTON_SHORT_PRESS || buttonFlag == BUTTON_LONG_PRESS){
 					GLOVE_STATE = START;
 					buttonFlag = BUTTON_NOT_PRESSED;
@@ -184,7 +183,7 @@ int main(void)
 				}
 				//send command to stop motors
 				memcpy(command, SLOW_STOP_COMMAND, sizeof(command));
-				USART0_Print(command);
+			//	USART0_Print(command);
 				//run calibration routine
 				//reset counts at beginning
 				if(calCountAvg == 0){
@@ -210,7 +209,7 @@ int main(void)
 				}
 				break;
 			case ACTIVE_MODE:
-				PORTC &= 0xFE;
+				USART0_Print("Active mode");
 				if(buttonFlag == BUTTON_SHORT_PRESS || buttonFlag == BUTTON_LONG_PRESS){
 					GLOVE_STATE = START;
 					buttonFlag = BUTTON_NOT_PRESSED;
@@ -244,7 +243,7 @@ int main(void)
 								ringFingerThreshold),
 							sizeof(command));
 						//Write command to BT
-						USART0_Print(command);	
+					//	USART0_Print(command);	
 						//reset average calculators						
 						avgAdcReadForeFinger = 0;
 						avgAdcReadMiddleFinger = 0;
@@ -259,7 +258,7 @@ int main(void)
 }
 
 
-ISR(PCINT0_vect) // Interrupt Routine for INT0 (Pin PD2) Interrupt //PCTINT2_vect
+ISR(PCINT2_vect) // Interrupt Routine for INT0 (Pin PD2) Interrupt //PCTINT2_vect
 {
 		TIMSK0 |= (_BV(OCIE0A)); // Enable Timer 0 Interrupt
 }
@@ -277,16 +276,14 @@ ISR(TIMER0_COMPA_vect) // Interrupt Routine for Timer 0 Compare Match A
 	if (incrementer > 60) 
 	{
 		if(PORTD_get_pin_level(PORTD2) < 1){ // If the pin is still being pulled low by the pushbutton
-			printf("Long Press\n");
+			USART0_Print("Long Press\n");
 			buttonFlag = BUTTON_LONG_PRESS;
-			PORTC &= 0xFE;
 			TIMSK0 &= ~(_BV(OCIE0A)); // Disable Timer 0 interrupt
 			incrementer = 0;
 		}
 		else{
-			printf("Short Press\n");
+			USART0_Print("Short Press\n");
 			buttonFlag = BUTTON_SHORT_PRESS;
-			PORTC &= 0xFE;
 			TIMSK0 &= ~(_BV(OCIE0A)); // Disable Timer 0 interrupt
 			incrementer = 0;
 		}
