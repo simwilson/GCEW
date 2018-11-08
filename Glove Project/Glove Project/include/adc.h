@@ -1,7 +1,7 @@
 /**
  * \file
  *
- * \brief ADC basic driver example.
+ * \brief ADC related functionality declaration.
  *
  (c) 2018 Microchip Technology Inc. and its subsidiaries.
 
@@ -25,9 +25,19 @@
  *
  */
 
-#ifndef ADC_BASIC_EXAMPLE_H
-#define ADC_BASIC_EXAMPLE_H
+#ifndef ADC_H_INCLUDED
+#define ADC_H_INCLUDED
 
-uint8_t ADC_0_test_adc_basic(void);
+#include <compiler.h>
 
-#endif /* ADC_BASIC_EXAMPLE_H */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int8_t ADC_0_init();
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* ADC_H_INCLUDED */

@@ -35,5 +35,3 @@
 
 #include <driver_init.h>
 #include <compiler.h>
-
-

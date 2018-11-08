@@ -51,31 +51,11 @@ drivers:
         - name: Core
           input: Core
         configuration: {}
-  EXTERNAL_IRQ_0:
-    user_label: EXTERNAL_IRQ_0
-    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::EXINT::driver_config_definition::EXINT::Drivers:EXINT:Init
-    functionality: External_IRQ
-    api: Drivers:EXINT:Init
-    configuration:
-      exint_isc0: The falling edge of ISC0 generates an interrupt request
-      exint_isc1: The falling edge of ISC1 generates an interrupt request
-      inc_isr_harness: true
-    optional_signals:
-    - identifier: EXTERNAL_IRQ_0:PCINT/18
-      pad: PD2
-      mode: Enabled
-      configuration: null
-      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::optional_signal_definition::EXINT.PCINT.18
-      name: EXINT/PCINT/18
-      label: PCINT/18
-    variant: null
-    clocks:
-      domain_group: null
   ADC_0:
     user_label: ADC_0
-    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::ADC::driver_config_definition::ADC.Basic::Drivers:ADC:Basic
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::ADC::driver_config_definition::ADC::Drivers:ADC:Init
     functionality: ADC
-    api: Drivers:ADC:Basic
+    api: Drivers:ADC:Init
     configuration:
       adcsra_adate: false
       adcsra_aden: true
@@ -86,6 +66,7 @@ drivers:
       admux_adlar: false
       admux_mux: ADC Single Ended Input pin 0
       admux_refs: AREF, Internal Vref turned off
+      inc_isr_harness: false
     optional_signals:
     - identifier: ADC_0:ADC/5
       pad: PC5
@@ -216,11 +197,5 @@ pads:
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PD1
     mode: Digital output
     user_label: PD1
-    configuration: null
-  PD2:
-    name: PD2
-    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PD2
-    mode: Digital input
-    user_label: PD2
     configuration: null
 toolchain_options: []

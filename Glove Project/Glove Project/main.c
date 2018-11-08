@@ -15,12 +15,10 @@
 
 //Modes
 #define START 0x00
-#define CALIBRATION 0x01
 #define ACTIVE_MODE 0x10
 
 //Command Modes
 const char START_COMMAND[] = "s00e";
-const char CALIBRATION_COMMAND[] = "s01e";
 const char ACTIVE_MODE_COMMAND[] = "s10e";
 const char ACTIVE_RIGHT_COMMAND[] = "s12e";
 const char ACTIVE_RIGHT_FORWARD_COMMAND[] = "s1Ae";
@@ -86,26 +84,26 @@ char * adcToCommand(
 	uint16_t ringFingerThreshold
 ){
 	//convert ADC values to state command
-	if(avgAdcValueForeFinger > foreFingerThreshold
-	&& avgAdcValueMiddleFinger > middleFingerThreshold
-	&& avgAdcValueRingFinger > ringFingerThreshold){
+	if(avgAdcValueForeFinger < foreFingerThreshold
+	&& avgAdcValueMiddleFinger < middleFingerThreshold
+	&& avgAdcValueRingFinger < ringFingerThreshold){
 		return ACTIVE_FORWARD_COMMAND;
 	}
-	else if(avgAdcValueForeFinger > foreFingerThreshold
-	&& avgAdcValueMiddleFinger > middleFingerThreshold){
+	else if(avgAdcValueForeFinger < foreFingerThreshold
+	&& avgAdcValueMiddleFinger < middleFingerThreshold){
 		return ACTIVE_RIGHT_FORWARD_COMMAND;
 	}
-	else if(avgAdcValueMiddleFinger > middleFingerThreshold
-	&& avgAdcValueRingFinger > ringFingerThreshold){
+	else if(avgAdcValueMiddleFinger < middleFingerThreshold
+	&& avgAdcValueRingFinger < ringFingerThreshold){
 		return ACTIVE_LEFT_FORWARD_COMMAND;
 	}
-	else if(avgAdcValueForeFinger > foreFingerThreshold){
+	else if(avgAdcValueForeFinger < foreFingerThreshold){
 		return ACTIVE_RIGHT_COMMAND;
 	}
-	else if(avgAdcValueRingFinger > ringFingerThreshold){
+	else if(avgAdcValueRingFinger < ringFingerThreshold){
 		return ACTIVE_LEFT_COMMAND;
 	}
-	else if(avgAdcValueMiddleFinger > middleFingerThreshold){
+	else if(avgAdcValueMiddleFinger < middleFingerThreshold){
 		return ACTIVE_REVERSE_COMMAND;
 	}
 	else{
@@ -121,10 +119,12 @@ int main(void)
 	atmel_start_init();
 	// DO NOT DELETE
 	//==========================================
-	int GLOVE_STATE = START;
 	DDRC |= 0x01;
 	
 	char command[] = "s00e"; 
+	
+	char printnum[] = "";
+	
 	uint16_t adcReadForeFinger = 0;
 	uint16_t adcReadMiddleFinger = 0;
 	uint16_t adcReadRingFinger = 0;
@@ -133,161 +133,81 @@ int main(void)
 	uint16_t avgAdcReadMiddleFinger = 0;
 	uint16_t avgAdcReadRingFinger = 0;
 	
-	uint16_t foreFingerThreshold = 100;
-	uint16_t middleFingerThreshold = 100;
-	uint16_t ringFingerThreshold = 100;
+	uint16_t foreFingerThreshold = 300;
+	uint16_t middleFingerThreshold = 300;
+	uint16_t ringFingerThreshold = 300;
 	
-	uint16_t foreFingerAvg = 100;
-	uint16_t middleFingerAvg = 100;
-	uint16_t ringFingerAvg = 100;
-	
-	uint8_t calCountAvg = 0;
 	uint8_t countAvg = 0;
+	
 	USART0_Print("Starting...");
 	PORTC |=(1<<0);
+	
 	while(1){
 		//read ADC
-		//ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
-		//while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
-		adcReadForeFinger = ADC_0_get_conversion(5);
-		adcReadForeFinger = adcReadForeFinger >> (ADC_0_get_resolution() - 8);
-		adcReadMiddleFinger = ADC_0_get_conversion(6);
-		adcReadMiddleFinger = adcReadMiddleFinger >> (ADC_0_get_resolution() - 8);
-		adcReadRingFinger = ADC_0_get_conversion(7);
-		adcReadRingFinger = adcReadRingFinger >> (ADC_0_get_resolution() - 8);
-		switch (GLOVE_STATE){
-			case START:
-				//send command to stop motors
-				if(buttonFlag == BUTTON_SHORT_PRESS){
-					PORTC &= 0xFE;
-					GLOVE_STATE = ACTIVE_MODE;
-					buttonFlag = BUTTON_NOT_PRESSED;
-				}
-				else if(buttonFlag == BUTTON_LONG_PRESS){
-					PORTC &= 0xFE;
-					GLOVE_STATE = CALIBRATION;
-					buttonFlag = BUTTON_NOT_PRESSED;
-				}
-				else{
-					//send START mode command
-					memcpy(command, START_COMMAND, sizeof(command));
-			//		USART0_Print(command);
-				}
-				break;
-			case CALIBRATION:
-				USART0_Print("Calibration");
-				if(buttonFlag == BUTTON_SHORT_PRESS || buttonFlag == BUTTON_LONG_PRESS){
-					GLOVE_STATE = START;
-					buttonFlag = BUTTON_NOT_PRESSED;
-					calCountAvg = 0;
-				}
-				//send command to stop motors
-				memcpy(command, SLOW_STOP_COMMAND, sizeof(command));
-			//	USART0_Print(command);
-				//run calibration routine
-				//reset counts at beginning
-				if(calCountAvg == 0){
-					avgAdcReadForeFinger = 0;
-					avgAdcReadMiddleFinger = 0;
-					avgAdcReadRingFinger = 0;
-				}
-				//calculate averages
-				if(calCountAvg < 20){
-					avgAdcReadForeFinger += adcReadForeFinger;
-					avgAdcReadMiddleFinger += adcReadMiddleFinger;
-					avgAdcReadRingFinger += adcReadRingFinger;
-				}
-				else{ //update thresholds
-					foreFingerThreshold = avgAdcReadForeFinger/20;
-					middleFingerThreshold = avgAdcReadMiddleFinger/20;
-					ringFingerThreshold = avgAdcReadRingFinger/20;
-					avgAdcReadForeFinger = 0;
-					avgAdcReadMiddleFinger = 0;
-					avgAdcReadRingFinger = 0;
-					calCountAvg = 0;
-					GLOVE_STATE = START;
-				}
-				break;
-			case ACTIVE_MODE:
-				USART0_Print("Active mode");
-				if(buttonFlag == BUTTON_SHORT_PRESS || buttonFlag == BUTTON_LONG_PRESS){
-					GLOVE_STATE = START;
-					buttonFlag = BUTTON_NOT_PRESSED;
-					countAvg = 0;
-				}
-				else{
-					//reset counts at beginning
-					if(countAvg == 0){
-						avgAdcReadForeFinger = 0;
-						avgAdcReadMiddleFinger = 0;
-						avgAdcReadRingFinger = 0;
-					}
-					//calculate averages
-					if(countAvg < 20){
-						avgAdcReadForeFinger += adcReadForeFinger;
-						avgAdcReadMiddleFinger += adcReadMiddleFinger;
-						avgAdcReadRingFinger += adcReadRingFinger;
-					}
-					else{ 	//sending bluetooth command
-						foreFingerAvg = avgAdcReadForeFinger/20;
-						middleFingerAvg = avgAdcReadMiddleFinger/20;
-						ringFingerAvg = avgAdcReadRingFinger/20;
-						//determine command
-						memcpy(command, 
-							adcToCommand(
-								foreFingerAvg,
-								middleFingerAvg,
-								ringFingerAvg,
-								foreFingerThreshold,
-								middleFingerThreshold,
-								ringFingerThreshold),
-							sizeof(command));
-						//Write command to BT
-					//	USART0_Print(command);	
-						//reset average calculators						
-						avgAdcReadForeFinger = 0;
-						avgAdcReadMiddleFinger = 0;
-						avgAdcReadRingFinger = 0;
-						countAvg = 0;
-					}	
-				}
-				break;
+		ADMUX = (0x01 << REFS0)   /* AREF, Internal Vref turned off */
+			| (0 << ADLAR)    /* Left Adjust Result: disabled */
+			| (0x06 << MUX0); /* ADC Single Ended Input pin 0 */
+		ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
+		while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
+		adcReadForeFinger = ADC;
+		
+		ADMUX = (0x01 << REFS0)   /* AREF, Internal Vref turned off */
+			| (0 << ADLAR)    /* Left Adjust Result: disabled */
+			| (0x07 << MUX0); /* ADC Single Ended Input pin 0 */
+		ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
+		while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
+		adcReadMiddleFinger = ADC;
+		
+		ADMUX = (0x01 << REFS0)   /* AREF, Internal Vref turned off */
+			| (0 << ADLAR)    /* Left Adjust Result: disabled */
+			| (0x05 << MUX0); /* ADC Single Ended Input pin 0 */
+		ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
+		while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
+		adcReadRingFinger = ADC;	
+		
+		//calculate averages
+		if(countAvg < 20){
+			avgAdcReadForeFinger += adcReadForeFinger;
+			avgAdcReadMiddleFinger += adcReadMiddleFinger;
+			avgAdcReadRingFinger += adcReadRingFinger;
+			countAvg += 1;
+		}
+		else{ 	//sending blue tooth command
+			avgAdcReadForeFinger = avgAdcReadForeFinger/20;
+			//sprintf(printnum,"%u",avgAdcReadForeFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
+			//USART0_Print("ADC Fore = ");
+			//USART0_Println(printnum); // Call function to write string to USART0
+			
+			avgAdcReadMiddleFinger = avgAdcReadMiddleFinger/20;
+			//sprintf(printnum,"%u",avgAdcReadMiddleFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
+			//USART0_Print("ADC Middle = ");
+			//USART0_Println(printnum); // Call function to write string to USART0
+			
+			avgAdcReadRingFinger = avgAdcReadRingFinger/20;
+			//sprintf(printnum,"%u",avgAdcReadRingFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
+			//USART0_Print("ADC Ring = ");
+			//USART0_Println(printnum); // Call function to write string to USART0
+			
+			//determine command
+			memcpy(command,
+				adcToCommand(
+					avgAdcReadForeFinger,
+					avgAdcReadMiddleFinger,
+					avgAdcReadRingFinger,
+					foreFingerThreshold,
+					middleFingerThreshold,
+					ringFingerThreshold),
+				sizeof(command));
+			//Write command to BT
+			USART0_Println("--------------------------");
+			USART0_Print(command);
+			USART0_Println("--------------------------");
+			//reset average calculators
+			avgAdcReadForeFinger = 0;
+			avgAdcReadMiddleFinger = 0;
+			avgAdcReadRingFinger = 0;
+			countAvg = 0;
 		}
 	}
 	return 1;
-}
-
-
-ISR(PCINT2_vect) // Interrupt Routine for INT0 (Pin PD2) Interrupt //PCTINT2_vect
-{
-		TIMSK0 |= (_BV(OCIE0A)); // Enable Timer 0 Interrupt
-}
-
-
-ISR(TIMER0_COMPA_vect) // Interrupt Routine for Timer 0 Compare Match A
-{
-
-	/* Timer 0 has a minimum frequency of (f_clock/(prescaler * (1+OCR0A)) which in this case = (8MHz/(1024*(1 + 255)) = 30.5Hz
-	   this is too fast for a 'long press' of the pushbutton, so we allow the timer to interrupt 60 times (about 2 seconds) before polling the pushbutton pin to check if it is still
-	   being pulled low   
-	*/
-
-	incrementer = incrementer + 1;
-	if (incrementer > 60) 
-	{
-		if(PORTD_get_pin_level(PORTD2) < 1){ // If the pin is still being pulled low by the pushbutton
-			USART0_Print("Long Press\n");
-			buttonFlag = BUTTON_LONG_PRESS;
-			TIMSK0 &= ~(_BV(OCIE0A)); // Disable Timer 0 interrupt
-			incrementer = 0;
-		}
-		else{
-			USART0_Print("Short Press\n");
-			buttonFlag = BUTTON_SHORT_PRESS;
-			TIMSK0 &= ~(_BV(OCIE0A)); // Disable Timer 0 interrupt
-			incrementer = 0;
-		}
-	}
-	else{ }  // don't do anything if the incrementer hasn't reached its desired value
-	
 }

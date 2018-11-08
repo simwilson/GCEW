@@ -6,17 +6,13 @@ atmel_start.c
 
 driver_isr.c
 
-examples\src\adc_basic_example.c
-
 examples\src\usart_basic_example.c
 
 main.c
 
-src\adc_basic.c
+src\adc.c
 
 src\driver_init.c
-
-src\exint.c
 
 src\protected_io.S
 

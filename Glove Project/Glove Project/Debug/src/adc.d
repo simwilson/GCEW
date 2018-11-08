@@ -1,5 +1,4 @@
-src/adc_basic.d src/adc_basic.o: ../src/adc_basic.c \
- ../include/adc_basic.h ../utils/compiler.h \
+src/adc.d src/adc.o: ../src/adc.c ../include/adc.h ../utils/compiler.h \
  c:\program\ files\ (x86)\arduino\hardware\tools\avr\avr\include\avr\io.h \
  c:\program\ files\ (x86)\arduino\hardware\tools\avr\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\arduino\hardware\tools\avr\avr\include\inttypes.h \
@@ -18,7 +17,7 @@ src/adc_basic.d src/adc_basic.o: ../src/adc_basic.c \
  ../utils/interrupt_avr8.h \
  c:\program\ files\ (x86)\arduino\hardware\tools\avr\avr\include\avr\interrupt.h
 
-../include/adc_basic.h:
+../include/adc.h:
 
 ../utils/compiler.h:
 

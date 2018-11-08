@@ -1,7 +1,7 @@
 /**
  * \file
  *
- * \brief ADC Basic driver example.
+ * \brief ADC related functionality implementation.
  *
  (c) 2018 Microchip Technology Inc. and its subsidiaries.
 
@@ -25,27 +25,41 @@
  *
  */
 
-#include <atmel_start.h>
-#include <adc_basic_example.h>
-#include <adc_basic.h>
-#include <atomic.h>
+/**
+ * \defgroup doc_driver_adc_init ADC Init Driver
+ * \ingroup doc_driver_adc
+ *
+ * \section doc_driver_adc_rev Revision History
+ * - v0.0.0.1 Initial Commit
+ *
+ *@{
+ */
 
-volatile adc_result_t ADC_0_measurement;
-volatile uint8_t      ADC_0_measurement_normalized;
+#include <adc.h>
 
-uint8_t ADC_0_test_adc_basic(void)
+/**
+ * \brief Initialize adc interface
+ * \return Initialization status.
+ */
+int8_t ADC_0_init()
 {
 
-	// Test driver functions, assume that an AIN channel is enabled and that
-	// the Result Ready IRQ is enabled.
+	/* Enable clock to write ADC registers */
+	PRR0 &= ~(1 << PRADC);
 
-	// Test polled mode
+	ADMUX = (0x01 << REFS0)   /* AREF, Internal Vref turned off */
+	        | (0 << ADLAR)    /* Left Adjust Result: disabled */
+	        | (0x06 << MUX0); /* ADC Single Ended Input pin 0 */
 
-	// Get conversion from specified ADC channel
-	ADC_0_measurement = ADC_0_get_conversion(0);
+	ADCSRA = (1 << ADEN)        /* ADC: enabled */
+	         | (0 << ADATE)     /* Auto Trigger: disabled */
+	         | (0 << ADIE)      /* ADC Interrupt: disabled */
+	         | (0x01 << ADPS0); /* 2 */
+	ADCSRB = (0x00 << ADTS0)    /* Free Running mode */
+	         | (0 << ACME)      /* Analog Comparator Multiplexer: disabled */
+	    ;
 
-	// Get 8 MSB of conversion result
-	ADC_0_measurement_normalized = ADC_0_measurement >> (ADC_0_get_resolution() - 8);
+	DIDR0 = 1 << ADC5D; /* Disable digital input buffer for ADC5 */
 
-	return 1;
+	return 0;
 }

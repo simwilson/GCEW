@@ -49,12 +49,10 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../atmel_start.c \
 ../driver_isr.c \
-../examples/src/adc_basic_example.c \
 ../examples/src/usart_basic_example.c \
 ../main.c \
-../src/adc_basic.c \
+../src/adc.c \
 ../src/driver_init.c \
-../src/exint.c \
 ../src/tc16.c \
 ../src/usart_basic.c
 
@@ -69,12 +67,10 @@ ASM_SRCS +=
 OBJS +=  \
 atmel_start.o \
 driver_isr.o \
-examples/src/adc_basic_example.o \
 examples/src/usart_basic_example.o \
 main.o \
-src/adc_basic.o \
+src/adc.o \
 src/driver_init.o \
-src/exint.o \
 src/protected_io.o \
 src/tc16.o \
 src/usart_basic.o
@@ -82,12 +78,10 @@ src/usart_basic.o
 OBJS_AS_ARGS +=  \
 atmel_start.o \
 driver_isr.o \
-examples/src/adc_basic_example.o \
 examples/src/usart_basic_example.o \
 main.o \
-src/adc_basic.o \
+src/adc.o \
 src/driver_init.o \
-src/exint.o \
 src/protected_io.o \
 src/tc16.o \
 src/usart_basic.o
@@ -95,12 +89,10 @@ src/usart_basic.o
 C_DEPS +=  \
 atmel_start.d \
 driver_isr.d \
-examples/src/adc_basic_example.d \
 examples/src/usart_basic_example.d \
 main.d \
-src/adc_basic.d \
+src/adc.d \
 src/driver_init.d \
-src/exint.d \
 src/protected_io.d \
 src/tc16.d \
 src/usart_basic.d
@@ -108,12 +100,10 @@ src/usart_basic.d
 C_DEPS_AS_ARGS +=  \
 atmel_start.d \
 driver_isr.d \
-examples/src/adc_basic_example.d \
 examples/src/usart_basic_example.d \
 main.d \
-src/adc_basic.d \
+src/adc.d \
 src/driver_init.d \
-src/exint.d \
 src/protected_io.d \
 src/tc16.d \
 src/usart_basic.d
@@ -146,13 +136,6 @@ LINKER_SCRIPT_DEP+=
 	@echo Finished building: $<
 	
 
-examples/src/adc_basic_example.o: ../examples/src/adc_basic_example.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Arduino\hardware\tools\avr\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"../examples/include" -I"../include" -I"../utils" -I"../utils/assembler" -I".." -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.2.272\include" -I"../Config"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall  -mmcu=atmega328pb  -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
 examples/src/usart_basic_example.o: ../examples/src/usart_basic_example.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
@@ -167,7 +150,7 @@ examples/src/usart_basic_example.o: ../examples/src/usart_basic_example.c
 	@echo Finished building: $<
 	
 
-src/adc_basic.o: ../src/adc_basic.c
+src/adc.o: ../src/adc.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Arduino\hardware\tools\avr\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"../examples/include" -I"../include" -I"../utils" -I"../utils/assembler" -I".." -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.2.272\include" -I"../Config"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall  -mmcu=atmega328pb  -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -175,13 +158,6 @@ src/adc_basic.o: ../src/adc_basic.c
 	
 
 src/driver_init.o: ../src/driver_init.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Arduino\hardware\tools\avr\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"../examples/include" -I"../include" -I"../utils" -I"../utils/assembler" -I".." -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.2.272\include" -I"../Config"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall  -mmcu=atmega328pb  -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-src/exint.o: ../src/exint.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Arduino\hardware\tools\avr\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"../examples/include" -I"../include" -I"../utils" -I"../utils/assembler" -I".." -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.2.272\include" -I"../Config"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall  -mmcu=atmega328pb  -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

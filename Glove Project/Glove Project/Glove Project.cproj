@@ -52,24 +52,20 @@
         <AcmeActionInfos>
           <AcmeProjectActionInfo Action="File" Source="utils/setbaud.h" IsConfig="false" Hash="MKDhK8t0PK1VSNnxtx1KRQ" />
           <AcmeProjectActionInfo Action="File" Source="main.c" IsConfig="false" Hash="k0AH7j+BrmdFhBPzCCMptA" />
-          <AcmeProjectActionInfo Action="File" Source="src/driver_init.c" IsConfig="false" Hash="O89jJYwNr19FNbwwLffYMw" />
-          <AcmeProjectActionInfo Action="File" Source="include/driver_init.h" IsConfig="false" Hash="OksvhlDinjKPHiqj06NqeA" />
-          <AcmeProjectActionInfo Action="File" Source="include/atmel_start_pins.h" IsConfig="false" Hash="CuG+hbCh1ktnPkPz1gJZrw" />
-          <AcmeProjectActionInfo Action="File" Source="driver_isr.c" IsConfig="false" Hash="PCKXyNrtKEsejpT3Qmq38Q" />
-          <AcmeProjectActionInfo Action="File" Source="examples/include/adc_basic_example.h" IsConfig="false" Hash="b4YpSTgweb/uQMln8ckLhw" />
+          <AcmeProjectActionInfo Action="File" Source="src/driver_init.c" IsConfig="false" Hash="8wcqX6qduRyo4XY9Ap7MWw" />
+          <AcmeProjectActionInfo Action="File" Source="include/driver_init.h" IsConfig="false" Hash="HpxUeqAtjTI0KrVM/fMAEg" />
+          <AcmeProjectActionInfo Action="File" Source="include/atmel_start_pins.h" IsConfig="false" Hash="G2RgDvcQcKSpqCM7EaoWRg" />
+          <AcmeProjectActionInfo Action="File" Source="driver_isr.c" IsConfig="false" Hash="RPVBKpBZfVQn6i4UEJhoAQ" />
           <AcmeProjectActionInfo Action="File" Source="examples/include/usart_basic_example.h" IsConfig="false" Hash="knBT4wJnrdNN5IUowpAhHw" />
-          <AcmeProjectActionInfo Action="File" Source="examples/src/adc_basic_example.c" IsConfig="false" Hash="9vRvo4Ll9FbLOa+3EzHIzw" />
           <AcmeProjectActionInfo Action="File" Source="examples/src/usart_basic_example.c" IsConfig="false" Hash="v+qTg4B7/rlc3RfrHNd9xg" />
-          <AcmeProjectActionInfo Action="File" Source="include/adc_basic.h" IsConfig="false" Hash="3Q+58Z+nnXV9+7HrMNJcZg" />
-          <AcmeProjectActionInfo Action="File" Source="include/exint.h" IsConfig="false" Hash="RjlP1BuzXGQX218QdTppzA" />
+          <AcmeProjectActionInfo Action="File" Source="include/adc.h" IsConfig="false" Hash="tDTPVhxuCGMrZdNXzr2h8g" />
           <AcmeProjectActionInfo Action="File" Source="include/port.h" IsConfig="false" Hash="/GByjt8D1bOz2IXriUGr3w" />
           <AcmeProjectActionInfo Action="File" Source="include/protected_io.h" IsConfig="false" Hash="tSFIfzqhAYuG1SUL75Vu1g" />
           <AcmeProjectActionInfo Action="File" Source="include/sysctrl.h" IsConfig="false" Hash="UKe8iv+KaD6oBoKBqLBRfw" />
           <AcmeProjectActionInfo Action="File" Source="include/system.h" IsConfig="false" Hash="sWTcwXpHdzy4Y1ON/P1yWQ" />
           <AcmeProjectActionInfo Action="File" Source="include/tc16.h" IsConfig="false" Hash="iKfMqIXbINoJFCoQKBHdOg" />
           <AcmeProjectActionInfo Action="File" Source="include/usart_basic.h" IsConfig="false" Hash="OZIXLrios5I3Q/FKcCJgKw" />
-          <AcmeProjectActionInfo Action="File" Source="src/adc_basic.c" IsConfig="false" Hash="vK8phBJA1U6lRopFRkvuKQ" />
-          <AcmeProjectActionInfo Action="File" Source="src/exint.c" IsConfig="false" Hash="IdXGamBtSnTuIPygW+WYpw" />
+          <AcmeProjectActionInfo Action="File" Source="src/adc.c" IsConfig="false" Hash="6Bi6YE+bPxGx+Zm5p1yT5A" />
           <AcmeProjectActionInfo Action="File" Source="src/protected_io.S" IsConfig="false" Hash="xMwVxkDny+gUjOkARvQSWA" />
           <AcmeProjectActionInfo Action="File" Source="src/tc16.c" IsConfig="false" Hash="nfBubhkAsPDTU7h0XZrQ3A" />
           <AcmeProjectActionInfo Action="File" Source="src/usart_basic.c" IsConfig="false" Hash="WY250qjQ9dwby3bO4fZLXQ" />
@@ -247,28 +243,19 @@
     <Compile Include="driver_isr.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="examples\include\adc_basic_example.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="examples\include\usart_basic_example.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="examples\src\adc_basic_example.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="examples\src\usart_basic_example.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="include\adc_basic.h">
+    <Compile Include="include\adc.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\atmel_start_pins.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\driver_init.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="include\exint.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\port.h">
@@ -292,13 +279,10 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\adc_basic.c">
+    <Compile Include="src\adc.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\driver_init.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\exint.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\protected_io.S">
@@ -340,9 +324,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="doxygen\adc.dox">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="doxygen\adc_basic.dox">
       <SubType>compile</SubType>
     </None>
     <None Include="doxygen\generator\doxyfile.doxygen">
