@@ -75,7 +75,6 @@ void registerSetup(void){ // Setup necessary registers for Timer 0, can store ot
 }
 
 volatile uint8_t incrementer = 0;
-int GLOVE_STATE = START;
 int buttonFlag = 0;
 
 char * adcToCommand(
@@ -122,7 +121,7 @@ int main(void)
 	atmel_start_init();
 	// DO NOT DELETE
 	//==========================================
-	
+	int GLOVE_STATE = START;
 	DDRC |= 0x01;
 	
 	char command[] = "s00e"; 
@@ -260,7 +259,7 @@ int main(void)
 }
 
 
-ISR(PCINT2_vect) // Interrupt Routine for INT0 ( Pin PD2) Interrupt
+ISR(PCINT0_vect) // Interrupt Routine for INT0 (Pin PD2) Interrupt //PCTINT2_vect
 {
 		TIMSK0 |= (_BV(OCIE0A)); // Enable Timer 0 Interrupt
 }
