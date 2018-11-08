@@ -52,28 +52,26 @@
         <AcmeActionInfos>
           <AcmeProjectActionInfo Action="File" Source="utils/setbaud.h" IsConfig="false" Hash="MKDhK8t0PK1VSNnxtx1KRQ" />
           <AcmeProjectActionInfo Action="File" Source="main.c" IsConfig="false" Hash="k0AH7j+BrmdFhBPzCCMptA" />
-          <AcmeProjectActionInfo Action="File" Source="src/driver_init.c" IsConfig="false" Hash="WHdGpRHbHaLhvHFy5+yqEQ" />
-          <AcmeProjectActionInfo Action="File" Source="include/driver_init.h" IsConfig="false" Hash="1x4mE7Ex7HAqNs+8cLk+IA" />
-          <AcmeProjectActionInfo Action="File" Source="include/atmel_start_pins.h" IsConfig="false" Hash="PlQR6I51dHPj3sAcF4CEeQ" />
+          <AcmeProjectActionInfo Action="File" Source="src/driver_init.c" IsConfig="false" Hash="FVcc2i0hps84LHII+WxChA" />
+          <AcmeProjectActionInfo Action="File" Source="include/driver_init.h" IsConfig="false" Hash="OksvhlDinjKPHiqj06NqeA" />
+          <AcmeProjectActionInfo Action="File" Source="include/atmel_start_pins.h" IsConfig="false" Hash="hSveeSBYOQqNITsoofj2Gg" />
           <AcmeProjectActionInfo Action="File" Source="driver_isr.c" IsConfig="false" Hash="qGQFU+h3hgZ9F4vxUSy7PQ" />
           <AcmeProjectActionInfo Action="File" Source="examples/include/adc_basic_example.h" IsConfig="false" Hash="b4YpSTgweb/uQMln8ckLhw" />
-          <AcmeProjectActionInfo Action="File" Source="examples/include/pwm_basic_example.h" IsConfig="false" Hash="xZQ5zwsFxV1lOmJDQwDxOg" />
           <AcmeProjectActionInfo Action="File" Source="examples/include/usart_basic_example.h" IsConfig="false" Hash="knBT4wJnrdNN5IUowpAhHw" />
           <AcmeProjectActionInfo Action="File" Source="examples/src/adc_basic_example.c" IsConfig="false" Hash="9vRvo4Ll9FbLOa+3EzHIzw" />
-          <AcmeProjectActionInfo Action="File" Source="examples/src/pwm_basic_example.c" IsConfig="false" Hash="pcFep+lORQ3Jv4RhAZRUQw" />
           <AcmeProjectActionInfo Action="File" Source="examples/src/usart_basic_example.c" IsConfig="false" Hash="v+qTg4B7/rlc3RfrHNd9xg" />
           <AcmeProjectActionInfo Action="File" Source="include/adc_basic.h" IsConfig="false" Hash="3Q+58Z+nnXV9+7HrMNJcZg" />
           <AcmeProjectActionInfo Action="File" Source="include/exint.h" IsConfig="false" Hash="RjlP1BuzXGQX218QdTppzA" />
-          <AcmeProjectActionInfo Action="File" Source="include/port.h" IsConfig="false" Hash="eEIuBCV+Do9SbSnnemwEEg" />
+          <AcmeProjectActionInfo Action="File" Source="include/port.h" IsConfig="false" Hash="/GByjt8D1bOz2IXriUGr3w" />
           <AcmeProjectActionInfo Action="File" Source="include/protected_io.h" IsConfig="false" Hash="tSFIfzqhAYuG1SUL75Vu1g" />
-          <AcmeProjectActionInfo Action="File" Source="include/pwm_basic.h" IsConfig="false" Hash="CF0yFkkJeFbw8A+Gu/JNrQ" />
           <AcmeProjectActionInfo Action="File" Source="include/sysctrl.h" IsConfig="false" Hash="UKe8iv+KaD6oBoKBqLBRfw" />
-          <AcmeProjectActionInfo Action="File" Source="include/system.h" IsConfig="false" Hash="H9aIZiWtNcPpafJmKzgRDQ" />
+          <AcmeProjectActionInfo Action="File" Source="include/system.h" IsConfig="false" Hash="sWTcwXpHdzy4Y1ON/P1yWQ" />
+          <AcmeProjectActionInfo Action="File" Source="include/tc16.h" IsConfig="false" Hash="iKfMqIXbINoJFCoQKBHdOg" />
           <AcmeProjectActionInfo Action="File" Source="include/usart_basic.h" IsConfig="false" Hash="OZIXLrios5I3Q/FKcCJgKw" />
           <AcmeProjectActionInfo Action="File" Source="src/adc_basic.c" IsConfig="false" Hash="ktvjGytbHyQXrUw3xsrMgg" />
-          <AcmeProjectActionInfo Action="File" Source="src/exint.c" IsConfig="false" Hash="2hddQ3yWhkcwPo9BUzBjfQ" />
+          <AcmeProjectActionInfo Action="File" Source="src/exint.c" IsConfig="false" Hash="nt5UTlj3BucdyFF+m2wbuQ" />
           <AcmeProjectActionInfo Action="File" Source="src/protected_io.S" IsConfig="false" Hash="xMwVxkDny+gUjOkARvQSWA" />
-          <AcmeProjectActionInfo Action="File" Source="src/pwm_basic.c" IsConfig="false" Hash="rfXtt/OdbuRPnGatPyWisg" />
+          <AcmeProjectActionInfo Action="File" Source="src/tc16.c" IsConfig="false" Hash="nfBubhkAsPDTU7h0XZrQ3A" />
           <AcmeProjectActionInfo Action="File" Source="src/usart_basic.c" IsConfig="false" Hash="WY250qjQ9dwby3bO4fZLXQ" />
           <AcmeProjectActionInfo Action="File" Source="utils/assembler.h" IsConfig="false" Hash="jaaWqpCXnRJMciuXpjSfgQ" />
           <AcmeProjectActionInfo Action="File" Source="utils/assembler/gas.h" IsConfig="false" Hash="wV+34zXWOOJ7jfwQibBgLQ" />
@@ -142,8 +140,8 @@
       <Value>../utils</Value>
       <Value>../utils/assembler</Value>
       <Value>../</Value>
-      <Value>../Config</Value>
       <Value>%24(PackRepoDir)\Atmel\ATmega_DFP\1.2.272\include</Value>
+      <Value>../Config</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
@@ -157,13 +155,13 @@
   </avrgcc.linker.libraries.Libraries>
   <avrgcc.assembler.general.IncludePaths>
     <ListValues>
+      <Value>%24(PackRepoDir)\Atmel\ATmega_DFP\1.2.272\include</Value>
       <Value>../Config</Value>
       <Value>../examples/include</Value>
       <Value>../include</Value>
       <Value>../utils</Value>
       <Value>../utils/assembler</Value>
       <Value>../</Value>
-      <Value>%24(PackRepoDir)\Atmel\ATmega_DFP\1.2.272\include</Value>
     </ListValues>
   </avrgcc.assembler.general.IncludePaths>
 </AvrGcc>
@@ -192,8 +190,8 @@
       <Value>../utils</Value>
       <Value>../utils/assembler</Value>
       <Value>../</Value>
-      <Value>../Config</Value>
       <Value>%24(PackRepoDir)\Atmel\ATmega_DFP\1.2.272\include</Value>
+      <Value>../Config</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
@@ -208,13 +206,13 @@
   </avrgcc.linker.libraries.Libraries>
   <avrgcc.assembler.general.IncludePaths>
     <ListValues>
+      <Value>%24(PackRepoDir)\Atmel\ATmega_DFP\1.2.272\include</Value>
       <Value>../Config</Value>
       <Value>../examples/include</Value>
       <Value>../include</Value>
       <Value>../utils</Value>
       <Value>../utils/assembler</Value>
       <Value>../</Value>
-      <Value>%24(PackRepoDir)\Atmel\ATmega_DFP\1.2.272\include</Value>
     </ListValues>
   </avrgcc.assembler.general.IncludePaths>
   <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>

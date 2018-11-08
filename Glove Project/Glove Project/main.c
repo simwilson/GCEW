@@ -19,18 +19,18 @@
 #define ACTIVE_MODE 0x10
 
 //Command Modes
-#define START_COMMAND "s00e"
-#define CALIBRATION_COMMAND "s01e"
-#define ACTIVE_MODE_COMMAND "s10e"
-#define ACTIVE_RIGHT "s12e"
-#define ACTIVE_RIGHT_FORWARD "s1Ae"
+const char START_COMMAND[] = "s00e";
+const char CALIBRATION_COMMAND[] = "s01e";
+const char ACTIVE_MODE_COMMAND[] = "s10e";
+const char ACTIVE_RIGHT[] = "s12e";
+const char ACTIVE_RIGHT_FORWARD[] = "s1Ae";
 //#define ACTIVE_RIGHT_REVERSE "s16"
-#define ACTIVE_LEFT "s11e"
-#define ACTIVE_LEFT_FORWARD "s19e"
+const char ACTIVE_LEFT[] = "s11e";
+const char ACTIVE_LEFT_FORWARD[] = "s19e";
 //#define ACTIVE_LEFT_REVERSE "s15e"
-#define ACTIVE_FORWARD "s18e"
-#define ACTIVE_REVERSE "s14e"
-#define SLOW_STOP "s02e"
+const char ACTIVE_FORWARD[] = "s18e";
+const char ACTIVE_REVERSE[] = "s14e";
+const char SLOW_STOP[] = "s02e";
 
 #define BUTTON_NOT_PRESSED 0
 #define BUTTON_SHORT_PRESS 1
@@ -123,7 +123,7 @@ int main(void)
 	// DO NOT DELETE
 	//==========================================
 	
-	char[4] command = "s00e"; 
+	char command[] = "s00e"; 
 	uint16_t adcReadForeFinger = 0;
 	uint16_t adcReadMiddleFinger = 0;
 	uint16_t adcReadRingFinger = 0;
@@ -142,14 +142,17 @@ int main(void)
 	
 	uint8_t calCountAvg = 0;
 	uint8_t countAvg = 0;
-	
+	USART0_Print("Starting...");
 	while (1){
-		//readADC
-		ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
-		while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
-		adcReadForeFinger=ADC;
-		//adcReadMiddleFinger=ADC;
-		//adcReadRingFinger=ADC;
+		//read ADC
+		//ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
+		//while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
+		adcReadForeFinger = ADC_0_get_conversion(5);
+		adcReadForeFinger = adcReadForeFinger >> (ADC_0_get_resolution() - 8);
+		adcReadMiddleFinger = ADC_0_get_conversion(6);
+		adcReadMiddleFinger = adcReadMiddleFinger >> (ADC_0_get_resolution() - 8);
+		adcReadRingFinger = ADC_0_get_conversion(7);
+		adcReadRingFinger = adcReadRingFinger >> (ADC_0_get_resolution() - 8);
 		switch (GLOVE_STATE){
 			case START:
 				//send command to stop motors
@@ -163,7 +166,7 @@ int main(void)
 				}
 				else{
 					//send START mode command
-					command = START_COMMAND;
+					memcpy(command, START_COMMAND, sizeof(command));
 					USART0_Print(command);
 				}
 				break;
@@ -174,7 +177,7 @@ int main(void)
 					calCountAvg = 0;
 				}
 				//send command to stop motors
-				command = SLOW_STOP;
+				memcpy(command, SLOW_STOP, sizeof(command));
 				USART0_Print(command);
 				//run calibration routine
 				//reset counts at beginning
@@ -224,13 +227,15 @@ int main(void)
 						middleFingerAvg = avgAdcReadMiddleFinger/20;
 						ringFingerAvg = avgAdcReadRingFinger/20;
 						//determine command
-						command = adcToCommand(
-									foreFingerAvg,
-									middleFingerAvg,
-									ringFingerAvg,
-									foreFingerThreshold,
-									middleFingerThreshold,
-									ringFingerThreshold);
+						memcpy(command, 
+							adcToCommand(
+								foreFingerAvg,
+								middleFingerAvg,
+								ringFingerAvg,
+								foreFingerThreshold,
+								middleFingerThreshold,
+								ringFingerThreshold),
+							sizeof(command));
 						//Write command to BT
 						USART0_Print(command);	
 						//reset average calculators						

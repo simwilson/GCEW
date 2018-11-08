@@ -4,7 +4,7 @@ versions:
   api: '1.0'
   backend: 1.4.93
   commit: 9c29f8365cf76e9937d19b1e765a83bc7a80e4e9
-  content: 1.0.1193
+  content: 1.0.1231
   content_pack_name: acme-packs-all
   format: '2'
   frontend: 1.4.1787
@@ -86,7 +86,21 @@ drivers:
       admux_adlar: false
       admux_mux: ADC Single Ended Input pin 0
       admux_refs: AREF, Internal Vref turned off
-    optional_signals: []
+    optional_signals:
+    - identifier: ADC_0:ADC/6
+      pad: PE2
+      mode: Enabled
+      configuration: null
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::optional_signal_definition::ADC.ADC.6
+      name: ADC/ADC/6
+      label: ADC/6
+    - identifier: ADC_0:ADC/7
+      pad: PE3
+      mode: Enabled
+      configuration: null
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::optional_signal_definition::ADC.ADC.7
+      name: ADC/ADC/7
+      label: ADC/7
     variant: null
     clocks:
       domain_group:
@@ -171,6 +185,18 @@ pads:
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PB0
     mode: Digital input
     user_label: PB0
+    configuration: null
+  PE2:
+    name: PE2
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PE2
+    mode: Analog
+    user_label: PE2
+    configuration: null
+  PE3:
+    name: PE3
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PE3
+    mode: Analog
+    user_label: PE3
     configuration: null
   PD0:
     name: PD0

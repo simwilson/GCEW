@@ -56,6 +56,12 @@ void EXTERNAL_IRQ_0_initialization(void)
 void ADC_0_initialization(void)
 {
 
+	// Disable pull-up.
+	PE2_set_pull_mode(PORT_PULL_OFF);
+
+	// Disable pull-up.
+	PE3_set_pull_mode(PORT_PULL_OFF);
+
 	ADC_0_init();
 }
 

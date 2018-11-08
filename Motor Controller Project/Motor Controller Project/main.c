@@ -21,14 +21,14 @@
 #define START_COMMAND [0,0]
 #define SLOW_STOP_COMMAND [0,2]
 #define ACTIVE_MODE_COMMAND [1,0]
-#define ACTIVE_RIGHT [1,2]
-#define ACTIVE_RIGHT_FORWARD [1,A]
+#define ACTIVE_RIGHT_COMMAND [1,2]
+#define ACTIVE_RIGHT_FORWARD_COMMAND [0x1,0xA]
 //#define ACTIVE_RIGHT_REVERSE "s16"
-#define ACTIVE_LEFT [1,1]
-#define ACTIVE_LEFT_FORWARD [1,9]
+#define ACTIVE_LEFT_COMMAND [1,1]
+#define ACTIVE_LEFT_FORWARD_COMMAND [1,9]
 //#define ACTIVE_LEFT_REVERSE "s15e"
-#define ACTIVE_FORWARD [1,8]
-#define ACTIVE_REVERSE [1,4]
+#define ACTIVE_FORWARD_COMMAND [1,8]
+#define ACTIVE_REVERSE_COMMAND [1,4]
 
 //TODO determine values
 #define STOPPED 0x00
@@ -95,7 +95,7 @@ int main(void)
 				}
 			}
 			else if(rx[1] == '1'){
-				else if(rx[2] == '2'){
+				if(rx[2] == '2'){
 					MOTOR_CONTROLLER_STATE = ACTIVE_RIGHT;
 				}
 				else if(rx[2] == 'A'){
@@ -157,7 +157,7 @@ int main(void)
 				GOAL_MOTOR_SPEED_LEFT = STOPPED;
 				GOAL_MOTOR_SPEED_RIGHT = FULL_SPEED;
 				break;
-			case ACTIVE_REVERSE
+			case ACTIVE_REVERSE:
 				//motors equal speed, negative direction
 				GOAL_DIRECTION = REVERSE;
 				GOAL_MOTOR_SPEED_LEFT = FULL_SPEED;
