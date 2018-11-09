@@ -5,6 +5,17 @@
 #include <pwm_basic_example.h>
 #include <pwm_basic.h>
 
+#include <stdio.h>
+#include <string.h>
+#include <usart_basic_example.h>
+#include <usart_basic.h>
+#include <atomic.h>
+#include <util/delay.h>
+#include <avr/sfr_defs.h>
+#include <avr/interrupt.h>
+#include <driver_init.h>
+#include <compiler.h>
+
 //Modes
 #define START 0x00
 #define SLOW_STOP 0x02
@@ -39,12 +50,24 @@
 #define REVERSE 1
 
 #define CLOSE_TO_GOAL_VALUE 0x05
-#define NUMBER_OF_STEPS 100
+#define NUMBER_OF_STEPS 10
 
 
 //OUTPUT on PB2
 volatile PWM_0_register_t PWM_0_duty = STOPPED;
 volatile PWM_1_register_t PWM_1_duty = STOPPED;
+
+
+void USART0_Print(const char* variable){ // Function to write a string to USART0
+	
+	for (int i=0; i<strlen(variable); i++) // Loops to print character array pointed to by received string
+	{
+		USART_0_write(variable[i]);
+	}
+}
+
+
+
 
 int main(void)
 {
@@ -53,7 +76,8 @@ int main(void)
 	// DO NOT DELETE
 	atmel_start_init();
 	//==========================================
-	
+	DDRC |= 0x01;
+	PORTC &= 0xFE;
 	//TODO determine if we are using ch0 or ch1
 		
 	// Enable pin output
@@ -69,7 +93,7 @@ int main(void)
 	PWM_1_load_counter(0);
 	
 	int MOTOR_CONTROLLER_STATE = START;
-	
+	char printnum[] = "";
 	uint8_t rx[16];
 	uint16_t CURR_MOTOR_SPEED_LEFT = STOPPED;
 	uint16_t CURR_MOTOR_SPEED_RIGHT = STOPPED;
@@ -100,6 +124,7 @@ int main(void)
 				}
 				else if(rx[2] == 'A'){
 					MOTOR_CONTROLLER_STATE = ACTIVE_RIGHT_FORWARD;
+					PORTC |=(1<<0);
 				}
 				else if(rx[2] == '1'){
 					MOTOR_CONTROLLER_STATE = ACTIVE_LEFT;
@@ -201,6 +226,14 @@ int main(void)
 		}
 		PWM_0_duty = CURR_MOTOR_SPEED_LEFT;
 		PWM_1_duty = CURR_MOTOR_SPEED_RIGHT;
+		sprintf(printnum,"%u",PWM_0_duty);
+		USART0_Print("PWM_0_duty= ");
+		USART0_Print(printnum);
+		USART_0_write(10);
+		sprintf(printnum,"%u",PWM_1_duty);
+		USART0_Print("PWM_1_duty= ");
+		USART0_Print(printnum);
+		USART_0_write(10);
 		PWM_0_load_duty_cycle_ch1(PWM_0_duty);
 		PWM_1_load_duty_cycle_ch1(PWM_1_duty);
 	}
