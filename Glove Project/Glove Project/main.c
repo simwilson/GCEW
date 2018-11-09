@@ -139,7 +139,7 @@ int main(void)
 	
 	uint8_t countAvg = 0;
 	
-	USART0_Print("Starting...");
+	//USART0_Print("Starting...");
 	PORTC |=(1<<0);
 	
 	while(1){
@@ -174,19 +174,19 @@ int main(void)
 		}
 		else{ 	//sending blue tooth command
 			avgAdcReadForeFinger = avgAdcReadForeFinger/20;
-			sprintf(printnum,"%u",avgAdcReadForeFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
-			USART0_Print("ADC Fore = ");
-			USART0_Println(printnum); // Call function to write string to USART0
+			//sprintf(printnum,"%u",avgAdcReadForeFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
+			//USART0_Print("ADC Fore = ");
+			//USART0_Println(printnum); // Call function to write string to USART0
 			
 			avgAdcReadMiddleFinger = avgAdcReadMiddleFinger/20;
-			sprintf(printnum,"%u",avgAdcReadMiddleFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
-			USART0_Print("ADC Middle = ");
-			USART0_Println(printnum); // Call function to write string to USART0
+			//sprintf(printnum,"%u",avgAdcReadMiddleFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
+			//USART0_Print("ADC Middle = ");
+			//USART0_Println(printnum); // Call function to write string to USART0
 			
 			avgAdcReadRingFinger = avgAdcReadRingFinger/20;
-			sprintf(printnum,"%u",avgAdcReadRingFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
-			USART0_Print("ADC Ring = ");
-			USART0_Println(printnum); // Call function to write string to USART0
+			//sprintf(printnum,"%u",avgAdcReadRingFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
+			//USART0_Print("ADC Ring = ");
+			//USART0_Println(printnum); // Call function to write string to USART0
 			
 			//determine command
 			memcpy(command,
@@ -199,9 +199,9 @@ int main(void)
 					ringFingerThreshold),
 				sizeof(command));
 			//Write command to BT
-			USART0_Println("--------------------------");
+		//	USART0_Println("--------------------------");
 			USART0_Print(command);
-			USART0_Println("--------------------------");
+		//	USART0_Println("--------------------------");
 			//reset average calculators
 			avgAdcReadForeFinger = 0;
 			avgAdcReadMiddleFinger = 0;
