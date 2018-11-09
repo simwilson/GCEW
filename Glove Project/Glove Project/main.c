@@ -146,7 +146,7 @@ int main(void)
 		//read ADC
 		ADMUX = (0x01 << REFS0)   /* AREF, Internal Vref turned off */
 			| (0 << ADLAR)    /* Left Adjust Result: disabled */
-			| (0x02 << MUX0); /* ADC Single Ended Input pin 0 */
+			| (0x04 << MUX0); /* ADC Single Ended Input pin 0 */
 		ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
 		while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
 		adcReadForeFinger = ADC;
@@ -160,7 +160,7 @@ int main(void)
 		
 		ADMUX = (0x01 << REFS0)   /* AREF, Internal Vref turned off */
 			| (0 << ADLAR)    /* Left Adjust Result: disabled */
-			| (0x04 << MUX0); /* ADC Single Ended Input pin 0 */
+			| (0x02 << MUX0); /* ADC Single Ended Input pin 0 */
 		ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
 		while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
 		adcReadRingFinger = ADC;	
