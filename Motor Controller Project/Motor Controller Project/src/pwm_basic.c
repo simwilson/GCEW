@@ -51,23 +51,28 @@ pwm_irq_cb_t PWM_0_cb = NULL;
 int8_t PWM_0_init()
 {
 
-	/* Enable TC0 */
-	PRR0 &= ~(1 << PRTIM0);
+	/* Enable TC1 */
+	PRR0 &= ~(1 << PRTIM1);
 
-	TCCR0A = (0 << COM0A1) | (0 << COM0A0)   /* Normal port operation, OCA disconnected */
-	         | (0 << COM0B1) | (0 << COM0B0) /* Normal port operation, OCB disconnected */
-	         | (0 << WGM01) | (1 << WGM00);  /* TC8 Mode 1 Phase Correct */
+	TCCR1A = (0 << COM1A1) | (0 << COM1A0)   /* Normal port operation, OCA disconnected */
+	         | (1 << COM1B1) | (0 << COM1B0) /* Clear OCB on up-counting, set OCB on down-counting */
+	         | (1 << WGM11) | (1 << WGM10);  /* TC16 Mode 11 Phase Correct PWM */
 
-	// TCCR0B = 0 /* TC8 Mode 1 Phase Correct */
-	//		 | (0 << CS02) | (0 << CS01) | (0 << CS00); /* No clock source (Timer/Counter stopped) */
+	TCCR1B = (1 << WGM13) | (0 << WGM12)                /* TC16 Mode 11 Phase Correct PWM */
+	         | 0 << ICNC1                               /* Input Capture Noise Canceler: disabled */
+	         | 0 << ICES1                               /* Input Capture Edge Select: disabled */
+	         | (0 << CS12) | (0 << CS11) | (1 << CS10); /* No prescaling */
 
-	// TIMSK0 = 0 << OCIE0B /* Output Compare B Match Interrupt Enable: disabled */
-	//		 | 0 << OCIE0A /* Output Compare A Match Interrupt Enable: disabled */
-	//		 | 0 << TOIE0; /* Overflow Interrupt Enable: disabled */
+	// ICR1 = 0x0; /* Input capture value: 0x0 */
 
-	// OCR0A = 0x0; /* Output compare A: 0x0 */
+	// OCR1A = 0x0; /* Counter top value: 0x0 */
 
-	// OCR0B = 0x0; /* Output compare B: 0x0 */
+	// OCR1B = 0x0; /* Output compare B: 0x0 */
+
+	TIMSK1 = 0 << OCIE1B   /* Output Compare B Match Interrupt Enable: disabled */
+	         | 0 << OCIE1A /* Output Compare A Match Interrupt Enable: disabled */
+	         | 0 << ICIE1  /* Input Capture Interrupt Enable: disabled */
+	         | 1 << TOIE1; /* Overflow Interrupt Enable: enabled */
 
 	return 0;
 }
@@ -95,28 +100,6 @@ void PWM_0_disable()
 }
 
 /**
- * \brief Enable PWM output on channel 0
- *
- * \return Nothing
- */
-void PWM_0_enable_output_ch0()
-{
-
-	TCCR0A |= ((0 << COM0A1) | (0 << COM0A0));
-}
-
-/**
- * \brief Disable PWM output on channel 0
- *
- * \return Nothing
- */
-void PWM_0_disable_output_ch0()
-{
-
-	TCCR0A &= ~((0 << COM0A1) | (0 << COM0A0));
-}
-
-/**
  * \brief Enable PWM output on channel 1
  *
  * \return Nothing
@@ -124,7 +107,7 @@ void PWM_0_disable_output_ch0()
 void PWM_0_enable_output_ch1()
 {
 
-	TCCR0A |= ((0 << COM0B1) | (0 << COM0B0));
+	TCCR1A |= ((1 << COM1B1) | (0 << COM1B0));
 }
 
 /**
@@ -135,7 +118,7 @@ void PWM_0_enable_output_ch1()
 void PWM_0_disable_output_ch1()
 {
 
-	TCCR0A &= ~((0 << COM0B1) | (0 << COM0B0));
+	TCCR1A &= ~((0 << COM1B1) | (0 << COM1B0));
 }
 
 /**
@@ -147,22 +130,20 @@ void PWM_0_disable_output_ch1()
  */
 void PWM_0_load_counter(PWM_0_register_t counter_value)
 {
-	TCNT0 = counter_value;
+	TCNT1 = counter_value;
 }
 
 /**
- * \brief Load duty cycle register in for channel 0.
- * The physical register may have different names, depending on the hardware.
- * This is not the duty cycle as percentage of the whole period, but the actual
- * counter compare value.
+ * \brief Load TOP register in PWM_0.
+ * The physical register may different names, depending on the hardware and module mode.
  *
- * \param[in] counter_value The value to load into the duty cycle register.
+ * \param[in] counter_value The value to load into TOP.
  *
  * \return Nothing
  */
-void PWM_0_load_duty_cycle_ch0(PWM_0_register_t duty_value)
+void PWM_0_load_top(PWM_0_register_t top_value)
 {
-	OCR0A = duty_value;
+	OCR1A = top_value;
 }
 
 /**
@@ -177,7 +158,7 @@ void PWM_0_load_duty_cycle_ch0(PWM_0_register_t duty_value)
  */
 void PWM_0_load_duty_cycle_ch1(PWM_0_register_t duty_value)
 {
-	OCR0B = duty_value;
+	OCR1B = duty_value;
 }
 
 /**
@@ -192,12 +173,12 @@ void PWM_0_register_callback(pwm_irq_cb_t f)
 	PWM_0_cb = f;
 }
 
-ISR(TIMER0_OVF_vect)
+ISR(TIMER1_OVF_vect)
 {
 	static volatile uint8_t callback_count = 0;
 
 	// Clear the interrupt flag
-	TIFR0 |= (1 << TOV0);
+	TIFR1 = TOV1;
 
 	// callback function - called every 0 passes
 	if ((++callback_count >= PWM_0_INTERRUPT_CB_RATE) && (PWM_0_INTERRUPT_CB_RATE != 0)) {
@@ -222,23 +203,28 @@ pwm_irq_cb_t PWM_1_cb = NULL;
 int8_t PWM_1_init()
 {
 
-	/* Enable TC2 */
-	PRR0 &= ~(1 << PRTIM2);
+	/* Enable TC3 */
+	PRR1 &= ~(1 << PRTIM3);
 
-	TCCR2A = (0 << COM2A1) | (0 << COM2A0)   /* Normal port operation, OCA disconnected */
-	         | (0 << COM2B1) | (0 << COM2B0) /* Normal port operation, OCB disconnected */
-	         | (0 << WGM21) | (1 << WGM20);  /* TC8 Mode 1 Phase Correct */
+	TCCR3A = (0 << COM3A1) | (0 << COM3A0)   /* Normal port operation, OCA disconnected */
+	         | (1 << COM3B1) | (0 << COM3B0) /* Clear OCB on up-counting, set OCB on down-counting */
+	         | (1 << WGM31) | (1 << WGM30);  /* TC16 Mode 11 Phase Correct PWM */
 
-	// TCCR2B = 0 /* TC8 Mode 1 Phase Correct */
-	//		 | (0 << CS22) | (0 << CS21) | (0 << CS20); /* No clock source (Timer/Counter stopped) */
+	TCCR3B = (1 << WGM33) | (0 << WGM32)                /* TC16 Mode 11 Phase Correct PWM */
+	         | 0 << ICNC3                               /* Input Capture Noise Canceler: disabled */
+	         | 0 << ICES3                               /* Input Capture Edge Select: disabled */
+	         | (0 << CS32) | (0 << CS31) | (1 << CS30); /* No prescaling */
 
-	// TIMSK2 = 0 << OCIE2B /* Output Compare B Match Interrupt Enable: disabled */
-	//		 | 0 << OCIE2A /* Output Compare A Match Interrupt Enable: disabled */
-	//		 | 0 << TOIE2; /* Overflow Interrupt Enable: disabled */
+	// ICR3 = 0x0; /* Input capture value: 0x0 */
 
-	// OCR2A = 0x0; /* Output compare A: 0x0 */
+	// OCR3A = 0x0; /* Counter top value: 0x0 */
 
-	// OCR2B = 0x0; /* Output compare B: 0x0 */
+	// OCR3B = 0x0; /* Output compare B: 0x0 */
+
+	TIMSK3 = 0 << OCIE3B   /* Output Compare B Match Interrupt Enable: disabled */
+	         | 0 << OCIE3A /* Output Compare A Match Interrupt Enable: disabled */
+	         | 0 << ICIE3  /* Input Capture Interrupt Enable: disabled */
+	         | 1 << TOIE3; /* Overflow Interrupt Enable: enabled */
 
 	return 0;
 }
@@ -266,28 +252,6 @@ void PWM_1_disable()
 }
 
 /**
- * \brief Enable PWM output on channel 0
- *
- * \return Nothing
- */
-void PWM_1_enable_output_ch0()
-{
-
-	TCCR2A |= ((0 << COM2A1) | (0 << COM2A0));
-}
-
-/**
- * \brief Disable PWM output on channel 0
- *
- * \return Nothing
- */
-void PWM_1_disable_output_ch0()
-{
-
-	TCCR2A &= ~((0 << COM2A1) | (0 << COM2A0));
-}
-
-/**
  * \brief Enable PWM output on channel 1
  *
  * \return Nothing
@@ -295,7 +259,7 @@ void PWM_1_disable_output_ch0()
 void PWM_1_enable_output_ch1()
 {
 
-	TCCR2A |= ((0 << COM2B1) | (0 << COM2B0));
+	TCCR3A |= ((1 << COM3B1) | (0 << COM3B0));
 }
 
 /**
@@ -306,7 +270,7 @@ void PWM_1_enable_output_ch1()
 void PWM_1_disable_output_ch1()
 {
 
-	TCCR2A &= ~((0 << COM2B1) | (0 << COM2B0));
+	TCCR3A &= ~((0 << COM3B1) | (0 << COM3B0));
 }
 
 /**
@@ -318,22 +282,20 @@ void PWM_1_disable_output_ch1()
  */
 void PWM_1_load_counter(PWM_1_register_t counter_value)
 {
-	TCNT2 = counter_value;
+	TCNT3 = counter_value;
 }
 
 /**
- * \brief Load duty cycle register in for channel 0.
- * The physical register may have different names, depending on the hardware.
- * This is not the duty cycle as percentage of the whole period, but the actual
- * counter compare value.
+ * \brief Load TOP register in PWM_1.
+ * The physical register may different names, depending on the hardware and module mode.
  *
- * \param[in] counter_value The value to load into the duty cycle register.
+ * \param[in] counter_value The value to load into TOP.
  *
  * \return Nothing
  */
-void PWM_1_load_duty_cycle_ch0(PWM_1_register_t duty_value)
+void PWM_1_load_top(PWM_1_register_t top_value)
 {
-	OCR2A = duty_value;
+	OCR3A = top_value;
 }
 
 /**
@@ -348,7 +310,7 @@ void PWM_1_load_duty_cycle_ch0(PWM_1_register_t duty_value)
  */
 void PWM_1_load_duty_cycle_ch1(PWM_1_register_t duty_value)
 {
-	OCR2B = duty_value;
+	OCR3B = duty_value;
 }
 
 /**
@@ -363,12 +325,12 @@ void PWM_1_register_callback(pwm_irq_cb_t f)
 	PWM_1_cb = f;
 }
 
-ISR(TIMER2_OVF_vect)
+ISR(TIMER3_OVF_vect)
 {
 	static volatile uint8_t callback_count = 0;
 
 	// Clear the interrupt flag
-	TIFR2 |= (1 << TOV2);
+	TIFR3 = TOV3;
 
 	// callback function - called every 0 passes
 	if ((++callback_count >= PWM_1_INTERRUPT_CB_RATE) && (PWM_1_INTERRUPT_CB_RATE != 0)) {

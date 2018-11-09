@@ -58,11 +58,11 @@ int main(void)
 		
 	// Enable pin output
 	PWM_0_enable_output_ch1();
-	PWM_1_enable_output_ch0();
+	PWM_1_enable_output_ch1();
 
 	// Set channel 0 duty cycle value register value to specified value
 	PWM_0_load_duty_cycle_ch1(STOPPED);
-	PWM_1_load_duty_cycle_ch0(STOPPED);
+	PWM_1_load_duty_cycle_ch1(STOPPED);
 
 	// Set counter register value
 	PWM_0_load_counter(0);
@@ -202,7 +202,7 @@ int main(void)
 		PWM_0_duty = CURR_MOTOR_SPEED_LEFT;
 		PWM_1_duty = CURR_MOTOR_SPEED_RIGHT;
 		PWM_0_load_duty_cycle_ch1(PWM_0_duty);
-		PWM_1_load_duty_cycle_ch0(PWM_1_duty);
+		PWM_1_load_duty_cycle_ch1(PWM_1_duty);
 	}
 	return 1;
 }
