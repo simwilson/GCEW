@@ -65,30 +65,30 @@ drivers:
       adcsrb_adts: Free Running mode
       admux_adlar: false
       admux_mux: ADC Single Ended Input pin 0
-      admux_refs: AREF, Internal Vref turned off
+      admux_refs: AVCC with external capacitor at AREF pin
       inc_isr_harness: false
     optional_signals:
-    - identifier: ADC_0:ADC/5
-      pad: PC5
+    - identifier: ADC_0:ADC/2
+      pad: PC2
       mode: Enabled
       configuration: null
-      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::optional_signal_definition::ADC.ADC.5
-      name: ADC/ADC/5
-      label: ADC/5
-    - identifier: ADC_0:ADC/6
-      pad: PE2
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::optional_signal_definition::ADC.ADC.2
+      name: ADC/ADC/2
+      label: ADC/2
+    - identifier: ADC_0:ADC/3
+      pad: PC3
       mode: Enabled
       configuration: null
-      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::optional_signal_definition::ADC.ADC.6
-      name: ADC/ADC/6
-      label: ADC/6
-    - identifier: ADC_0:ADC/7
-      pad: PE3
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::optional_signal_definition::ADC.ADC.3
+      name: ADC/ADC/3
+      label: ADC/3
+    - identifier: ADC_0:ADC/4
+      pad: PC4
       mode: Enabled
       configuration: null
-      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::optional_signal_definition::ADC.ADC.7
-      name: ADC/ADC/7
-      label: ADC/7
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::optional_signal_definition::ADC.ADC.4
+      name: ADC/ADC/4
+      label: ADC/4
     variant: null
     clocks:
       domain_group:
@@ -135,7 +135,7 @@ drivers:
     api: Drivers:USART:Basic
     configuration:
       printf_support: true
-      usart_baud_rate: 9600
+      usart_baud_rate: 38400
       usart_mpcm: false
       usart_rxcie: true
       usart_rxen: true
@@ -168,23 +168,23 @@ drivers:
         configuration:
           usart_clock_source: CLKio
 pads:
-  PE2:
-    name: PE2
-    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PE2
+  PC2:
+    name: PC2
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PC2
     mode: Analog
-    user_label: PE2
+    user_label: PC2
     configuration: null
-  PE3:
-    name: PE3
-    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PE3
+  PC3:
+    name: PC3
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PC3
     mode: Analog
-    user_label: PE3
+    user_label: PC3
     configuration: null
-  PC5:
-    name: PC5
-    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PC5
+  PC4:
+    name: PC4
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AN::pad::PC4
     mode: Analog
-    user_label: PC5
+    user_label: PC4
     configuration: null
   PD0:
     name: PD0

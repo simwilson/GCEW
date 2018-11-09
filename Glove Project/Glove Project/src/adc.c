@@ -47,9 +47,9 @@ int8_t ADC_0_init()
 	/* Enable clock to write ADC registers */
 	PRR0 &= ~(1 << PRADC);
 
-	ADMUX = (0x01 << REFS0)   /* AREF, Internal Vref turned off */
+	ADMUX = (0x01 << REFS0)   /* AVCC with external capacitor at AREF pin */
 	        | (0 << ADLAR)    /* Left Adjust Result: disabled */
-	        | (0x06 << MUX0); /* ADC Single Ended Input pin 0 */
+	        | (0x00 << MUX0); /* ADC Single Ended Input pin 0 */
 
 	ADCSRA = (1 << ADEN)        /* ADC: enabled */
 	         | (0 << ADATE)     /* Auto Trigger: disabled */
@@ -59,7 +59,9 @@ int8_t ADC_0_init()
 	         | (0 << ACME)      /* Analog Comparator Multiplexer: disabled */
 	    ;
 
-	DIDR0 = 1 << ADC5D; /* Disable digital input buffer for ADC5 */
+	DIDR0 = 1 << ADC2D    /* Disable digital input buffer for ADC2 */
+	        | 1 << ADC3D  /* Disable digital input buffer for ADC3 */
+	        | 1 << ADC4D; /* Disable digital input buffer for ADC4 */
 
 	return 0;
 }

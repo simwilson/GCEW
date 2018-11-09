@@ -146,21 +146,21 @@ int main(void)
 		//read ADC
 		ADMUX = (0x01 << REFS0)   /* AREF, Internal Vref turned off */
 			| (0 << ADLAR)    /* Left Adjust Result: disabled */
-			| (0x06 << MUX0); /* ADC Single Ended Input pin 0 */
+			| (0x02 << MUX0); /* ADC Single Ended Input pin 0 */
 		ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
 		while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
 		adcReadForeFinger = ADC;
 		
 		ADMUX = (0x01 << REFS0)   /* AREF, Internal Vref turned off */
 			| (0 << ADLAR)    /* Left Adjust Result: disabled */
-			| (0x07 << MUX0); /* ADC Single Ended Input pin 0 */
+			| (0x03 << MUX0); /* ADC Single Ended Input pin 0 */
 		ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
 		while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
 		adcReadMiddleFinger = ADC;
 		
 		ADMUX = (0x01 << REFS0)   /* AREF, Internal Vref turned off */
 			| (0 << ADLAR)    /* Left Adjust Result: disabled */
-			| (0x05 << MUX0); /* ADC Single Ended Input pin 0 */
+			| (0x04 << MUX0); /* ADC Single Ended Input pin 0 */
 		ADCSRA |= (1 << ADSC); // Set ADC Conversion Start Bit
 		while ((ADCSRA & (1 << ADSC)) ) { } // wait for ADC conversion to complete
 		adcReadRingFinger = ADC;	
@@ -174,19 +174,19 @@ int main(void)
 		}
 		else{ 	//sending blue tooth command
 			avgAdcReadForeFinger = avgAdcReadForeFinger/20;
-			//sprintf(printnum,"%u",avgAdcReadForeFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
-			//USART0_Print("ADC Fore = ");
-			//USART0_Println(printnum); // Call function to write string to USART0
+			sprintf(printnum,"%u",avgAdcReadForeFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
+			USART0_Print("ADC Fore = ");
+			USART0_Println(printnum); // Call function to write string to USART0
 			
 			avgAdcReadMiddleFinger = avgAdcReadMiddleFinger/20;
-			//sprintf(printnum,"%u",avgAdcReadMiddleFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
-			//USART0_Print("ADC Middle = ");
-			//USART0_Println(printnum); // Call function to write string to USART0
+			sprintf(printnum,"%u",avgAdcReadMiddleFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
+			USART0_Print("ADC Middle = ");
+			USART0_Println(printnum); // Call function to write string to USART0
 			
 			avgAdcReadRingFinger = avgAdcReadRingFinger/20;
-			//sprintf(printnum,"%u",avgAdcReadRingFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
-			//USART0_Print("ADC Ring = ");
-			//USART0_Println(printnum); // Call function to write string to USART0
+			sprintf(printnum,"%u",avgAdcReadRingFinger); // Convert 10-bit ADC value (unsigned 16-bit integer) to a string
+			USART0_Print("ADC Ring = ");
+			USART0_Println(printnum); // Call function to write string to USART0
 			
 			//determine command
 			memcpy(command,
