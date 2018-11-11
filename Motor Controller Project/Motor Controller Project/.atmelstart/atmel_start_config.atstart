@@ -129,8 +129,8 @@ drivers:
     functionality: USART
     api: Drivers:USART:Basic
     configuration:
-      printf_support: false
-      usart_baud_rate: 9600
+      printf_support: true
+      usart_baud_rate: 38400
       usart_mpcm: false
       usart_rxcie: true
       usart_rxen: true

@@ -21,7 +21,10 @@ src/usart_basic.d src/usart_basic.o: ../src/usart_basic.c \
  ../include/driver_init.h ../include/port.h ../include/atmel_start_pins.h \
  ../include/sysctrl.h ../utils/atomic.h ../include/protected_io.h \
  c:\program\ files\ (x86)\arduino\hardware\tools\avr\avr\include\avr\sleep.h \
- ../include/pwm_basic.h ../include/atmel_start_pins.h ../utils/setbaud.h
+ ../include/pwm_basic.h ../include/atmel_start_pins.h \
+ c:\program\ files\ (x86)\arduino\hardware\tools\avr\avr\include\stdio.h \
+ c:\program\ files\ (x86)\arduino\hardware\tools\avr\lib\gcc\avr\5.4.0\include\stdarg.h \
+ ../utils/setbaud.h
 
 ../utils/compiler.h:
 
@@ -82,5 +85,9 @@ c:\program\ files\ (x86)\arduino\hardware\tools\avr\avr\include\avr\sleep.h:
 ../include/pwm_basic.h:
 
 ../include/atmel_start_pins.h:
+
+c:\program\ files\ (x86)\arduino\hardware\tools\avr\avr\include\stdio.h:
+
+c:\program\ files\ (x86)\arduino\hardware\tools\avr\lib\gcc\avr\5.4.0\include\stdarg.h:
 
 ../utils/setbaud.h:

@@ -119,6 +119,9 @@ int main(void)
 	atmel_start_init();
 	// DO NOT DELETE
 	//==========================================
+	while(1){
+		USART0_Print("A");
+	}
 	DDRC |= 0x01;
 	
 	char command[] = "s00e"; 

@@ -75,9 +75,25 @@ int main(void)
 	//==========================================
 	// DO NOT DELETE
 	atmel_start_init();
+	// DO NOT DELETE
 	//==========================================
 	DDRC |= 0x01;
-	PORTC &= 0xFE;
+	PORTC |= 0x01;
+	
+	char rxnum[] = "";
+	uint8_t rxraw;
+
+	while(1){
+		USART0_Print("Starting...");
+		rxraw = USART_0_read();
+		sprintf(rxnum,"%u",rxraw);
+		USART0_Print(rxnum);
+		USART0_Print("End");
+		USART_0_write(10);
+		if(rxnum[0] == '8' && rxnum[1] == '0'){
+			PORTC &= 0xF0;
+		}
+	}
 	//TODO determine if we are using ch0 or ch1
 		
 	// Enable pin output
@@ -105,11 +121,12 @@ int main(void)
 	while (1){
 		//TODO check to make sure BT is connected
 		//TODO only read if available
-		for (uint8_t i = 0; i < 4; i++) {
-			rx[i] = USART_0_read(); // Blocks until character is available
+		for(uint8_t i = 1; i < 4; i++) {
+			rx[i] = USART_0_read();
+			//sprintf(rx[i],"%u",); // Blocks until character is available
 		}
 		//verify first and last character
-		if(rx[0] == 's' && rx[3] == 'e'){
+		if(rx[3] == 'e'){
 			if(rx[1] == '0'){
 				if(rx[2] == '0'){
 					MOTOR_CONTROLLER_STATE = START;
@@ -226,14 +243,14 @@ int main(void)
 		}
 		PWM_0_duty = CURR_MOTOR_SPEED_LEFT;
 		PWM_1_duty = CURR_MOTOR_SPEED_RIGHT;
-		sprintf(printnum,"%u",PWM_0_duty);
-		USART0_Print("PWM_0_duty= ");
-		USART0_Print(printnum);
-		USART_0_write(10);
-		sprintf(printnum,"%u",PWM_1_duty);
-		USART0_Print("PWM_1_duty= ");
-		USART0_Print(printnum);
-		USART_0_write(10);
+	//	sprintf(printnum,"%u",PWM_0_duty);
+		//USART0_Print("PWM_0_duty= ");
+		//USART0_Print(printnum);
+		//USART_0_write(10);
+		//sprintf(printnum,"%u",PWM_1_duty);
+		//USART0_Print("PWM_1_duty= ");
+		//USART0_Print(printnum);
+		//USART_0_write(10);
 		PWM_0_load_duty_cycle_ch1(PWM_0_duty);
 		PWM_1_load_duty_cycle_ch1(PWM_1_duty);
 	}

@@ -4,7 +4,7 @@ versions:
   api: '1.0'
   backend: 1.4.93
   commit: 9c29f8365cf76e9937d19b1e765a83bc7a80e4e9
-  content: 1.0.1231
+  content: 1.0.1255
   content_pack_name: acme-packs-all
   format: '2'
   frontend: 1.4.1787

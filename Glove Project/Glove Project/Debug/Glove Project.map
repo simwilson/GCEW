@@ -6,8 +6,6 @@ c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\
                               examples/src/usart_basic_example.o (__do_copy_data)
 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
                               examples/src/usart_basic_example.o (__do_clear_bss)
-c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                              main.o (__umulhisi3)
 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strncmp.o)
                               examples/src/usart_basic_example.o (strncmp)
 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(iob.o)
@@ -76,10 +74,26 @@ Discarded input sections
                 0x00000000       0x4a main.o
  .text.registerSetup
                 0x00000000       0x4c main.o
+ .text.adcToCommand
+                0x00000000       0x6a main.o
  .bss.buttonFlag
                 0x00000000        0x2 main.o
  .bss.incrementer
                 0x00000000        0x1 main.o
+ .rodata.SLOW_STOP_COMMAND
+                0x00000000        0x5 main.o
+ .rodata.ACTIVE_REVERSE_COMMAND
+                0x00000000        0x5 main.o
+ .rodata.ACTIVE_FORWARD_COMMAND
+                0x00000000        0x5 main.o
+ .rodata.ACTIVE_LEFT_FORWARD_COMMAND
+                0x00000000        0x5 main.o
+ .rodata.ACTIVE_LEFT_COMMAND
+                0x00000000        0x5 main.o
+ .rodata.ACTIVE_RIGHT_FORWARD_COMMAND
+                0x00000000        0x5 main.o
+ .rodata.ACTIVE_RIGHT_COMMAND
+                0x00000000        0x5 main.o
  .rodata.ACTIVE_MODE_COMMAND
                 0x00000000        0x5 main.o
  .rodata.START_COMMAND
@@ -167,20 +181,6 @@ Discarded input sections
                 0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
- .text          0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .data          0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .bss           0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .text.libgcc.div
-                0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .text.libgcc   0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .text.libgcc.prologue
-                0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .text.libgcc.builtins
-                0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .text.libgcc.fmul
-                0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .text.libgcc.fixed
-                0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
  .text          0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strncmp.o)
  .data          0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strncmp.o)
  .bss           0x00000000        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strncmp.o)
@@ -397,7 +397,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x40a
+.text           0x00000000      0x242
  *(.vectors)
  .vectors       0x00000000       0xb4 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/crtatmega328pb.o
                 0x00000000                __vector_default
@@ -509,46 +509,40 @@ END GROUP
  .text.USART0_Print
                 0x000000f8       0x44 main.o
                 0x000000f8                USART0_Print
- .text.adcToCommand
-                0x0000013c       0x6a main.o
-                0x0000013c                adcToCommand
- .text.main     0x000001a6      0x14e main.o
-                0x000001a6                main
+ .text.main     0x0000013c        0xe main.o
+                0x0000013c                main
  .text.ADC_0_init
-                0x000002f4       0x24 src/adc.o
-                0x000002f4                ADC_0_init
+                0x0000014a       0x24 src/adc.o
+                0x0000014a                ADC_0_init
  .text.ADC_0_initialization
-                0x00000318        0xc src/driver_init.o
-                0x00000318                ADC_0_initialization
+                0x0000016e        0xc src/driver_init.o
+                0x0000016e                ADC_0_initialization
  .text.USART_0_initialization
-                0x00000324        0xe src/driver_init.o
-                0x00000324                USART_0_initialization
+                0x0000017a        0xe src/driver_init.o
+                0x0000017a                USART_0_initialization
  .text.system_init
-                0x00000332       0x52 src/driver_init.o
-                0x00000332                system_init
+                0x00000188       0x52 src/driver_init.o
+                0x00000188                system_init
  .text.protected_write_io
-                0x00000384        0xe src/protected_io.o
-                0x00000384                protected_write_io
+                0x000001da        0xe src/protected_io.o
+                0x000001da                protected_write_io
  .text.TIMER_0_init
-                0x00000392        0xe src/tc16.o
-                0x00000392                TIMER_0_init
+                0x000001e8        0xe src/tc16.o
+                0x000001e8                TIMER_0_init
  .text.USART_0_init
-                0x000003a0       0x2e src/usart_basic.o
-                0x000003a0                USART_0_init
+                0x000001f6       0x2e src/usart_basic.o
+                0x000001f6                USART_0_init
  .text.USART_0_write
-                0x000003ce       0x10 src/usart_basic.o
-                0x000003ce                USART_0_write
+                0x00000224       0x10 src/usart_basic.o
+                0x00000224                USART_0_write
  .text.USART_0_printCHAR
-                0x000003de        0xa src/usart_basic.o
-                0x000003de                USART_0_printCHAR
- .text.libgcc.mul
-                0x000003e8       0x1e c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                0x000003e8                __umulhisi3
-                0x00000406                . = ALIGN (0x2)
+                0x00000234        0xa src/usart_basic.o
+                0x00000234                USART_0_printCHAR
+                0x0000023e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000406        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00000406                _exit
-                0x00000406                exit
+ .fini9         0x0000023e        0x0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x0000023e                _exit
+                0x0000023e                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -567,11 +561,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000406        0x4 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000023e        0x4 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000040a                _etext = .
+                0x00000242                _etext = .
 
-.data           0x00800100       0x36 load address 0x0000040a
+.data           0x00800100       0x10 load address 0x00000242
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -582,49 +576,28 @@ END GROUP
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x0080010e        0x5 main.o
- .rodata.SLOW_STOP_COMMAND
-                0x00800113        0x5 main.o
-                0x00800113                SLOW_STOP_COMMAND
- .rodata.ACTIVE_REVERSE_COMMAND
-                0x00800118        0x5 main.o
-                0x00800118                ACTIVE_REVERSE_COMMAND
- .rodata.ACTIVE_FORWARD_COMMAND
-                0x0080011d        0x5 main.o
-                0x0080011d                ACTIVE_FORWARD_COMMAND
- .rodata.ACTIVE_LEFT_FORWARD_COMMAND
-                0x00800122        0x5 main.o
-                0x00800122                ACTIVE_LEFT_FORWARD_COMMAND
- .rodata.ACTIVE_LEFT_COMMAND
-                0x00800127        0x5 main.o
-                0x00800127                ACTIVE_LEFT_COMMAND
- .rodata.ACTIVE_RIGHT_FORWARD_COMMAND
-                0x0080012c        0x5 main.o
-                0x0080012c                ACTIVE_RIGHT_FORWARD_COMMAND
- .rodata.ACTIVE_RIGHT_COMMAND
-                0x00800131        0x5 main.o
-                0x00800131                ACTIVE_RIGHT_COMMAND
+                0x0080010e        0x2 main.o
  *(.gnu.linkonce.r*)
-                0x00800136                . = ALIGN (0x2)
-                0x00800136                _edata = .
-                0x00800136                PROVIDE (__data_end, .)
+                0x00800110                . = ALIGN (0x2)
+                0x00800110                _edata = .
+                0x00800110                PROVIDE (__data_end, .)
 
-.bss            0x00800136        0x6
-                0x00800136                PROVIDE (__bss_start, .)
+.bss            0x00800110        0x6
+                0x00800110                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  *(COMMON)
- COMMON         0x00800136        0x6 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(iob.o)
-                0x00800136                __iob
-                0x0080013c                PROVIDE (__bss_end, .)
-                0x0000040a                __data_load_start = LOADADDR (.data)
-                0x00000440                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800110        0x6 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(iob.o)
+                0x00800110                __iob
+                0x00800116                PROVIDE (__bss_end, .)
+                0x00000242                __data_load_start = LOADADDR (.data)
+                0x00000252                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080013c        0x0
+.noinit         0x00800116        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080013c                _end = .
+                0x00800116                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -695,7 +668,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x1f0
+.debug_aranges  0x00000000      0x1d0
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x20 atmel_start.o
@@ -717,65 +690,60 @@ END GROUP
                 0x00000190       0x20 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
  .debug_aranges
                 0x000001b0       0x20 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
- .debug_aranges
-                0x000001d0       0x20 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1b7b
+.debug_info     0x00000000     0x1a6f
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x8ea c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/crtatmega328pb.o
  .debug_info    0x000008ea       0x93 atmel_start.o
- .debug_info    0x0000097d      0x42e main.o
- .debug_info    0x00000dab       0x91 src/adc.o
- .debug_info    0x00000e3c      0x654 src/driver_init.o
- .debug_info    0x00001490       0x84 src/protected_io.o
- .debug_info    0x00001514       0x91 src/tc16.o
- .debug_info    0x000015a5      0x2ea src/usart_basic.o
- .debug_info    0x0000188f       0xbb c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
- .debug_info    0x0000194a       0xbb c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
- .debug_info    0x00001a05       0xbb c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
- .debug_info    0x00001ac0       0xbb c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+ .debug_info    0x0000097d      0x3dd main.o
+ .debug_info    0x00000d5a       0x91 src/adc.o
+ .debug_info    0x00000deb      0x654 src/driver_init.o
+ .debug_info    0x0000143f       0x84 src/protected_io.o
+ .debug_info    0x000014c3       0x91 src/tc16.o
+ .debug_info    0x00001554      0x2ea src/usart_basic.o
+ .debug_info    0x0000183e       0xbb c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .debug_info    0x000018f9       0xbb c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .debug_info    0x000019b4       0xbb c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
 
-.debug_abbrev   0x00000000      0xe87
+.debug_abbrev   0x00000000      0xe39
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x86e c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/crtatmega328pb.o
  .debug_abbrev  0x0000086e       0x63 atmel_start.o
- .debug_abbrev  0x000008d1      0x19c main.o
- .debug_abbrev  0x00000a6d       0x51 src/adc.o
- .debug_abbrev  0x00000abe      0x177 src/driver_init.o
- .debug_abbrev  0x00000c35       0x14 src/protected_io.o
- .debug_abbrev  0x00000c49       0x51 src/tc16.o
- .debug_abbrev  0x00000c9a      0x19d src/usart_basic.o
- .debug_abbrev  0x00000e37       0x14 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
- .debug_abbrev  0x00000e4b       0x14 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
- .debug_abbrev  0x00000e5f       0x14 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
- .debug_abbrev  0x00000e73       0x14 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+ .debug_abbrev  0x000008d1      0x162 main.o
+ .debug_abbrev  0x00000a33       0x51 src/adc.o
+ .debug_abbrev  0x00000a84      0x177 src/driver_init.o
+ .debug_abbrev  0x00000bfb       0x14 src/protected_io.o
+ .debug_abbrev  0x00000c0f       0x51 src/tc16.o
+ .debug_abbrev  0x00000c60      0x19d src/usart_basic.o
+ .debug_abbrev  0x00000dfd       0x14 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .debug_abbrev  0x00000e11       0x14 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .debug_abbrev  0x00000e25       0x14 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
 
-.debug_line     0x00000000      0xc9f
+.debug_line     0x00000000      0xb15
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x1a5 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/crtatmega328pb.o
  .debug_line    0x000001a5       0x60 atmel_start.o
- .debug_line    0x00000205      0x2e5 main.o
- .debug_line    0x000004ea       0xa8 src/adc.o
- .debug_line    0x00000592      0x1df src/driver_init.o
- .debug_line    0x00000771       0x67 src/protected_io.o
- .debug_line    0x000007d8       0x91 src/tc16.o
- .debug_line    0x00000869      0x206 src/usart_basic.o
- .debug_line    0x00000a6f       0x62 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
- .debug_line    0x00000ad1       0x98 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
- .debug_line    0x00000b69       0x86 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
- .debug_line    0x00000bef       0xb0 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+ .debug_line    0x00000205      0x20b main.o
+ .debug_line    0x00000410       0xa8 src/adc.o
+ .debug_line    0x000004b8      0x1df src/driver_init.o
+ .debug_line    0x00000697       0x67 src/protected_io.o
+ .debug_line    0x000006fe       0x91 src/tc16.o
+ .debug_line    0x0000078f      0x206 src/usart_basic.o
+ .debug_line    0x00000995       0x62 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .debug_line    0x000009f7       0x98 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .debug_line    0x00000a8f       0x86 c:/program files (x86)/arduino/hardware/tools/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
 
-.debug_frame    0x00000000      0x25c
+.debug_frame    0x00000000      0x24c
  *(.debug_frame)
  .debug_frame   0x00000000       0x24 atmel_start.o
- .debug_frame   0x00000024       0xc8 main.o
- .debug_frame   0x000000ec       0x24 src/adc.o
- .debug_frame   0x00000110       0x54 src/driver_init.o
- .debug_frame   0x00000164       0x24 src/tc16.o
- .debug_frame   0x00000188       0xd4 src/usart_basic.o
+ .debug_frame   0x00000024       0xb8 main.o
+ .debug_frame   0x000000dc       0x24 src/adc.o
+ .debug_frame   0x00000100       0x54 src/driver_init.o
+ .debug_frame   0x00000154       0x24 src/tc16.o
+ .debug_frame   0x00000178       0xd4 src/usart_basic.o
 
 .debug_str      0x00000000      0xa12
  *(.debug_str)
@@ -793,11 +761,11 @@ END GROUP
  .debug_str     0x0000090d      0x105 src/usart_basic.o
                                 0x2a0 (size before relaxing)
 
-.debug_loc      0x00000000      0x6a5
+.debug_loc      0x00000000      0x4cd
  *(.debug_loc)
- .debug_loc     0x00000000      0x4df main.o
- .debug_loc     0x000004df      0x17f src/driver_init.o
- .debug_loc     0x0000065e       0x47 src/usart_basic.o
+ .debug_loc     0x00000000      0x307 main.o
+ .debug_loc     0x00000307      0x17f src/driver_init.o
+ .debug_loc     0x00000486       0x47 src/usart_basic.o
 
 .debug_macinfo
  *(.debug_macinfo)
