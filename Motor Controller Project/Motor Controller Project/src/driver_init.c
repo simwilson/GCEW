@@ -104,9 +104,9 @@ void system_init()
 
 	sysctrl_init();
 
-	PWM_0_initialization();
+	//PWM_0_initialization();
 
-	PWM_1_initialization();
+	//PWM_1_initialization();
 
 	USART_0_initialization();
 }

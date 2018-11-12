@@ -54,16 +54,16 @@ int8_t PWM_0_init()
 	/* Enable TC1 */
 	PRR0 &= ~(1 << PRTIM1);
 
-	TCCR1A = (0 << COM1A1) | (0 << COM1A0)   /* Normal port operation, OCA disconnected */
-	         | (1 << COM1B1) | (0 << COM1B0) /* Clear OCB on up-counting, set OCB on down-counting */
-	         | (1 << WGM11) | (1 << WGM10);  /* TC16 Mode 11 Phase Correct PWM */
+	TCCR1A = (1 << COM1A1) | (0 << COM1A0)   /* Clear OC1A on Compare Match when up-counting.*/
+	         | (0 << COM1B1) | (0 << COM1B0) /* OC1B disconnected.*/
+	         | (1 << WGM11) | (0 << WGM10);  /* TC16 Mode 11 Phase Correct PWM */
 
 	TCCR1B = (1 << WGM13) | (0 << WGM12)                /* TC16 Mode 11 Phase Correct PWM */
 	         | 0 << ICNC1                               /* Input Capture Noise Canceler: disabled */
 	         | 0 << ICES1                               /* Input Capture Edge Select: disabled */
-	         | (0 << CS12) | (0 << CS11) | (1 << CS10); /* No prescaling */
+	         | (0 << CS12) | (1 << CS11) | (1 << CS10); /* Prescaler of 8 */
 
-	// ICR1 = 0x0; /* Input capture value: 0x0 */
+	 // ICR1 = 0x0; /* Input capture value: 0x0 */
 
 	// OCR1A = 0x0; /* Counter top value: 0x0 */
 
