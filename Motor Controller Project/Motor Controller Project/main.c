@@ -84,15 +84,21 @@ int main(void)
 	uint8_t rxraw;
 
 	while(1){
-		USART0_Print("Starting...");
-		rxraw = USART_0_read();
-		sprintf(rxnum,"%u",rxraw);
-		USART0_Print(rxnum);
-		USART0_Print("End");
-		USART_0_write(10);
-		if(rxnum[0] == '8' && rxnum[1] == '0'){
-			PORTC &= 0xF0;
+		//USART0_Print("Starting...");
+		if(USART_0_is_rx_ready()){
+				rxraw = USART_0_read();
+				sprintf(rxnum,"%u",rxraw);
+				USART0_Print(rxnum);
+				USART_0_write(10);
+		
+			
 		}
+		
+		//USART0_Print("End");
+		
+		//if(rxnum[0] == '8' && rxnum[1] == '0'){
+		//	PORTC &= 0xF0;
+		//}
 	}
 	//TODO determine if we are using ch0 or ch1
 		
