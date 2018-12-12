@@ -1,0 +1,403 @@
+EESchema Schematic File Version 4
+LIBS:GCEW Motor Controller MCU-cache
+EELAYER 26 0
+EELAYER END
+$Descr USLetter 11000 8500
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L power:PWR_FLAG #FLG01
+U 1 1 5BD8C19F
+P 1800 1320
+F 0 "#FLG01" H 1800 1395 50  0001 C CNN
+F 1 "PWR_FLAG" H 1800 1494 50  0000 C CNN
+F 2 "" H 1800 1320 50  0001 C CNN
+F 3 "~" H 1800 1320 50  0001 C CNN
+	1    1800 1320
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR01
+U 1 1 5BD8C1D6
+P 2060 1320
+F 0 "#PWR01" H 2060 1170 50  0001 C CNN
+F 1 "+5V" H 2075 1493 50  0000 C CNN
+F 2 "" H 2060 1320 50  0001 C CNN
+F 3 "" H 2060 1320 50  0001 C CNN
+	1    2060 1320
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG02
+U 1 1 5BD8C20D
+P 2400 1220
+F 0 "#FLG02" H 2400 1295 50  0001 C CNN
+F 1 "PWR_FLAG" H 2400 1394 50  0000 C CNN
+F 2 "" H 2400 1220 50  0001 C CNN
+F 3 "~" H 2400 1220 50  0001 C CNN
+	1    2400 1220
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR02
+U 1 1 5BD8C244
+P 2400 1220
+F 0 "#PWR02" H 2400 970 50  0001 C CNN
+F 1 "GND" H 2405 1047 50  0000 C CNN
+F 2 "" H 2400 1220 50  0001 C CNN
+F 3 "" H 2400 1220 50  0001 C CNN
+	1    2400 1220
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x08 J2
+U 1 1 5BD8C2B3
+P 3200 2390
+F 0 "J2" H 3120 1765 50  0000 C CNN
+F 1 "MC2" H 3120 1856 50  0000 C CNN
+F 2 "myLib:PhoenixContact_1985027_8-Pin-Connector_8A_P3.5mm" H 3200 2390 50  0001 C CNN
+F 3 "~" H 3200 2390 50  0001 C CNN
+	1    3200 2390
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x08 J3
+U 1 1 5BD8C31D
+P 3200 3490
+F 0 "J3" H 3120 2865 50  0000 C CNN
+F 1 "MC1" H 3120 2956 50  0000 C CNN
+F 2 "myLib:PhoenixContact_1985027_8-Pin-Connector_8A_P3.5mm" H 3200 3490 50  0001 C CNN
+F 3 "~" H 3200 3490 50  0001 C CNN
+	1    3200 3490
+	-1   0    0    1   
+$EndComp
+$Comp
+L myLib:HC-05_BluetoothModule U2
+U 1 1 5BD8C46F
+P 7670 2170
+F 0 "U2" H 7870 2720 60  0000 C CNN
+F 1 "HC-05_BluetoothModule" H 8520 2620 60  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm" H 7670 2170 60  0001 C CNN
+F 3 "" H 7670 2170 60  0001 C CNN
+	1    7670 2170
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR012
+U 1 1 5BD8C58C
+P 7670 2720
+F 0 "#PWR012" H 7670 2470 50  0001 C CNN
+F 1 "GND" H 7675 2547 50  0000 C CNN
+F 2 "" H 7670 2720 50  0001 C CNN
+F 3 "" H 7670 2720 50  0001 C CNN
+	1    7670 2720
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C3
+U 1 1 5BD8C64F
+P 8120 1420
+F 0 "C3" V 8372 1420 50  0000 C CNN
+F 1 "0.1uF" V 8281 1420 50  0000 C CNN
+F 2 "Capacitors_SMD:C_1206" H 8158 1270 50  0001 C CNN
+F 3 "~" H 8120 1420 50  0001 C CNN
+	1    8120 1420
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR013
+U 1 1 5BD8C6D5
+P 8270 1420
+F 0 "#PWR013" H 8270 1170 50  0001 C CNN
+F 1 "GND" H 8275 1247 50  0000 C CNN
+F 2 "" H 8270 1420 50  0001 C CNN
+F 3 "" H 8270 1420 50  0001 C CNN
+	1    8270 1420
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR011
+U 1 1 5BD8C70D
+P 7670 1430
+F 0 "#PWR011" H 7670 1280 50  0001 C CNN
+F 1 "+5V" H 7685 1603 50  0000 C CNN
+F 2 "" H 7670 1430 50  0001 C CNN
+F 3 "" H 7670 1430 50  0001 C CNN
+	1    7670 1430
+	1    0    0    -1  
+$EndComp
+NoConn ~ 8130 2070
+$Comp
+L MCU_Microchip_ATmega:ATmega328PB-AU U1
+U 1 1 5BD8C7F2
+P 5350 2950
+F 0 "U1" H 4800 1450 50  0000 C CNN
+F 1 "ATmega328PB-AU" H 5850 1450 50  0000 C CNN
+F 2 "Housings_QFP:TQFP-32_7x7mm_Pitch0.8mm" H 5350 2950 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/40001906C.pdf" H 5350 2950 50  0001 C CNN
+	1    5350 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR06
+U 1 1 5BD8C894
+P 5350 1300
+F 0 "#PWR06" H 5350 1150 50  0001 C CNN
+F 1 "+5V" H 5365 1473 50  0000 C CNN
+F 2 "" H 5350 1300 50  0001 C CNN
+F 3 "" H 5350 1300 50  0001 C CNN
+	1    5350 1300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 1450 5350 1300
+Wire Wire Line
+	5350 1450 5450 1450
+Connection ~ 5350 1450
+$Comp
+L Device:C C2
+U 1 1 5BD8C8F6
+P 5700 1300
+F 0 "C2" V 5448 1300 50  0000 C CNN
+F 1 "0.1uF" V 5539 1300 50  0000 C CNN
+F 2 "Capacitors_SMD:C_1206" H 5738 1150 50  0001 C CNN
+F 3 "~" H 5700 1300 50  0001 C CNN
+	1    5700 1300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5550 1300 5450 1300
+Wire Wire Line
+	5450 1300 5450 1450
+Connection ~ 5450 1450
+$Comp
+L power:GND #PWR08
+U 1 1 5BD8C98C
+P 5850 1300
+F 0 "#PWR08" H 5850 1050 50  0001 C CNN
+F 1 "GND" H 5855 1127 50  0000 C CNN
+F 2 "" H 5850 1300 50  0001 C CNN
+F 3 "" H 5850 1300 50  0001 C CNN
+	1    5850 1300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 5BD8CA9F
+P 4550 1950
+F 0 "C1" H 4300 2050 50  0000 L CNN
+F 1 "0.1uF" H 4300 1850 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1206" H 4588 1800 50  0001 C CNN
+F 3 "~" H 4550 1950 50  0001 C CNN
+	1    4550 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4550 1800 4550 1750
+Wire Wire Line
+	4550 1750 4750 1750
+$Comp
+L power:GND #PWR05
+U 1 1 5BD8CB74
+P 4550 2100
+F 0 "#PWR05" H 4550 1850 50  0001 C CNN
+F 1 "GND" H 4555 1927 50  0000 C CNN
+F 2 "" H 4550 2100 50  0001 C CNN
+F 3 "" H 4550 2100 50  0001 C CNN
+	1    4550 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR07
+U 1 1 5BD8CE27
+P 5350 4450
+F 0 "#PWR07" H 5350 4200 50  0001 C CNN
+F 1 "GND" H 5355 4277 50  0000 C CNN
+F 2 "" H 5350 4450 50  0001 C CNN
+F 3 "" H 5350 4450 50  0001 C CNN
+	1    5350 4450
+	1    0    0    -1  
+$EndComp
+Text GLabel 7120 2170 0    50   Input ~ 0
+HC-05_RX
+Text GLabel 5950 3550 2    50   Input ~ 0
+HC-05_RX
+Wire Wire Line
+	7210 2170 7120 2170
+Wire Wire Line
+	7970 1420 7670 1420
+Wire Wire Line
+	7670 1420 7670 1430
+Wire Wire Line
+	7670 1620 7670 1430
+Connection ~ 7670 1430
+Text GLabel 8130 2170 2    50   Input ~ 0
+HC-05_TX
+Text GLabel 5950 3450 2    50   Input ~ 0
+HC-05_TX
+Text GLabel 5950 2050 2    50   Input ~ 0
+MOSI
+Text GLabel 5950 2150 2    50   Input ~ 0
+MISO
+Text GLabel 5950 2250 2    50   Input ~ 0
+SCK
+Text GLabel 5950 3250 2    50   Input ~ 0
+~RESET
+$Comp
+L Connector_Generic:Conn_01x06 J4
+U 1 1 5BD8E0CC
+P 7860 3780
+F 0 "J4" H 7940 3772 50  0000 L CNN
+F 1 "Programmer" H 7940 3681 50  0000 L CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x03_Pitch2.54mm" H 7860 3780 50  0001 C CNN
+F 3 "~" H 7860 3780 50  0001 C CNN
+	1    7860 3780
+	1    0    0    -1  
+$EndComp
+Text GLabel 7660 3680 0    50   Input ~ 0
+MOSI
+Text GLabel 7660 3880 0    50   Input ~ 0
+MISO
+Text GLabel 7660 3780 0    50   Input ~ 0
+SCK
+Text GLabel 7660 3580 0    50   Input ~ 0
+~RESET
+$Comp
+L power:+5V #PWR09
+U 1 1 5BD8E4AD
+P 7660 3980
+F 0 "#PWR09" H 7660 3830 50  0001 C CNN
+F 1 "+5V" V 7675 4108 50  0000 L CNN
+F 2 "" H 7660 3980 50  0001 C CNN
+F 3 "" H 7660 3980 50  0001 C CNN
+	1    7660 3980
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR010
+U 1 1 5BD8E4FE
+P 7660 4080
+F 0 "#PWR010" H 7660 3830 50  0001 C CNN
+F 1 "GND" V 7665 3952 50  0000 R CNN
+F 2 "" H 7660 4080 50  0001 C CNN
+F 3 "" H 7660 4080 50  0001 C CNN
+	1    7660 4080
+	0    1    1    0   
+$EndComp
+Text GLabel 3400 2290 2    50   Input ~ 0
+INHA1
+Text GLabel 3400 2690 2    50   Input ~ 0
+INHC1
+Text GLabel 3400 2590 2    50   Input ~ 0
+INLC1
+Text GLabel 3400 2390 2    50   Input ~ 0
+CAL1
+Text GLabel 3400 2190 2    50   Input ~ 0
+SOC1
+Text GLabel 3400 2090 2    50   Input ~ 0
+SOB1
+Text GLabel 3400 1990 2    50   Input ~ 0
+SOA1
+Text GLabel 3400 2490 2    50   Input ~ 0
+ENABLE1
+Text GLabel 3400 3090 2    50   Input ~ 0
+INHA2
+Text GLabel 3400 3190 2    50   Input ~ 0
+INHC2
+Text GLabel 3400 3290 2    50   Input ~ 0
+INLC2
+Text GLabel 3400 3390 2    50   Input ~ 0
+CAL2
+Text GLabel 3400 3790 2    50   Input ~ 0
+SOC2
+Text GLabel 3400 3690 2    50   Input ~ 0
+SOB2
+Text GLabel 3400 3590 2    50   Input ~ 0
+SOA2
+Text GLabel 3400 3490 2    50   Input ~ 0
+ENABLE2
+Text GLabel 5950 1850 2    50   Input ~ 0
+INHA1
+Text GLabel 5950 3650 2    50   Input ~ 0
+INHA2
+Text GLabel 5950 3950 2    50   Input ~ 0
+INHC1
+Text GLabel 5950 4050 2    50   Input ~ 0
+INLC1
+Text GLabel 4750 3450 0    50   Input ~ 0
+INHC2
+Text GLabel 5950 3850 2    50   Input ~ 0
+INLC2
+Text GLabel 5950 1750 2    50   Input ~ 0
+CAL1
+Text GLabel 5950 3750 2    50   Input ~ 0
+CAL2
+Text GLabel 4750 3750 0    50   Input ~ 0
+SOC1
+Text GLabel 5950 2650 2    50   Input ~ 0
+SOB1
+Text GLabel 5950 2750 2    50   Input ~ 0
+SOA1
+Text GLabel 5950 2850 2    50   Input ~ 0
+SOC2
+Text GLabel 5950 2950 2    50   Input ~ 0
+SOB2
+Text GLabel 5950 3050 2    50   Input ~ 0
+SOA2
+Text GLabel 5950 4150 2    50   Input ~ 0
+ENABLE1
+Text GLabel 5950 1950 2    50   Input ~ 0
+ENABLE2
+$Comp
+L Connector_Generic:Conn_01x02 J1
+U 1 1 5BD928C9
+P 2990 1130
+F 0 "J1" H 3070 1122 50  0000 L CNN
+F 1 "POWER IN" H 3070 1031 50  0000 L CNN
+F 2 "myLib:PhoenixContact_1984963_2-Pin-Connector_8A_P3.5mm" H 2990 1130 50  0001 C CNN
+F 3 "~" H 2990 1130 50  0001 C CNN
+	1    2990 1130
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR03
+U 1 1 5BD929B9
+P 2790 1130
+F 0 "#PWR03" H 2790 980 50  0001 C CNN
+F 1 "+5V" H 2805 1303 50  0000 C CNN
+F 2 "" H 2790 1130 50  0001 C CNN
+F 3 "" H 2790 1130 50  0001 C CNN
+	1    2790 1130
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR04
+U 1 1 5BD92A08
+P 2790 1230
+F 0 "#PWR04" H 2790 980 50  0001 C CNN
+F 1 "GND" H 2795 1057 50  0000 C CNN
+F 2 "" H 2790 1230 50  0001 C CNN
+F 3 "" H 2790 1230 50  0001 C CNN
+	1    2790 1230
+	1    0    0    -1  
+$EndComp
+Text GLabel 7210 2270 0    50   Input ~ 0
+PC5
+Text GLabel 5950 3150 2    50   Input ~ 0
+PC5
+Wire Wire Line
+	2060 1320 1800 1320
+NoConn ~ 4750 3650
+NoConn ~ 4750 3550
+NoConn ~ 5950 2350
+NoConn ~ 5950 2450
+$EndSCHEMATC
